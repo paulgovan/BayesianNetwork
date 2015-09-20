@@ -9,7 +9,7 @@ Bayesian network modeling and analysis
 * Generate data from your network and export to your favorite app
 
 # Overview
-BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork). To learn more about our project, see this [publication](http://oaktrust.library.tamu.edu/handle/1969.1/153492).
+BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, see this [publication](http://oaktrust.library.tamu.edu/handle/1969.1/153492).
 
 # Getting Started
 You can run BayesianNetwork in [R](https://www.r-project.org) with:
