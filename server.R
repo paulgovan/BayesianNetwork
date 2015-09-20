@@ -79,7 +79,7 @@ shinyServer(function(input, output, session) {
     if (is.null(data()))
       return(NULL)
     nodes <- nnodes(dag())
-    valueBox(nodes, "Nodes", icon = icon("circle"), color = "green")
+    valueBox(nodes, "Nodes", icon = icon("circle"), color = "blue")
   })
   
   # Create the arcs box
@@ -87,7 +87,7 @@ shinyServer(function(input, output, session) {
     if (is.null(data()))
       return(NULL)
     arcs <- narcs(dag())
-    valueBox(arcs, "Arcs", icon = icon("arrow-right"), color = "blue")
+    valueBox(arcs, "Arcs", icon = icon("arrow-right"), color = "green")
   })
   
   # Plot the network
@@ -97,7 +97,7 @@ shinyServer(function(input, output, session) {
     networkData <- data.frame(arcs(dag()))
     simpleNetwork(networkData, Source = "from", Target = "to",
                   linkDistance = 100, charge = -400, fontSize = 12, 
-                  opacity = 0.8, nodeColour = "green")
+                  opacity = 0.8)
   })
   
   # Print the network score
