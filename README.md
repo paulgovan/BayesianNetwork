@@ -2,7 +2,7 @@
 Bayesian network modeling and analysis
 
 # Features
-* Create interactive risk network models in the cloud
+* Create interactive Bayesian network models in the cloud
 * Learn the structure of your network with powerful structural learning algorithms
 * Learn the paramaters of your network with effective paramater learning methods
 * Measure the importance of connections in your network with node and network measures
