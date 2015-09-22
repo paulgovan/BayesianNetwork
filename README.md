@@ -1,15 +1,15 @@
 # BayesianNetwork
-Bayesian network modeling and analysis
+Bayesian Network modeling and analysis
 
 # Features
-* Create interactive Bayesian network models in the cloud
+* Create interactive Bayesian Network models in the cloud
 * Learn the structure of your network with powerful structural learning algorithms
 * Learn the paramaters of your network with effective paramater learning methods
 * Measure the importance of connections in your network with node and network measures
 * Generate data from your network and export to your favorite app
 
 # Overview
-BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, see this [publication](http://oaktrust.library.tamu.edu/handle/1969.1/153492).
+BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian Network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, see this [publication](http://oaktrust.library.tamu.edu/handle/1969.1/153492).
 
 # Getting Started
 You can run BayesianNetwork in [R](https://www.r-project.org) with:
