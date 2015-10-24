@@ -13,11 +13,11 @@
 # limitations under the License.
 
 library(shiny)
-# library(shinyapps)
+library(shinyapps)
 library(shinydashboard)
-# library(shinysky)
 library(networkD3)
 library(rhandsontable)
+library(d3heatmap)
 
 dashboardPage(skin="green",
               dashboardHeader(title = "BayesianNetwork",
@@ -238,19 +238,16 @@ dashboardPage(skin="green",
                             box(
                               title = "Network Control", status = "success", solidHeader = TRUE, collapsible = TRUE, width = 4,
                               helpText("Select a network measure:"),
-                              selectInput("netMeasure", h5("Network Measure:"), 
-                                          c("Adjacency Matrix"="amat",
-                                            "Arcs"="arcs",
-                                            "Directed Arcs"="directed.arcs",
-                                            "Undirected Arcs"="undirected.arcs",
-                                            "Root Nodes"="root.nodes",
-                                            "Leaf Nodes"="leaf.nodes",
-                                            "Compelled Arcs"="compelled.arcs"
+                              selectInput("dendrogram", h5("Dendrogram:"), 
+                                          c("Both"="both",
+                                            "Row"="row",
+                                            "Column"="column",
+                                            "None"="none"
                                           ))
                             ),
                             box(
                               title = "Network Measure", status = "success", solidHeader = TRUE, collapsible = TRUE, width = 8,
-                              DT::dataTableOutput("netTable")
+                              d3heatmapOutput("netTable")
                             )
                           )
                   ),

@@ -16,6 +16,7 @@ library(bnlearn)
 library(lattice)
 library(networkD3)
 library(rhandsontable)
+library(d3heatmap)
 
 # By default, the file size limit is 5MB. It can be changed by
 # setting this option. Here we'll raise limit to 9MB.
@@ -140,62 +141,58 @@ shinyServer(function(input, output, session) {
     }
   })
   
-#   # Create data frame for selected paramater
-#   param <- reactive({
-#     param <- data.frame(coef(fit()[[input$Node]]))
-#     if (is.numeric(data()[,1])) {
-#       colnames(param) <- "Param"
-#       param <- cbind(param = rownames(param), param)
-#       param[,"Param"] <- round(param[,"Param"], digits = 3)
-#       param <- transform(param, Param = as.numeric(Param))
-#     } else {
-#       param[,"Freq"] <- round(param[,"Freq"], digits = 3)
-#       param <- transform(param, Freq = as.numeric(Freq))
-#     }
-#   })
-#   
-#   # Plot Handsontable for selected parameter
-#   output$hot = renderRHandsontable({
-#     if (!is.null(input$hot)) {
-#       DF = hot_to_r(input$hot)
-#     } else {
-#       DF = param()
-#     }
-#     if (is.numeric(data()[,1])) {
-#       col <- "Param"
-#     } else {
-#       col <- "Freq"
-#     }
-#     setHot(DF)
-#     rhandsontable(DF, readOnly = TRUE, rowHeaders = NULL) %>%
-#       hot_table(highlightCol = TRUE, highlightRow = TRUE,
-#                 allowRowEdit = FALSE, allowColEdit = FALSE) %>%
-#       hot_col(col, readOnly = FALSE)
-#   })
-#   
-#   # Add expert knowledge to the model
-#   values = list()
-#   setHot = function(x) values[["hot"]] <<- x
-#   
-#   # Add expert knowledge to the model
-#   expertFit <- reactive({
-#     observe({
-#       input$saveBtn
-#       if (!is.null(values[["hot"]])) {
-#         expertFit <- values[["hot"]]
-#         if (is.numeric(data()[,1])) {
-#           stdev <- as.numeric(fit()[[input$Node]]["sd"])
-#           expertFit <- list(coef = c(expertFit[,"Param"]), sd = stdev)
-#         } else {
-#           cpt <- coef(DF()[[input$Node]])
-#           cpt[1:length(DF()[,"Freq"])] <- c(expertFit[,"Freq"])
-#           expertFit <- cpt
-#         }
-#       } else {
-#         expertFit <- fit()[[input$Node]]
-#       }
-#     })
-#   })
+  # Create data frame for selected paramater
+  param <- reactive({
+    param <- data.frame(coef(fit()[[input$Node]]))
+    if (is.numeric(data()[,1])) {
+      colnames(param) <- "Param"
+      param <- cbind(param = rownames(param), param)
+      param[,"Param"] <- round(param[,"Param"], digits = 3)
+      param <- transform(param, Param = as.numeric(Param))
+    } else {
+      param[,"Freq"] <- round(param[,"Freq"], digits = 3)
+      param <- transform(param, Freq = as.numeric(Freq))
+    }
+  })
+  
+  # Plot Handsontable for selected parameter
+  values = reactiveValues()
+  setHot = function(x) values[["hot"]] <<- x
+  output$hot = renderRHandsontable({
+    if (!is.null(input$hot)) {
+      DF = hot_to_r(input$hot)
+    } else {
+      DF = param()
+    }
+    if (is.numeric(data()[,1])) {
+      col <- "Param"
+    } else {
+      col <- "Freq"
+    }
+    setHot(DF)
+    rhandsontable(DF, readOnly = TRUE, rowHeaders = NULL) %>%
+      hot_table(highlightCol = TRUE, highlightRow = TRUE) %>%
+      hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE) %>%
+      hot_col(col, readOnly = FALSE)
+  })
+  
+  # Add expert knowledge to the model
+  expertFit <- reactive({
+    if (!is.null(values[["hot"]])) {
+      expertFit <- fit()
+      temp <- data.frame(values[["hot"]])
+      if (is.numeric(data()[,1])) {
+        stdev <- as.numeric(fit()[[input$Node]]["sd"])
+        expertFit[[input$Node]] <- list(coef = as.numeric(temp[,"Param"]), sd = stdev)
+      } else {
+        cpt <- coef(expertFit()[[input$Node]])
+        cpt[1:length(param()[,"Freq"])] <- as.numeric(temp[,"Freq"])
+        expertFit[[input$Node]] <- cpt
+      }
+    } else {
+      expertFit <- fit()
+    }
+  })
   
   # Set the paramater graphic options
   graphic <- reactive({
@@ -294,31 +291,12 @@ shinyServer(function(input, output, session) {
   })
   
   # Show network measures
-  output$netTable <- DT::renderDataTable({
+  output$netTable <- renderD3heatmap({
     if (is.null(data()))
       return(NULL)
-    if (input$netMeasure == "amat") {
-      DT::datatable(amat(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "arcs") {
-      DT::datatable(arcs(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "directed.arcs") {
-      DT::datatable(directed.arcs(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "undirected.arcs") { 
-      DT::datatable(undirected.arcs(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "root.nodes") {
-      DT::datatable(root.nodes(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "leaf.nodes") {
-      DT::datatable(leaf.nodes(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "root.nodes") {
-      DT::datatable(root.nodes(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "leaf.nodes") {
-      DT::datatable(leaf.nodes(dag()), extensions = 'Responsive')
-    } else if (input$netMeasure == "compelled.arcs") {
-      DT::datatable(compelled.arcs(dag()), extensions = 'Responsive')
-    } else {
-      DT::datatable(nnodes(dag()), extensions = 'Responsive')
-    }
-  }, options = list(paging = FALSE, searching = FALSE))
+    d3heatmap(amat(dag()), dendrogram = input$dendrogram, symm = TRUE, 
+              cexRow = 0.7, cexCol = 0.7, colors = "Blues")
+  })
   
   simData <- reactive({
     simData <- rbn(fit(), input$n)
