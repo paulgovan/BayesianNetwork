@@ -30,12 +30,12 @@ dashboardPage(skin="green",
               dashboardSidebar(
                 sidebarMenu(
                   menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-                  menuItem("Structure", icon = icon("globe"), tabName = "structure",
-                           badgeLabel = "New", badgeColor = "green"),
+                  menuItem("Structure", icon = icon("globe"), tabName = "structure"),
                   menuItem("Parameters", tabName = "paramaters", icon = icon("bar-chart")),
                   menuItem("Inference", icon = icon("arrow-right"), tabName = "inference",
                            badgeLabel = "Coming Soon", badgeColor = "yellow"),
-                  menuItem("Measures", tabName = "measures", icon = icon("table")),
+                  menuItem("Measures", tabName = "measures", icon = icon("table"),
+                           badgeLabel = "New", badgeColor = "green"),
                   menuItem("Simulation", tabName = "simulation", icon = icon("random"))
                   
                 )),
