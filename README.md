@@ -15,7 +15,7 @@ BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayes
 You can run BayesianNetwork in [R](https://www.r-project.org) with:
 
 ```S
-require(shiny)
+install.packages("shiny")
 runGitHub('paulgovan/bayesiannetwork')
 ```
 
