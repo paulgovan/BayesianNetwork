@@ -13,7 +13,6 @@
 # limitations under the License.
 
 library(shiny)
-library(shinyapps)
 library(shinydashboard)
 library(networkD3)
 library(rhandsontable)

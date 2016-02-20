@@ -1,16 +1,5 @@
-Title: RiskNetwork
-Description: Risk network modeling and analysis.
-Version: 0.1
-Date: 2015-03-24
-Authors@R: c(
-    person("Paul", "Govan", email = "pgovan1@aggienetwork.com", 
-    role = c("aut", "cre")),
-    )
-URL: http://github.com/paulgovan/RiskNetwork/
+Title: BayesianNetwork
+Author: Paul Govan
+AuthorUrl: http://github.com/paulgovan/RiskNetwork/
 License: Apache
-Depends:
-    R (>= 3.0.0)
-Imports:
-    bnlearn,
-    shiny,
-    networkD3
+Type: Shiny
