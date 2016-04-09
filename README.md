@@ -1,6 +1,8 @@
 # BayesianNetwork
 Bayesian Network modeling and analysis
 
+![BayesianNetwork](https://github.com/paulgovan/BayesianNetwork/blob/master/images/BayesianNetwork%20Structure%20Tab.png?raw=true)
+
 # Features
 * Create interactive Bayesian Network models in the cloud
 * Learn the structure of your network with powerful structural learning algorithms
