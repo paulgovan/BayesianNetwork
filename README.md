@@ -19,35 +19,41 @@ Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNe
 
 # Example
 ## Dashboard
-Launching the app brings up the *Dashboard*. The *Dashboard* is basically a landing page that includes a brief introduction to the app as well as value boxes that show both the number of *nodes* and *arcs* in the network. BayesianNetwork comes with a number of  pre-loaded artificial and "real world" data sets. This example will use the "Sample Discrete Network", which is the first network loaded when launching the app.
+Launching the app brings up the *Dashboard*. The *Dashboard* is basically a landing page that gives a brief introduction to the app and includes two value boxes, one each for the number of *nodes* and *arcs* in the network. 
+
+BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the default network loaded after launching the app.
 
 ![Dashboard](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Dashboard.PNG?raw=true)
 
 ## Structure
 Click *Structure* in the sidepanel in order to begin learning the network from the data.
 
-The *Network Input* box contains a number of pre-loaded Bayesian networks as well as the ability to upload a data set in csv format. Note that the "Sample Discrete Network" should already be loaded. 
+The Bayesian network is automatically displayed inthe *Bayesian Network* box.
 
-The *Structural Learning* box contains multiple algorithms for learning the structure of the network that are organized based on the type of algorithm: 
+In order to learn the structure of the network for a given set of data, upload the data set in csv format using The *Network Input* box. Again, this example uses the "Sample Discrete Network", which should already be loaded. 
+
+Select a learning algorithm from the *Structural Learning* box. A number of different stuctural learning algorithms are supported including:  
 * Constraint-based algorithms
 * Score-based algorithms
 * Hybrid-structure algorithms
 * Local discovery algorithms
 
-The *Network Score* box includes a number of score functions and the result of the selected score function for the current network.  
+To view the network score, select a score function from the The *Network Score* box. 
 
 ![Structure](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Structure.PNG?raw=true)
 
-The "Sample Discrete Network" contains six discrete variables, stored as factors with either 2 or 3 levels. The structure of this simple Bayesian network can be learned using the grow-shrink algorithm, which is already the default algorithm selected.
+"Sample Discrete Network" contains six discrete variables, stored as factors with either 2 or 3 levels. The structure of this simple Bayesian network can be learned using the grow-shrink algorithm, which is the selected algorithm by default.
 
-Try different combinations of structural learning algorithms and score functions to see the effect (if any) on the resulting Bayesian network.
+Try different combinations of structural learning algorithms and score functions in order to see the effect (if any) on the resulting Bayesian network.
 
 ## Parameters
-Select the grow-shrink algorithm again and then click *Parameters* in the sidepanel in order to learn the parameters of the network.
+Select the grow-shrink algorithm once again and then click *Parameters* in the sidepanel in order to learn the parameters of the network.
 
-In the *Parameter Learning* box contains options for both maximum-likelihood estimation and Bayesian estimation of the parameters. Note that Bayesian paramter learning is currently only implemented for *discrete* data sets. 
+The selected paramaters are automically displayed in the *Network Paramaters* box.
 
-The *Paramter Infographic* box contains options for different chart types and, for the discrete case, the selected node. 
+Select a learning algorithm from the *Parameter Learning* box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian paramter learning is currently only implemented for *discrete* data sets. 
+
+Then select a type of paramater chart in the *Paramter Infographic* box and, for the discrete case, choose a node. 
 
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Parameters.PNG?raw=true)
 
@@ -56,7 +62,7 @@ For example, the selected node *A* is a discrete node with three levels *a*, *b*
 ## Measures
 Click *Measures* in the sidepanel to bring up a number of tools for classical network analysis. 
 
-The *Node Control* box contains several different node measures that can be displayed in the *Node Measure* box. These node measures include:
+The *Measures* tab has a number of both node and network measures. The node measures include:
 * Markov blanket
 * Neighborhood
 * Parents
@@ -67,19 +73,19 @@ The *Node Control* box contains several different node measures that can be disp
 * Incoming arcs
 * Outgoing arcs
 
-The *Network Control* box gives options for the type of dendogram to plot on the adjacency matrix, which is shown in the *Network Measure* box. The dendogram can be shown for:
-* Row
-* Column
-* Both, or
-* Neither the row or column
+Select a node measure in the *Node Control* box and the result will be automatically displayed in the *Node Measure* box.
+
+The so-called network measures are basically different options for hierarchical clustering of the network. Select the type of dendogram to display (row, column, both, or none) in the *Network Control* box and the resulting adjacency matrix will be displayed in the *Network Measure* box.
 
 ![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Measures.PNG?raw=true)
 
 ## Simulation
 
-Finally, click *Simulation* in the sidepanel in order to simulate a random sample of data from the Bayesian network and download to a local drive for future use. 
+Finally, click *Simulation* in the sidepanel in order to simulate data from the network.
 
-Simply enter the sample size N and click *Download* in order to download a sample data set into the current working directory. 
+Simply enter the sample size N in the *Network Simulation* box and click *Download* in order to download a random sample of data from the Bayesian network. 
+
+![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Simulation.PNG?raw=true)
 
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
