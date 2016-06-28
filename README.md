@@ -42,6 +42,17 @@ The "Sample Discrete Network" contains six discrete variables, stored as factors
 
 Try different combinations of structural learning algorithms and score functions to see the effect (if any) on the resulting Bayesian network.
 
+## Parameters
+Select the grow-shrink algorithm again and then click *Parameters* in the sidepanel in order to learn the parameters of the network.
+
+In the *Parameter Learning* box contains options for both maximum-likelihood estimation and Bayesian estimation of the parameters. Note that Bayesian paramter learning is currently only implemented for *discrete* data sets. 
+
+The *Paramter Infographic* box contains options for different chart types and, for the discrete case, the selected node. 
+
+![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Parameters.PNG?raw=true)
+
+For example, the selected node *A* is a discrete node with three levels *a*, *b*, and *c*.
+
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
 
