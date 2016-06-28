@@ -21,18 +21,18 @@ Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNe
 ## Dashboard
 Launching the app brings up the *Dashboard*. The *Dashboard* is basically a landing page that gives a brief introduction to the app and includes two value boxes, one each for the number of *nodes* and *arcs* in the network. 
 
-BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the default network loaded after launching the app.
+BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the selected network by default.
 
 ![Dashboard](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Dashboard.PNG?raw=true)
 
 ## Structure
-Click *Structure* in the sidepanel in order to begin learning the network from the data.
+Click *Structure* in the sidepanel to begin learning the network from the data.
 
-The Bayesian network is automatically displayed inthe *Bayesian Network* box.
+The Bayesian network is automatically displayed in the *Bayesian Network* box.
 
-In order to learn the structure of the network for a given set of data, upload the data set in csv format using The *Network Input* box. Again, this example uses the "Sample Discrete Network", which should already be loaded. 
+In order to learn the structure of a network for a given data set, upload the data set in csv format using The *Network Input* box. Again, this example uses the "Sample Discrete Network", which should already be loaded. 
 
-Select a learning algorithm from the *Structural Learning* box. A number of different stuctural learning algorithms are supported including:  
+Select a learning algorithm from the *Structural Learning* box. A number of different stuctural learning algorithms are currently supported, including:  
 * Constraint-based algorithms
 * Score-based algorithms
 * Hybrid-structure algorithms
@@ -51,18 +51,18 @@ Select the grow-shrink algorithm once again and then click *Parameters* in the s
 
 The selected paramaters are automically displayed in the *Network Paramaters* box.
 
-Select a learning algorithm from the *Parameter Learning* box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian paramter learning is currently only implemented for *discrete* data sets. 
+Select a learning algorithm from the *Parameter Learning* box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian parameter learning is currently only implemented for *discrete* data sets. 
 
-Then select a type of paramater chart in the *Paramter Infographic* box and, for the discrete case, choose a node. 
+Then select the type of chart to display in the *Paramter Infographic* box and, for the discrete case, choose your preferred node. 
 
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Parameters.PNG?raw=true)
 
-For example, the selected node *A* is a discrete node with three levels *a*, *b*, and *c*.
+For example, the selected node *A* is a discrete node with three levels: *a*, *b*, and *c*.
 
 ## Measures
 Click *Measures* in the sidepanel to bring up a number of tools for classical network analysis. 
 
-The *Measures* tab has a number of both node and network measures. The node measures include:
+The *Measures* tab has a number of node and network measures. The node measures include:
 * Markov blanket
 * Neighborhood
 * Parents
@@ -73,25 +73,29 @@ The *Measures* tab has a number of both node and network measures. The node meas
 * Incoming arcs
 * Outgoing arcs
 
-Select a node measure in the *Node Control* box and the result will be automatically displayed in the *Node Measure* box.
+Select a node measure in the *Node Control* box and the result will be displayed in the *Node Measure* box.
 
-The so-called network measures are basically different options for hierarchical clustering of the network. Select the type of dendogram to display (row, column, both, or none) in the *Network Control* box and the resulting adjacency matrix will be displayed in the *Network Measure* box.
+The *Network Control* box contains different options for hierarchical clustering of the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the *Network Measure* box.
 
 ![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Measures.PNG?raw=true)
 
 ## Simulation
 
-Finally, click *Simulation* in the sidepanel in order to simulate data from the network.
+Finally, click *Simulation* in the sidepanel in order to simulate data from the network for future use.
 
-Simply enter the sample size N in the *Network Simulation* box and click *Download* in order to download a random sample of data from the Bayesian network. 
+Simply enter the sample size *N* in the *Network Simulation* box and click *Download* in order to download a random sample of data from the Bayesian network. 
 
 ![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Simulation.PNG?raw=true)
 
+## Future Work
+This package is very much still in development and mutiple improvements are currently in development, including:
+* Bayesian Inference
+* Expert Kowledge
+
+Please let us know if there are things you would like to see added (or problems with the app!) by opening up an issue using the GitHub issue tracker at [https://github.com/paulgovan/BayesianNetwork/issues](https://github.com/paulgovan/BayesianNetwork/issues)
+
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
-
-# Issues
-For issues or requests, please use the GitHub issue tracker at [https://github.com/paulgovan/BayesianNetwork/issues](https://github.com/paulgovan/BayesianNetwork/issues)
 
 # Contributions
 Contributions are welcome by sending a [pull request](https://github.com/paulgovan/BayesianNetwork/pulls)
