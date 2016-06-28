@@ -53,6 +53,11 @@ The *Paramter Infographic* box contains options for different chart types and, f
 
 For example, the selected node *A* is a discrete node with three levels *a*, *b*, and *c*.
 
+## Measures
+Click *Measures* in the sidepanel to bring up a number of tools for classical network analysis. 
+
+
+
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
 
