@@ -19,9 +19,28 @@ Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNe
 
 # Example
 ## Dashboard
-Launching the app brings up the *Dashboard*. The *Dashboard* is basically a landing page that includes a brief introduction to the app and as well as value boxes that show both the number of *nodes* and *arcs* in the network. 
+Launching the app brings up the *Dashboard*. The *Dashboard* is basically a landing page that includes a brief introduction to the app as well as value boxes that show both the number of *nodes* and *arcs* in the network. BayesianNetwork comes with a number of  pre-loaded artificial and "real world" data sets. This example will use the "Sample Discrete Network", which is the first network loaded when launching the app.
 
 ![Dashboard](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Dashboard.PNG?raw=true)
+
+## Structure
+Click *Structure* in the sidepanel in order to begin learning the network from the data.
+
+The *Network Input* box contains a number of pre-loaded Bayesian networks as well as the ability to upload a data set in csv format. Note that the "Sample Discrete Network" should already be loaded. 
+
+The *Structural Learning* box contains multiple algorithms for learning the structure of the network that are organized based on the type of algorithm: 
+* Constraint-based algorithms
+* Score-based algorithms
+* Hybrid-structure algorithms
+* Local discovery algorithms
+
+The *Network Score* box includes a number of score functions and the result of the selected score function for the current network.  
+
+![Structure](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Structure.PNG?raw=true)
+
+The "Sample Discrete Network" contains six discrete variables, stored as factors with either 2 or 3 levels. The structure of this simple Bayesian network can be learned using the grow-shrink algorithm, which is already the default algorithm selected.
+
+Try different combinations of structural learning algorithms and score functions to see the effect (if any) on the resulting Bayesian network.
 
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
