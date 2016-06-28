@@ -1,8 +1,3 @@
-# BayesianNetwork
-Bayesian Network modeling and analysis
-
-![BayesianNetwork](https://github.com/paulgovan/BayesianNetwork/blob/master/images/BayesianNetwork%20Structure%20Tab.png?raw=true)
-
 # Features
 * Create interactive Bayesian Network models in the cloud
 * Learn the structure of your network with powerful structural learning algorithms
@@ -11,17 +6,22 @@ Bayesian Network modeling and analysis
 * Generate data from your network and export to your favorite app
 
 # Overview
-BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian Network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, see this [publication](http://dx.doi.org/10.1061/(ASCE)CO.1943-7862.0001136).
+BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian Network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, see this [publication](http://ascelibrary.org/doi/abs/10.1061/(ASCE)CO.1943-7862.0001136). For even more background, check out this [publication](http://dx.doi.org/10.1061/(ASCE)CO.1943-7862.0001136).
 
 # Getting Started
-You can run BayesianNetwork in [R](https://www.r-project.org) with:
+To run BayesianNetwork in [R](https://www.r-project.org):
 
 ```S
-install.packages("shiny")
-runGitHub('paulgovan/bayesiannetwork')
+shiny::runGitHub('paulgovan/bayesiannetwork')
 ```
 
-Or you can access the app through your browser at [paulgovan.shinyapps.io/BayesianNetwork](https://paulgovan.shinyapps.io/Bayesiannetwork). 
+Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNetwork](https://paulgovan.shinyapps.io/Bayesiannetwork). 
+
+# Example
+## Dashboard
+Launching the app brings up the *Dashboard*. The *Dashboard* is basically a landing page that includes a brief introduction to the app and as well as value boxes for both the number of *nodes* and *arcs* in the network. 
+
+![Dashboard](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Dashboard.PNG?raw=true)
 
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
