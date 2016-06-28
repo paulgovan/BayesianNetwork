@@ -56,7 +56,30 @@ For example, the selected node *A* is a discrete node with three levels *a*, *b*
 ## Measures
 Click *Measures* in the sidepanel to bring up a number of tools for classical network analysis. 
 
+The *Node Control* box contains several different node measures that can be displayed in the *Node Measure* box. These node measures include:
+* Markov blanket
+* Neighborhood
+* Parents
+* Children
+* In degree
+* Out degree
+* Incident arcs
+* Incoming arcs
+* Outgoing arcs
 
+The *Network Control* box gives options for the type of dendogram to plot on the adjacency matrix, which is shown in the *Network Measure* box. The dendogram can be shown for:
+* Row
+* Column
+* Both, or
+* Neither the row or column
+
+![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Measures.PNG?raw=true)
+
+## Simulation
+
+Finally, click *Simulation* in the sidepanel in order to simulate a random sample of data from the Bayesian network and download to a local drive for future use. 
+
+Simply enter the sample size N and click *Download* in order to download a sample data set into the current working directory. 
 
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
