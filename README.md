@@ -88,7 +88,7 @@ Simply enter the sample size *N* in the *Network Simulation* box and click *Down
 ![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Simulation.PNG?raw=true)
 
 ## Future Work
-This package is very much still in development and mutiple improvements are currently in development, including:
+This package is very much still in development and mutiple improvements are planned, including:
 * Bayesian Inference
 * Expert Kowledge
 
