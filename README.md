@@ -9,10 +9,16 @@
 BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian Network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, check out this [publication](http://ascelibrary.org/doi/abs/10.1061/(ASCE)CO.1943-7862.0001136). For even more background, see this [publication](http://dx.doi.org/10.1061/(ASCE)CO.1943-7862.0001136).
 
 # Getting Started
-To run BayesianNetwork in [R](https://www.r-project.org):
+To install BayesianNetwork in [R](https://www.r-project.org):
 
-```S
-shiny::runGitHub('paulgovan/bayesiannetwork')
+```
+devtools::install_github('paulgovan/BayesianNetwork')
+```
+
+To launch the app:
+
+```
+BayesianNetwork()
 ```
 
 Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNetwork](https://paulgovan.shinyapps.io/Bayesiannetwork). 
