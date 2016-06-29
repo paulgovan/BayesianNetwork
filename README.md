@@ -23,7 +23,7 @@ Launching the app brings up the *Dashboard*. The *Dashboard* is basically a land
 
 BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the selected network by default.
 
-![Dashboard](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Dashboard.PNG?raw=true)
+![Dashboard](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Dashboard.PNG?raw=true)
 
 ## Structure
 Click *Structure* in the sidepanel to begin learning the network from the data.
@@ -40,7 +40,7 @@ Select a learning algorithm from the *Structural Learning* box. A number of diff
 
 To view the network score, select a score function from the The *Network Score* box. 
 
-![Structure](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Structure.PNG?raw=true)
+![Structure](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Structure.PNG?raw=true)
 
 "Sample Discrete Network" contains six discrete variables, stored as factors with either 2 or 3 levels. The structure of this simple Bayesian network can be learned using the grow-shrink algorithm, which is the selected algorithm by default.
 
@@ -55,7 +55,7 @@ Select a learning algorithm from the *Parameter Learning* box. This app supports
 
 Then select the type of chart to display in the *Paramter Infographic* box and, for the discrete case, choose your preferred node. 
 
-![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Parameters.PNG?raw=true)
+![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true)
 
 For example, the selected node *A* is a discrete node with three levels: *a*, *b*, and *c*.
 
@@ -77,7 +77,7 @@ Select a node measure in the *Node Control* box and the result will be displayed
 
 The *Network Control* box contains different options for hierarchical clustering of the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the *Network Measure* box.
 
-![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Measures.PNG?raw=true)
+![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true)
 
 ## Simulation
 
@@ -85,7 +85,7 @@ Finally, click *Simulation* in the sidepanel in order to simulate data from the 
 
 Simply enter the sample size *N* in the *Network Simulation* box and click *Download* in order to download a random sample of data from the Bayesian network. 
 
-![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/images/Simulation.PNG?raw=true)
+![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true)
 
 ## Future Work
 This package is very much still in development and mutiple improvements are planned, including:
