@@ -1,30 +1,10 @@
-# Copyright 2015 Paul Govan
-
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-
-# http://www.apache.org/licenses/LICENSE-2.0
-
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-library(bnlearn)
-library(lattice)
-library(networkD3)
-library(rhandsontable)
-library(d3heatmap)
-
 # By default, the file size limit is 5MB. It can be changed by
 # setting this option. Here we'll raise limit to 9MB.
 options(shiny.maxRequestSize = 10*1024^2)
 
 # Define required server logic
 shinyServer(function(input, output, session) {
-  
+
   # Get data
   data <- reactive({
     if (input$net == 1) {
@@ -35,7 +15,7 @@ shinyServer(function(input, output, session) {
       data <- insurance
     } else if (input$net == 4) {
       data <- hailfinder
-    } else  {  
+    } else  {
       # Get uploaded file
       inFile <- input$file
       if (is.null(inFile))
@@ -43,87 +23,87 @@ shinyServer(function(input, output, session) {
       data <- read.csv(inFile$datapath, header = input$header,
                        sep = input$sep)
     }
-  })  
-  
+  })
+
   # Learn the structure of the network
   dag <- reactive({
     if (is.null(data()))
       return(NULL)
     if (input$alg == "gs") {
-      dag <- cextend(gs(data()), strict=FALSE)
+      dag <- bnlearn::cextend(gs(data()), strict=FALSE)
     } else if (input$alg == "iamb") {
-      dag <- cextend(iamb(data()), strict=FALSE)
+      dag <- bnlearn::cextend(iamb(data()), strict=FALSE)
     } else if (input$alg == "fast.iamb") {
-      dag <- cextend(fast.iamb(data()), strict=FALSE)
+      dag <- bnlearn::cextend(fast.iamb(data()), strict=FALSE)
     } else if (input$alg == "inter.iamb") {
-      dag <- cextend(inter.iamb(data()), strict=FALSE)
+      dag <- bnlearn::cextend(inter.iamb(data()), strict=FALSE)
     } else if (input$alg == "hc") {
-      dag <- cextend(hc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(hc(data()), strict=FALSE)
     } else if (input$alg == "tamu") {
-      dag <- cextend(tamu(data()), strict=FALSE)
+      dag <- bnlearn::cextend(tamu(data()), strict=FALSE)
     } else if (input$alg == "mmhc") {
-      dag <- cextend(mmhc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(mmhc(data()), strict=FALSE)
     } else if (input$alg == "rsmax2") {
-      dag <- cextend(rsmax2(data()), strict=FALSE)
+      dag <- bnlearn::cextend(rsmax2(data()), strict=FALSE)
     } else if (input$alg == "mmpc") {
-      dag <- cextend(mmpc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(mmpc(data()), strict=FALSE)
     } else if (input$alg == "si.hiton.pc") {
-      dag <- cextend(si.hiton.pc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(si.hiton.pc(data()), strict=FALSE)
     } else if (input$alg == "aracne") {
-      dag <- cextend(aracne(data()), strict=FALSE)
-    } else 
-      dag <- cextend(chow.liu(data()), strict=FALSE)
+      dag <- bnlearn::cextend(aracne(data()), strict=FALSE)
+    } else
+      dag <- bnlearn::cextend(chow.liu(data()), strict=FALSE)
   })
-  
+
   # Create the nodes box
   output$nodesBox <- renderUI({
     if (is.null(data()))
       return(NULL)
-    nodes <- nnodes(dag())
+    nodes <- bnlearn::nnodes(dag())
     valueBox(nodes, "Nodes", icon = icon("circle"), color = "blue")
   })
-  
+
   # Create the arcs box
   output$arcsBox <- renderUI({
     if (is.null(data()))
       return(NULL)
-    arcs <- narcs(dag())
+    arcs <- bnlearn::narcs(dag())
     valueBox(arcs, "Arcs", icon = icon("arrow-right"), color = "green")
   })
-  
+
   # Plot the network
-  output$netPlot <- renderSimpleNetwork({
+  output$netPlot <- networkD3::renderSimpleNetwork({
     if (is.null(data()))
       return(NULL)
     networkData <- data.frame(arcs(dag()))
-    simpleNetwork(networkData, Source = "from", Target = "to",
-                  linkDistance = 100, charge = -400, fontSize = 12, 
+    networkD3::simpleNetwork(networkData, Source = "from", Target = "to",
+                  linkDistance = 100, charge = -400, fontSize = 12,
                   opacity = 0.8)
   })
-  
+
   # Print the network score
   output$score <- renderText({
-    if (directed(dag())) {
+    if (bnlearn::directed(dag())) {
       if (is.numeric(data()[,1])) {
         if (input$type == "loglik") {
-          score(dag(), data(), type="loglik-g")
+          bnlearn::score(dag(), data(), type="loglik-g")
         } else if (input$type == "aic") {
-          score(dag(), data(), type="aic-g")
+          bnlearn::score(dag(), data(), type="aic-g")
         } else if (input$type == "bic") {
-          score(dag(), data(), type="bic-g")
+          bnlearn::score(dag(), data(), type="bic-g")
         } else {
-          score(dag(), data(), type="bge")
+          bnlearn::score(dag(), data(), type="bge")
         }
       }
       else {
         if (input$type == "loglik") {
-          score(dag(), data(), type="loglik")
+          bnlearn::score(dag(), data(), type="loglik")
         } else if (input$type == "aic") {
-          score(dag(), data(), type="aic")
+          bnlearn::score(dag(), data(), type="aic")
         } else if (input$type == "bic") {
-          score(dag(), data(), type="bic")
+          bnlearn::score(dag(), data(), type="bic")
         } else {
-          score(dag(), data(), type="bde")
+          bnlearn::score(dag(), data(), type="bde")
         }
       }
     } else
@@ -131,16 +111,16 @@ shinyServer(function(input, output, session) {
         need(try(score != ""), "Make sure your network is completely directed in order to view your network's score...")
       )
   })
-  
+
   # Fit the model parameters
   fit <- reactive({
     if (is.null(data()))
       return(NULL)
-    if (directed(dag())) {
-      fit <- bn.fit(dag(), data(), method = input$met)
+    if (bnlearn::directed(dag())) {
+      fit <- bnlearn::bn.fit(dag(), data(), method = input$met)
     }
   })
-  
+
   # Create data frame for selected paramater
   param <- reactive({
     param <- data.frame(coef(fit()[[input$Node]]))
@@ -154,13 +134,13 @@ shinyServer(function(input, output, session) {
       param <- transform(param, Freq = as.numeric(Freq))
     }
   })
-  
+
   # Plot Handsontable for selected parameter
   values = reactiveValues()
   setHot = function(x) values[["hot"]] <<- x
-  output$hot = renderRHandsontable({
+  output$hot = rhandsontable::renderRHandsontable({
     if (!is.null(input$hot)) {
-      DF = hot_to_r(input$hot)
+      DF = rhandsontable::hot_to_r(input$hot)
     } else {
       DF = param()
     }
@@ -170,12 +150,12 @@ shinyServer(function(input, output, session) {
       col <- "Freq"
     }
     setHot(DF)
-    rhandsontable(DF, readOnly = TRUE, rowHeaders = NULL) %>%
+    rhandsontable::rhandsontable(DF, readOnly = TRUE, rowHeaders = NULL) %>%
       hot_table(highlightCol = TRUE, highlightRow = TRUE) %>%
       hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE) %>%
       hot_col(col, readOnly = FALSE)
   })
-  
+
   # Add expert knowledge to the model
   expertFit <- reactive({
     if (!is.null(values[["hot"]])) {
@@ -193,7 +173,7 @@ shinyServer(function(input, output, session) {
       expertFit <- fit()
     }
   })
-  
+
   # Set the paramater graphic options
   graphic <- reactive({
     if (is.numeric(data()[,1])) {
@@ -205,53 +185,53 @@ shinyServer(function(input, output, session) {
                    "Dot Plot"="dotplot")
     }
   })
-  
+
   observe({
     updateSelectInput(session, "param", choices = graphic())
   })
   observe({
     updateSelectInput(session, "Node", choices = colnames(data()))
   })
-  
+
   # Plot the model parameters
   output$condPlot <- renderPlot({
     if (is.null(data()))
       return(NULL)
     if (directed(dag())) {
       if (input$param == "histogram") {
-        bn.fit.histogram(fit())
+        bnlearn::bn.fit.histogram(fit())
       } else if (input$param == "xyplot") {
-        bn.fit.xyplot(fit())
+        bnlearn::bn.fit.xyplot(fit())
       } else if (input$param == "qqplot") {
-        bn.fit.qqplot(fit())
+        bnlearn::bn.fit.qqplot(fit())
       } else if (input$param == "barchart") {
-        bn.fit.barchart(fit()[[input$Node]])
+        bnlearn::bn.fit.barchart(fit()[[input$Node]])
       } else if (input$param == "dotplot") {
-        bn.fit.dotplot(fit()[[input$Node]])
+        bnlearn::bn.fit.dotplot(fit()[[input$Node]])
       }
     } else
       validate(
         need(try(condPlot != ""), "Make sure your network is completely directed in order to view the paramater infographics...")
       )
   })
-  
+
   observe({
     updateSelectInput(session, "evidence", choices = names(data()))
   })
-  
+
   observe({
     updateSelectInput(session, "event", choices = names(data()))
   })
-  
+
   #   # Perform Bayesian Inference based on evidence and print results
   #   output$distPrint <- renderPrint({
   #     if (is.null(data()))
   #       return(NULL)
-  #     if (directed(dag())) {
+  #     if (bnlearn::directed(dag())) {
   #       fitted = fit()
   #       evidence = as.vector(input$evidence)
   #       value = as.vector(input$val)
-  #       node.dist <- cpdist(fitted, input$event, eval(parse(text = paste("(", evidence, "=='",
+  #       node.dist <- bnlearn::cpdist(fitted, input$event, eval(parse(text = paste("(", evidence, "=='",
   #                                                                        sapply(value, as.numeric), "')",
   #                                                                        sep = "", collapse = " & "))), method = input$inf)
   #     } else
@@ -259,52 +239,52 @@ shinyServer(function(input, output, session) {
   #         need(try(distPlot != ""), "Make sure your network is completely directed in order to perform Bayesian inference...")
   #       )
   #   })
-  
+
   observe({
     updateSelectInput(session, "nodeNames", choices = colnames(data()))
   })
-  
+
   # Show node measures
   output$nodeText <- renderText({
     if (is.null(data()))
-      return(NULL)    
+      return(NULL)
     if (input$nodeMeasure == "mb") {
-      mb(dag(), input$nodeNames)
+      bnlearn::mb(dag(), input$nodeNames)
     } else if (input$nodeMeasure == "nbr") {
-      nbr(dag(), input$nodeNames)
+      bnlearn::nbr(dag(), input$nodeNames)
     } else if (input$nodeMeasure == "parents") {
-      parents(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "children") { 
-      children(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "in.degree") { 
-      in.degree(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "out.degree") { 
-      out.degree(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "incident.arcs") { 
-      incident.arcs(dag(), input$nodeNames)
+      bnlearn::parents(dag(), input$nodeNames)
+    } else if (input$nodeMeasure == "children") {
+      bnlearn::children(dag(), input$nodeNames)
+    } else if (input$nodeMeasure == "in.degree") {
+      bnlearn::in.degree(dag(), input$nodeNames)
+    } else if (input$nodeMeasure == "out.degree") {
+      bnlearn::out.degree(dag(), input$nodeNames)
+    } else if (input$nodeMeasure == "incident.arcs") {
+      bnlearn::incident.arcs(dag(), input$nodeNames)
     } else if (input$nodeMeasure == "incoming.arcs") {
-      incoming.arcs(dag(), input$nodeNames)
+      bnlearn::incoming.arcs(dag(), input$nodeNames)
     } else if (input$nodeMeasure == "outgoing.arcs") {
-      outgoing.arcs(dag(), input$nodeNames)
+      bnlearn::outgoing.arcs(dag(), input$nodeNames)
     } else
-      incident.arcs(dag(), input$nodeNames)
+      bnlearn::incident.arcs(dag(), input$nodeNames)
   })
-  
+
   # Show network measures
-  output$netTable <- renderD3heatmap({
+  output$netTable <- d3heatmap::renderD3heatmap({
     if (is.null(data()))
       return(NULL)
-    d3heatmap(amat(dag()), dendrogram = input$dendrogram, symm = TRUE, 
+    d3heatmap::d3heatmap(amat(dag()), dendrogram = input$dendrogram, symm = TRUE,
               cexRow = 0.7, cexCol = 0.7, colors = "Blues")
   })
-  
+
   simData <- reactive({
-    simData <- rbn(fit(), input$n)
+    simData <- bnlearn::rbn(fit(), input$n)
   })
-  
+
   output$downloadData <- downloadHandler(
-    filename = function() { 
-      paste('bn', '.csv', sep='') 
+    filename = function() {
+      paste('bn', '.csv', sep='')
     },
     content = function(file) {
       write.csv(simData(), file)

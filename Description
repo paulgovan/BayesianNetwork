@@ -1,18 +1,20 @@
 Package: BayesianNetwork
-Type: Package
-Title: Bayesian Network modeling and analysis
 Version: 0.1.0
-Author: Paul Govan
-Maintainer: Paul Govan <pgovan1@aggienetwork.com>
+Title: Bayesian Network modeling and analysis
 Description: BayesianNetwork is a Shiny web application for Bayesian Network modeling and analysis.
-License: MIT
+URL: https://github.com/paulgovan/bayesiannetwork
+BugReports: https://github.com/paulgovan/bayesiannetwork/issues
+Authors@R: person("Paul", "Govan", email = "pgovan1@aggienetwork.com", role = c("aut", "cre"))
+Depends:
+    R (>= 2.10.0)
+License: Apache License
 LazyData: TRUE
 Imports:
-    shiny (>= 0.13),
-    bnlearn (>= 4.0),
-    lattice (>= 0.2),
-    networkD3 (>= 0.2.10),
-    rhandsontable (>= 0.3.1),
-    d3heatmap (>= 0.6.1),
-    shinydashboard (>= 0.5.1)
+    bnlearn,
+    d3heatmap,
+    lattice,
+    networkD3,
+    rhandsontable,
+    shiny,
+    shinydashboard
 RoxygenNote: 5.0.1
