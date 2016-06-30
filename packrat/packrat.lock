@@ -1,0 +1,311 @@
+PackratFormat: 1.4
+PackratVersion: 0.4.7.1
+RVersion: 3.2.2
+Repos: CRAN=https://cran.rstudio.com/
+
+Package: DEoptimR
+Source: CRAN
+Version: 1.0-4
+Hash: 6194911c350d26147eb8815dc3556c40
+
+Package: NMF
+Source: CRAN
+Version: 0.20.6
+Hash: 632aad207ab2e551b33990c9f09ab8af
+Requires: RColorBrewer, colorspace, digest, doParallel, foreach,
+    ggplot2, gridBase, pkgmaker, registry, reshape2, rngtools, stringr
+
+Package: R6
+Source: CRAN
+Version: 2.1.2
+Hash: c515e41c73294952cbb33ee1c1be5a2d
+
+Package: RColorBrewer
+Source: CRAN
+Version: 1.1-2
+Hash: c0d56cd15034f395874c870141870c25
+
+Package: Rcpp
+Source: CRAN
+Version: 0.12.5
+Hash: 625a95cb4ef523a77ad02e140b715db6
+
+Package: base64enc
+Source: CRAN
+Version: 0.1-3
+Hash: c590d29e555926af053055e23ee79efb
+
+Package: bnlearn
+Source: CRAN
+Version: 4.0
+Hash: 8ef80e1a876c446a7ec0b6693ea72d9c
+
+Package: colorspace
+Source: CRAN
+Version: 1.2-6
+Hash: 00bb12245cd975c450cc4a960884fa15
+
+Package: d3heatmap
+Source: CRAN
+Version: 0.6.1.1
+Hash: 7447e0ce63f688d48d6c160f7ba6b398
+Requires: base64enc, dendextend, htmlwidgets, png, scales
+
+Package: dendextend
+Source: CRAN
+Version: 1.2.0
+Hash: fd858c4254ec5c9871a28e902ab01fa2
+Requires: fpc, ggplot2, magrittr, whisker
+
+Package: dichromat
+Source: CRAN
+Version: 2.0-0
+Hash: 08eed0c80510af29bb15f840ccfe37ce
+
+Package: digest
+Source: CRAN
+Version: 0.6.9
+Hash: fd55d5a024f160fc001a5ece1e27782d
+
+Package: diptest
+Source: CRAN
+Version: 0.75-7
+Hash: de93e5330ff45c5795d0bae12c8a9695
+
+Package: doParallel
+Source: CRAN
+Version: 1.0.10
+Hash: df91a7abfa938c06ad87b9a2b9269adb
+Requires: foreach, iterators
+
+Package: flexmix
+Source: CRAN
+Version: 2.3-13
+Hash: 4c5ae92368e1cc01c26afd1e67b66cd3
+Requires: modeltools
+
+Package: foreach
+Source: CRAN
+Version: 1.4.3
+Hash: cd53ef4cf29dc59ce3f8c5c1af735fd1
+Requires: iterators
+
+Package: fpc
+Source: CRAN
+Version: 2.1-10
+Hash: e537c1c8a52f67db5296c272e9090cbc
+Requires: diptest, flexmix, kernlab, mclust, mvtnorm, prabclus,
+    robustbase, trimcluster
+
+Package: ggplot2
+Source: CRAN
+Version: 2.1.0
+Hash: 50e297b0191179c39c7dcae0eff72b51
+Requires: digest, gtable, plyr, reshape2, scales
+
+Package: gridBase
+Source: CRAN
+Version: 0.4-7
+Hash: d4b7f73c0fdf11d18d1e1ae1643ac4ec
+
+Package: gtable
+Source: CRAN
+Version: 0.2.0
+Hash: cd78381a9d3fea966ac39bd0daaf5554
+
+Package: htmltools
+Source: CRAN
+Version: 0.3.5
+Hash: 645c10ce7e6c8dbbedb358a829c41848
+Requires: Rcpp, digest
+
+Package: htmlwidgets
+Source: CRAN
+Version: 0.6
+Hash: 267a36d738dd98cec3dc9c471becb717
+Requires: htmltools, jsonlite, yaml
+
+Package: httpuv
+Source: CRAN
+Version: 1.3.3
+Hash: 85ddfbe704ae0ee4f884604de445fb75
+Requires: Rcpp
+
+Package: igraph
+Source: CRAN
+Version: 1.0.1
+Hash: 26ac36402e881905359daabfd9ba4057
+Requires: NMF, irlba, magrittr
+
+Package: irlba
+Source: CRAN
+Version: 2.0.0
+Hash: 53647cf593a0f5e5ae4f713d125499d1
+
+Package: iterators
+Source: CRAN
+Version: 1.0.8
+Hash: 488b93c2a4166db0d15f1e8d882cb1d4
+
+Package: jsonlite
+Source: CRAN
+Version: 0.9.22
+Hash: a465329f66afd33012e1aedfe5ba2e20
+
+Package: kernlab
+Source: CRAN
+Version: 0.9-24
+Hash: 37726d9307b8183493bb9187ea0cde8c
+
+Package: labeling
+Source: CRAN
+Version: 0.3
+Hash: ecf589b42cd284b03a4beb9665482d3e
+
+Package: lattice
+Source: CRAN
+Version: 0.20-33
+Hash: d7158cf4e63e8c12cb227738076b37d8
+
+Package: magrittr
+Source: CRAN
+Version: 1.5
+Hash: bdc4d48c3135e8f3b399536ddf160df4
+
+Package: mclust
+Source: CRAN
+Version: 5.2
+Hash: 77406ad6a64bb972a5e05b658161261d
+
+Package: mime
+Source: CRAN
+Version: 0.4
+Hash: b08c52dae92a0a11e64a4deea032ec33
+
+Package: modeltools
+Source: CRAN
+Version: 0.2-21
+Hash: 3dc03397b2a4375c8a5e5f09c8cf0ae1
+
+Package: munsell
+Source: CRAN
+Version: 0.4.3
+Hash: f96d896947fcaf9b6d0074002e9f4f9d
+Requires: colorspace
+
+Package: mvtnorm
+Source: CRAN
+Version: 1.0-5
+Hash: 55a3581188e15f13f5ba19c18e151ac2
+
+Package: networkD3
+Source: CRAN
+Version: 0.2.11
+Hash: 4313f4095d09ab8343d46c3879d6e8d3
+Requires: htmlwidgets, igraph, magrittr
+
+Package: packrat
+Source: CRAN
+Version: 0.4.7-1
+Hash: 16ca16d36eb18d1d16113606ecc5c400
+
+Package: pkgmaker
+Source: CRAN
+Version: 0.22
+Hash: 2e5fc2a6b7eaeb1e1d397a8dc5f54480
+Requires: digest, registry, stringr, xtable
+
+Package: plyr
+Source: CRAN
+Version: 1.8.4
+Hash: 9710078c5fd126420ec039be1db44994
+Requires: Rcpp
+
+Package: png
+Source: CRAN
+Version: 0.1-7
+Hash: 421d7d6e0fb4bd885ecbd909b6456b8b
+
+Package: prabclus
+Source: CRAN
+Version: 2.2-6
+Hash: e646245afbb6b8ed25e22e8a76b781cd
+Requires: mclust
+
+Package: registry
+Source: CRAN
+Version: 0.3
+Hash: f9447c26b51b8c96f53720c5ff862c93
+
+Package: reshape2
+Source: CRAN
+Version: 1.4.1
+Hash: 4c341beb363831f5320f678f7f1b679d
+Requires: Rcpp, plyr, stringr
+
+Package: rhandsontable
+Source: CRAN
+Version: 0.3.1
+Hash: 1c15cbba7ff36cf5c0ef7e5010cffd76
+Requires: htmlwidgets, jsonlite, magrittr
+
+Package: rngtools
+Source: CRAN
+Version: 1.2.4
+Hash: 4db0661fe95ab6eb3d6339495bf22003
+Requires: digest, pkgmaker, stringr
+
+Package: robustbase
+Source: CRAN
+Version: 0.92-6
+Hash: 2819fff51bd1e827b611126fc0227d46
+Requires: DEoptimR
+
+Package: scales
+Source: CRAN
+Version: 0.4.0
+Hash: bce90b73946711302c29ceabdb08241c
+Requires: RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr
+
+Package: shiny
+Source: CRAN
+Version: 0.13.2
+Hash: 28d6903a44dc53bd4823fa43ccdc08e5
+Requires: R6, digest, htmltools, httpuv, jsonlite, mime, xtable
+
+Package: shinydashboard
+Source: CRAN
+Version: 0.5.1
+Hash: 3d9eaa2d45febd7c1237f93a4c7c210d
+Requires: htmltools, shiny
+
+Package: stringi
+Source: CRAN
+Version: 1.1.1
+Hash: 48f2afc5dfecb65ba32a87d38b3533ff
+
+Package: stringr
+Source: CRAN
+Version: 1.0.0
+Hash: 2676dd5f88890910962b733b0f9540e1
+Requires: magrittr, stringi
+
+Package: trimcluster
+Source: CRAN
+Version: 0.1-2
+Hash: 662a899a1377c7d3f2cef1722e335aff
+
+Package: whisker
+Source: CRAN
+Version: 0.3-2
+Hash: 803d662762e532705c2c066a82d066e7
+
+Package: xtable
+Source: CRAN
+Version: 1.8-2
+Hash: 7293235cfcc14cdff1ce7fd1a0212031
+
+Package: yaml
+Source: CRAN
+Version: 2.1.13
+Hash: 4854ccabebc225e8a7309fb4a74980de
