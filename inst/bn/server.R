@@ -2,6 +2,13 @@
 # setting this option. Here we'll raise limit to 9MB.
 options(shiny.maxRequestSize = 10*1024^2)
 
+# Load data
+data(learning.test, package = "bnlearn")
+data(gaussian.test, package = "bnlearn")
+data(insurance, package = "bnlearn")
+data(hailfinder, package = "bnlearn")
+
+#' @import bnlearn
 # Define required server logic
 shinyServer(function(input, output, session) {
 
@@ -30,29 +37,29 @@ shinyServer(function(input, output, session) {
     if (is.null(data()))
       return(NULL)
     if (input$alg == "gs") {
-      dag <- bnlearn::cextend(gs(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::gs(data()), strict=FALSE)
     } else if (input$alg == "iamb") {
-      dag <- bnlearn::cextend(iamb(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::iamb(data()), strict=FALSE)
     } else if (input$alg == "fast.iamb") {
-      dag <- bnlearn::cextend(fast.iamb(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::fast.iamb(data()), strict=FALSE)
     } else if (input$alg == "inter.iamb") {
-      dag <- bnlearn::cextend(inter.iamb(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::inter.iamb(data()), strict=FALSE)
     } else if (input$alg == "hc") {
-      dag <- bnlearn::cextend(hc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::hc(data()), strict=FALSE)
     } else if (input$alg == "tamu") {
-      dag <- bnlearn::cextend(tamu(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::tamu(data()), strict=FALSE)
     } else if (input$alg == "mmhc") {
-      dag <- bnlearn::cextend(mmhc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::mmhc(data()), strict=FALSE)
     } else if (input$alg == "rsmax2") {
-      dag <- bnlearn::cextend(rsmax2(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::rsmax2(data()), strict=FALSE)
     } else if (input$alg == "mmpc") {
-      dag <- bnlearn::cextend(mmpc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::mmpc(data()), strict=FALSE)
     } else if (input$alg == "si.hiton.pc") {
-      dag <- bnlearn::cextend(si.hiton.pc(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::si.hiton.pc(data()), strict=FALSE)
     } else if (input$alg == "aracne") {
-      dag <- bnlearn::cextend(aracne(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::aracne(data()), strict=FALSE)
     } else
-      dag <- bnlearn::cextend(chow.liu(data()), strict=FALSE)
+      dag <- bnlearn::cextend(bnlearn::chow.liu(data()), strict=FALSE)
   })
 
   # Create the nodes box
@@ -75,7 +82,7 @@ shinyServer(function(input, output, session) {
   output$netPlot <- networkD3::renderSimpleNetwork({
     if (is.null(data()))
       return(NULL)
-    networkData <- data.frame(arcs(dag()))
+    networkData <- data.frame(bnlearn::arcs(dag()))
     networkD3::simpleNetwork(networkData, Source = "from", Target = "to",
                   linkDistance = 100, charge = -400, fontSize = 12,
                   opacity = 0.8)
@@ -197,7 +204,7 @@ shinyServer(function(input, output, session) {
   output$condPlot <- renderPlot({
     if (is.null(data()))
       return(NULL)
-    if (directed(dag())) {
+    if (bnlearn::directed(dag())) {
       if (input$param == "histogram") {
         bnlearn::bn.fit.histogram(fit())
       } else if (input$param == "xyplot") {
