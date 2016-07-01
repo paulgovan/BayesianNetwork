@@ -9,6 +9,8 @@ data(insurance, package = "bnlearn")
 data(hailfinder, package = "bnlearn")
 
 #' @import bnlearn
+#' @import shiny
+#' @import shinydashboard
 # Define required server logic
 shinyServer(function(input, output, session) {
 
