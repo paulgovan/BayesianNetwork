@@ -5,7 +5,8 @@ language: r
 cache: packages
 
 install:
-  - Rscript -e 'install.packages(c("devtools","roxygen2"));devtools::install_deps("BayesianNetwork")'
+  - Rscript -e 'install.packages(c("devtools","roxygen2"))'
+  - Rscript -e 'devtools::install_github("paulgovan/BayesianNetwork")'
 script:
   - Rscript -e 'devtools::check("BayesianNetwork")'
 
