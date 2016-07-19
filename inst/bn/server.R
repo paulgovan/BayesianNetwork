@@ -15,7 +15,7 @@ data(hailfinder, package = "bnlearn")
 shinyServer(function(input, output, session) {
 
   # Get data
-  data <- reactive({
+  data <- shiny::reactive({
     if (input$net == 1) {
       data <- learning.test
     } else if (input$net == 2) {
@@ -35,7 +35,7 @@ shinyServer(function(input, output, session) {
   })
 
   # Learn the structure of the network
-  dag <- reactive({
+  dag <- shiny::reactive({
     if (is.null(data()))
       return(NULL)
     if (input$alg == "gs") {
@@ -65,11 +65,11 @@ shinyServer(function(input, output, session) {
   })
 
   # Create the nodes box
-  output$nodesBox <- renderUI({
+  output$nodesBox <- shiny::renderUI({
     if (is.null(data()))
       return(NULL)
     nodes <- bnlearn::nnodes(dag())
-    valueBox(nodes, "Nodes", icon = icon("circle"), color = "blue")
+    shinydashboard::valueBox(nodes, "Nodes", icon = shiny::icon("circle"), color = "blue")
   })
 
   # Create the arcs box
@@ -77,7 +77,7 @@ shinyServer(function(input, output, session) {
     if (is.null(data()))
       return(NULL)
     arcs <- bnlearn::narcs(dag())
-    valueBox(arcs, "Arcs", icon = icon("arrow-right"), color = "green")
+    shinydashboard::valueBox(arcs, "Arcs", icon = shiny::icon("arrow-right"), color = "green")
   })
 
   # Plot the network
@@ -91,7 +91,7 @@ shinyServer(function(input, output, session) {
   })
 
   # Print the network score
-  output$score <- renderText({
+  output$score <- shiny::renderText({
     if (bnlearn::directed(dag())) {
       if (is.numeric(data()[,1])) {
         if (input$type == "loglik") {
@@ -116,13 +116,13 @@ shinyServer(function(input, output, session) {
         }
       }
     } else
-      validate(
-        need(try(score != ""), "Make sure your network is completely directed in order to view your network's score...")
+      shiny::validate(
+        shiny::need(try(score != ""), "Make sure your network is completely directed in order to view your network's score...")
       )
   })
 
   # Fit the model parameters
-  fit <- reactive({
+  fit <- shiny::reactive({
     if (is.null(data()))
       return(NULL)
     if (bnlearn::directed(dag())) {
@@ -131,7 +131,7 @@ shinyServer(function(input, output, session) {
   })
 
   # Create data frame for selected paramater
-  param <- reactive({
+  param <- shiny::reactive({
     param <- data.frame(coef(fit()[[input$Node]]))
     if (is.numeric(data()[,1])) {
       colnames(param) <- "Param"
@@ -145,7 +145,7 @@ shinyServer(function(input, output, session) {
   })
 
   # Plot Handsontable for selected parameter
-  values = reactiveValues()
+  values = shiny::reactiveValues()
   setHot = function(x) values[["hot"]] <<- x
   output$hot = rhandsontable::renderRHandsontable({
     if (!is.null(input$hot)) {
@@ -160,13 +160,13 @@ shinyServer(function(input, output, session) {
     }
     setHot(DF)
     rhandsontable::rhandsontable(DF, readOnly = TRUE, rowHeaders = NULL) %>%
-      hot_table(highlightCol = TRUE, highlightRow = TRUE) %>%
-      hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE) %>%
-      hot_col(col, readOnly = FALSE)
+      rhandsontable::hot_table(highlightCol = TRUE, highlightRow = TRUE) %>%
+      rhandsontabl::hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE) %>%
+      rhandsontable::hot_col(col, readOnly = FALSE)
   })
 
   # Add expert knowledge to the model
-  expertFit <- reactive({
+  expertFit <- shiny::reactive({
     if (!is.null(values[["hot"]])) {
       expertFit <- fit()
       temp <- data.frame(values[["hot"]])
@@ -184,7 +184,7 @@ shinyServer(function(input, output, session) {
   })
 
   # Set the paramater graphic options
-  graphic <- reactive({
+  graphic <- shiny::reactive({
     if (is.numeric(data()[,1])) {
       graphic <- c("Histogram"="histogram",
                    "XY Plot"="xyplot",
@@ -195,15 +195,15 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  observe({
-    updateSelectInput(session, "param", choices = graphic())
+  shiny::observe({
+    shiny::updateSelectInput(session, "param", choices = graphic())
   })
-  observe({
-    updateSelectInput(session, "Node", choices = colnames(data()))
+  shiny::observe({
+    shiny::updateSelectInput(session, "Node", choices = colnames(data()))
   })
 
   # Plot the model parameters
-  output$condPlot <- renderPlot({
+  output$condPlot <- shiny::renderPlot({
     if (is.null(data()))
       return(NULL)
     if (bnlearn::directed(dag())) {
@@ -219,21 +219,21 @@ shinyServer(function(input, output, session) {
         bnlearn::bn.fit.dotplot(fit()[[input$Node]])
       }
     } else
-      validate(
-        need(try(condPlot != ""), "Make sure your network is completely directed in order to view the paramater infographics...")
+      shiny::validate(
+        shiny::need(try(condPlot != ""), "Make sure your network is completely directed in order to view the paramater infographics...")
       )
   })
 
-  observe({
-    updateSelectInput(session, "evidence", choices = names(data()))
+  shiny::observe({
+    shiny::updateSelectInput(session, "evidence", choices = names(data()))
   })
 
-  observe({
-    updateSelectInput(session, "event", choices = names(data()))
+  shiny::observe({
+    shiny::updateSelectInput(session, "event", choices = names(data()))
   })
 
   #   # Perform Bayesian Inference based on evidence and print results
-  #   output$distPrint <- renderPrint({
+  #   output$distPrint <- shiny::renderPrint({
   #     if (is.null(data()))
   #       return(NULL)
   #     if (bnlearn::directed(dag())) {
@@ -244,17 +244,17 @@ shinyServer(function(input, output, session) {
   #                                                                        sapply(value, as.numeric), "')",
   #                                                                        sep = "", collapse = " & "))), method = input$inf)
   #     } else
-  #       validate(
-  #         need(try(distPlot != ""), "Make sure your network is completely directed in order to perform Bayesian inference...")
+  #       shiny::validate(
+  #         shiny::need(try(distPlot != ""), "Make sure your network is completely directed in order to perform Bayesian inference...")
   #       )
   #   })
 
-  observe({
-    updateSelectInput(session, "nodeNames", choices = colnames(data()))
+  shiny::observe({
+    shiny::updateSelectInput(session, "nodeNames", choices = colnames(data()))
   })
 
   # Show node measures
-  output$nodeText <- renderText({
+  output$nodeText <- shiny::renderText({
     if (is.null(data()))
       return(NULL)
     if (input$nodeMeasure == "mb") {
@@ -283,15 +283,15 @@ shinyServer(function(input, output, session) {
   output$netTable <- d3heatmap::renderD3heatmap({
     if (is.null(data()))
       return(NULL)
-    d3heatmap::d3heatmap(amat(dag()), dendrogram = input$dendrogram, symm = TRUE,
+    d3heatmap::d3heatmap(bnlearn::amat(dag()), dendrogram = input$dendrogram, symm = TRUE,
               cexRow = 0.7, cexCol = 0.7, colors = "Blues")
   })
 
-  simData <- reactive({
+  simData <- shiny::reactive({
     simData <- bnlearn::rbn(fit(), input$n)
   })
 
-  output$downloadData <- downloadHandler(
+  output$downloadData <- shiny::downloadHandler(
     filename = function() {
       paste('bn', '.csv', sep='')
     },
