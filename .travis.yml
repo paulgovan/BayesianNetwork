@@ -1,2 +1,19 @@
+sudo: false
+
 language: r
+r:
+  - oldrel
+  - release
+  - devel
+
 cache: packages
+
+install:
+  - Rscript -e 'install.packages(c("devtools","roxygen2","testthat"));devtools::install_deps("BayesianNetwork")'
+script:
+  - Rscript -e 'devtools::check("BayesianNetwork")'
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
