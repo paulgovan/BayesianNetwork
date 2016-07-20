@@ -10,4 +10,9 @@ BayesianNetwork()
 BayesianNetwork is a Shiny web application for Bayesian Network modeling and
 analysis.
 }
+\examples{
+if (interactive()) {
+  BayesianNetwork()
+}
+}
 

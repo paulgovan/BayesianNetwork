@@ -2,3 +2,7 @@
 ^\.Rprofile$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^cran-comments\.md$
+^\.travis\.yml$
+^\.travis\.yaml$
+^\.travis.yml\.yaml$

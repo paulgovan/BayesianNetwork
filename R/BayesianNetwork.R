@@ -10,6 +10,10 @@
 #' @import shiny
 #' @import shinydashboard
 #' @export
+#' @examples
+#' if (interactive()) {
+#'   BayesianNetwork()
+#' }
 BayesianNetwork <- function() {
   shiny::runApp(system.file('bn', package='BayesianNetwork'))
 }
