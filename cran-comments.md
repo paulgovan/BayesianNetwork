@@ -18,3 +18,10 @@ Possibly mis-spelled words in DESCRIPTION:
   
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
+
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Removed the package name 'BayesianNetwork' from the DESCRIPTION description.
+
+* Elaborated on the package features in the DESCRIPTION description.
