@@ -1,7 +1,7 @@
 Package: BayesianNetwork
 Version: 0.1.0
 Title: Bayesian Network Modeling and Analysis
-Description: A Shiny web application for creating interactive Bayesian Network models,
+Description: A 'Shiny' web application for creating interactive Bayesian Network models,
     learning the structure and parameters of Bayesian networks, and utilities for classical
     network analysis.
 URL: https://github.com/paulgovan/bayesiannetwork
