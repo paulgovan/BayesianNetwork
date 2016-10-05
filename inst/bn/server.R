@@ -48,8 +48,8 @@ shinyServer(function(input, output, session) {
       dag <- bnlearn::cextend(bnlearn::inter.iamb(data()), strict = FALSE)
     } else if (input$alg == "hc") {
       dag <- bnlearn::cextend(bnlearn::hc(data()), strict = FALSE)
-    } else if (input$alg == "tamu") {
-      dag <- bnlearn::cextend(bnlearn::tamu(data()), strict = FALSE)
+    } else if (input$alg == "tabu") {
+      dag <- bnlearn::cextend(bnlearn::tabu(data()), strict = FALSE)
     } else if (input$alg == "mmhc") {
       dag <- bnlearn::cextend(bnlearn::mmhc(data()), strict = FALSE)
     } else if (input$alg == "rsmax2") {
@@ -57,13 +57,12 @@ shinyServer(function(input, output, session) {
     } else if (input$alg == "mmpc") {
       dag <- bnlearn::cextend(bnlearn::mmpc(data()), strict = FALSE)
     } else if (input$alg == "si.hiton.pc") {
-      dag <-
-        bnlearn::cextend(bnlearn::si.hiton.pc(data()), strict = FALSE)
+      dag <- bnlearn::cextend(bnlearn::si.hiton.pc(data()), strict = FALSE)
     } else if (input$alg == "aracne") {
       dag <- bnlearn::cextend(bnlearn::aracne(data()), strict = FALSE)
-    } else
-      dag <-
-        bnlearn::cextend(bnlearn::chow.liu(data()), strict = FALSE)
+    } else if (input$alg == "chow.liu") {
+      dag <- bnlearn::cextend(bnlearn::chow.liu(data()), strict = FALSE)
+    }
   })
 
   # Create the nodes box

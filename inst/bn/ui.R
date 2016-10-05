@@ -106,12 +106,9 @@ shinydashboard::dashboardPage(
                                       c(
                                         "Sample Discrete Network" = 1,
                                         "Sample Gaussian Network" = 2,
-                                        "Sample Insurance Network" =
-                                          3,
-                                        "Sample Hailfinder Network" =
-                                          4,
-                                        "Upload your Bayesian network data" =
-                                          5
+                                        "Sample Insurance Network" = 3,
+                                        "Sample Hailfinder Network" = 4,
+                                        "Upload your Bayesian network data" = 5
                                       )
                                     ),
                                     shiny::conditionalPanel(
@@ -161,33 +158,24 @@ shinydashboard::dashboardPage(
                                         "Constraint-based Learning" =
                                           c(
                                             "Grow-Shrink" = "gs",
-                                            "Incremental Association" =
-                                              "iamb",
-                                            "Fast IAMB" =
-                                              "fast.iamb",
-                                            "Inter IAMB" =
-                                              "inter.iamb"
+                                            "Incremental Association" = "iamb",
+                                            "Fast IAMB" = "fast.iamb",
+                                            "Inter IAMB" = "inter.iamb"
                                           ),
                                         "Score-based Learning" =
-                                          c("Hill Climbing" =
-                                              "hc",
-                                            "Tabu" =
-                                              "tabu"),
+                                          c("Hill Climbing" = "hc",
+                                            "Tabu" = "tabu"),
                                         "Hybrid Learning" =
                                           c(
                                             "Max-Min Hill Climbing" = "mmhc",
-                                            "2-phase Restricted Maximization" =
-                                              'rsmax2'
+                                            "2-phase Restricted Maximization" = 'rsmax2'
                                           ),
                                         "Local Discovery Learning" =
                                           c(
                                             "Max-Min Parents and Children" = 'mmpc',
-                                            "Semi-Interleaved HITON-PC" =
-                                              "si.hiton.pc",
-                                            "ARACNE" =
-                                              "aracne",
-                                            "Chow-Liu" =
-                                              "chow.liu"
+                                            "Semi-Interleaved HITON-PC" = "si.hiton.pc",
+                                            "ARACNE" = "aracne",
+                                            "Chow-Liu" = "chow.liu"
                                           )
                                       )
                                     )
@@ -203,12 +191,9 @@ shinydashboard::dashboardPage(
                                       h5("Network Score:"),
                                       c(
                                         "Log-Likelihood" = "loglik",
-                                        "Akaike Information Criterion" =
-                                          "aic",
-                                        "Bayesian Information Criterion" =
-                                          "bic",
-                                        "Bayesian Equivalent" =
-                                          "be"
+                                        "Akaike Information Criterion" = "aic",
+                                        "Bayesian Information Criterion" = "bic",
+                                        "Bayesian Equivalent" = "be"
                                       ),
                                       'loglik-g'
                                     ),
@@ -243,8 +228,7 @@ shinydashboard::dashboardPage(
                                       shiny::h5("Learning Method:"),
                                       c(
                                         "Maximum Likelihood Estimation" = "mle",
-                                        "Bayesian Estimation" =
-                                          "bayes"
+                                        "Bayesian Estimation" = "bayes"
                                       )
                                     )
                                   ),
@@ -335,22 +319,14 @@ shinydashboard::dashboardPage(
               h5("Node Measure:"),
               c(
                 "Markov Blanket" = "mb",
-                "Neighborhood" =
-                  "nbr",
-                "Parents" =
-                  "parents",
-                "Children" =
-                  "children",
-                "In Degree" =
-                  "in.degree",
-                "Out Degree" =
-                  "out.degree",
-                "Incident Arcs" =
-                  "incident.arcs",
-                "Incoming Arcs" =
-                  "incoming.arcs",
-                "Outgoing Arcs" =
-                  "outgoing.arcs"
+                "Neighborhood" = "nbr",
+                "Parents" = "parents",
+                "Children" = "children",
+                "In Degree" = "in.degree",
+                "Out Degree" = "out.degree",
+                "Incident Arcs" = "incident.arcs",
+                "Incoming Arcs" = "incoming.arcs",
+                "Outgoing Arcs" = "outgoing.arcs"
               )
             ),
             shiny::selectInput("nodeNames", label = shiny::h5("Node:"),
@@ -378,12 +354,9 @@ shinydashboard::dashboardPage(
               h5("Dendrogram:"),
               c(
                 "Both" = "both",
-                "Row" =
-                  "row",
-                "Column" =
-                  "column",
-                "None" =
-                  "none"
+                "Row" = "row",
+                "Column" = "column",
+                "None" = "none"
               )
             )
           ),
