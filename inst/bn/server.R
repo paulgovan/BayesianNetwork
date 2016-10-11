@@ -96,10 +96,7 @@ shinyServer(function(input, output, session) {
       networkData,
       Source = "from",
       Target = "to",
-      linkDistance = 100,
-      charge = -400,
-      fontSize = 12,
-      opacity = 0.8
+      zoom = TRUE
     )
   })
 
