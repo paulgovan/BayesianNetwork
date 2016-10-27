@@ -1,19 +1,14 @@
 shinydashboard::dashboardPage(
   skin = "green",
   shinydashboard::dashboardHeader(
-    title = "BayesianNetwork",
-    shinydashboard::dropdownMenu(
-      type = "messages",
-      shinydashboard::messageItem(from = "Support",
-                                  message = "Welcome to BayesianNetwork!")
-    )
+    title = "BayesianNetwork"
   ),
   shinydashboard::dashboardSidebar(
     shinydashboard::sidebarMenu(
       shinydashboard::menuItem(
-        "Dashboard",
+        "Home",
         tabName = "dashboard",
-        icon = shiny::icon("dashboard")
+        icon = shiny::icon("home")
       ),
       shinydashboard::menuItem(
         "Structure",
@@ -43,7 +38,14 @@ shinydashboard::dashboardPage(
         "Simulation",
         tabName = "simulation",
         icon = shiny::icon("random")
-      )
+      ),
+      br(),
+      shinydashboard::menuItem("Help",
+               icon = icon("info-circle"),
+               href = "http://paulgovan.github.io/BayesianNetwork/"),
+      shinydashboard::menuItem("Source Code",
+               icon = icon("code"),
+               href = "https://github.com/paulgovan/BayesianNetwork")
     )
   ),
   shinydashboard::dashboardBody(
@@ -56,9 +58,8 @@ shinydashboard::dashboardPage(
         tabName = "dashboard",
         shiny::fluidRow(
           shinydashboard::box(
-            title = "BayesianNetwork",
+            title = "",
             status = "success",
-            solidHeader = TRUE,
             width = 8,
             shiny::img(
               src = "favicon.png",
@@ -66,19 +67,22 @@ shinydashboard::dashboardPage(
               width = 50
             ),
             shiny::h3("Welcome to BayesianNetwork!"),
+            br(),
             shiny::h4(
               "BayesianNetwork is a ",
               shiny::a(href = 'http://shiny.rstudio.com', 'Shiny'),
               "web application for Bayesian network modeling and analysis, powered by",
               shiny::a(href = 'http://www.bnlearn.com', 'bnlearn'),
               'and',
-              shiny::a(href = 'http://christophergandrud.github.io/networkD3/', 'networkD3')
+              shiny::a(href = 'http://christophergandrud.github.io/networkD3/', 'networkD3'),
+              '.'
             ),
             shiny::h4(
               "Click",
               shiny::em("Structure"),
               " in the sidepanel to get started"
             ),
+            br(),
             shiny::h4(
               shiny::HTML('&copy'),
               '2016 By Paul Govan. ',
@@ -96,7 +100,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Network Input",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText("Select a sample network or upload your Bayesian network data:"),
@@ -147,7 +150,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Structural Learning",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText("Select a structural learning algorithm:"),
@@ -183,7 +185,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Network Score",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::selectInput(
@@ -205,7 +206,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Bayesian Network",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     networkD3::simpleNetworkOutput("netPlot")
@@ -219,7 +219,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Paramater Learning",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText("Select a parameter learning method:"),
@@ -235,7 +234,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Paramater Infographic",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     helpText("Select a paramater infographic:"),
@@ -260,7 +258,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Network Paramaters",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::plotOutput("condPlot")
@@ -310,7 +307,6 @@ shinydashboard::dashboardPage(
           shinydashboard::box(
             title = "Node Control",
             status = "success",
-            solidHeader = TRUE,
             collapsible = TRUE,
             width = 4,
             shiny::helpText("Select a node measure:"),
@@ -335,7 +331,6 @@ shinydashboard::dashboardPage(
           shinydashboard::box(
             title = "Node Measure",
             status = "success",
-            solidHeader = TRUE,
             collapsible = TRUE,
             width = 8,
             shiny::verbatimTextOutput("nodeText")
@@ -345,7 +340,6 @@ shinydashboard::dashboardPage(
           shinydashboard::box(
             title = "Network Control",
             status = "success",
-            solidHeader = TRUE,
             collapsible = TRUE,
             width = 4,
             shiny::helpText("Select a network measure:"),
@@ -363,7 +357,6 @@ shinydashboard::dashboardPage(
           shinydashboard::box(
             title = "Network Measure",
             status = "success",
-            solidHeader = TRUE,
             collapsible = TRUE,
             width = 8,
             d3heatmap::d3heatmapOutput("netTable")
@@ -377,7 +370,6 @@ shinydashboard::dashboardPage(
                                   shinydashboard::box(
                                     title = "Network Simulation",
                                     status = "success",
-                                    solidHeader = TRUE,
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText(
