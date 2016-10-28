@@ -41,11 +41,11 @@ shinydashboard::dashboardPage(
       ),
       br(),
       shinydashboard::menuItem("Help",
-               icon = icon("info-circle"),
-               href = "http://paulgovan.github.io/BayesianNetwork/"),
+                               icon = icon("info-circle"),
+                               href = "http://paulgovan.github.io/BayesianNetwork/"),
       shinydashboard::menuItem("Source Code",
-               icon = icon("code"),
-               href = "https://github.com/paulgovan/BayesianNetwork")
+                               icon = icon("code"),
+                               href = "https://github.com/paulgovan/BayesianNetwork")
     )
   ),
   shinydashboard::dashboardBody(
@@ -264,43 +264,51 @@ shinydashboard::dashboardPage(
                                   )
                                 )
                               )),
-      #                   shinydashboard::tabItem(tabName = "inference",
-      #                           shiny::fluidRow(
-      #                             shiny::column(width = 4,
-      #                                    shinydashboard::box(
-      #                                      title = "Inference Method", status = "success", solidHeader = TRUE, collapsible = TRUE, width = NULL,
-      #                                      helpText("Select an inference method:"),
-      #                                      shiny::selectInput("inf", h5("Inference Method:"),
-      #                                                  c("logic sampling"="ls",
-      #                                                    "likelihood weighting"="lw"
-      #                                                  ))
-      #                                    ),
-      #                                    shinydashboard::box(
-      #                                      title = "Evidence", status = "success", solidHeader = TRUE, collapsible = TRUE, width = NULL,
-      #                                      shiny::fluidRow(
-      #                                        shiny::column(6,
-      #                                               shiny::selectInput("evidence", label = shiny::h5("Evidence Node:"),
-      #                                                           "")
-      #                                        ),
-      #                                        shiny::column(6,
-      #                                               shiny::numericInput("val", label = shiny::h5("Evidence:"), value = 1)
-      #                                        )
-      #                                      )
-      #                                    ),
-      #                                    shinydashboard::box(
-      #                                      title = "Event", status = "success", solidHeader = TRUE, collapsible = TRUE, width = NULL,
-      #                                      shiny::selectInput("event", label = shiny::h5("Event Node:"),
-      #                                                  "")
-      #                                    )
-      #                             ),
-      #                             shiny::column(width = 8,
-      #                                    shinydashboard::box(
-      #                                      title = "Event Paramater", status = "success", solidHeader = TRUE, collapsible = TRUE, width = NULL,
-      #                                      shiny::textOutput("distPrint")
-      #                                    )
-      #                             )
-      #                           )
-      #                   ),
+      shinydashboard::tabItem(tabName = "inference",
+                              shiny::fluidRow(
+                                shiny::column(
+                                  width = 4,
+                                  shinydashboard::box(
+                                    title = "Evidence",
+                                    status = "success",
+                                    collapsible = TRUE,
+                                    width = NULL,
+                                    helpText("Select evidence to add to the model:"),
+                                    shiny::fluidRow(
+                                      shiny::column(6,
+                                                    shiny::selectInput(
+                                                      "evidenceNode", label = shiny::h5("Evidence Node:"),
+                                                      ""
+                                                    )),
+                                      shiny::column(6,
+                                                    shiny::selectInput(
+                                                      "evidence", label = shiny::h5("Evidence:"),
+                                                      ""
+                                                    )
+                                      )
+                                    )
+                                  ),
+                                  shinydashboard::box(
+                                    title = "Event",
+                                    status = "success",
+                                    collapsible = TRUE,
+                                    width = NULL,
+                                    helpText("Select an event of interest:"),
+                                    shiny::selectInput("event", label = shiny::h5("Event Node:"),
+                                                       "")
+                                  )
+                                ),
+                                shiny::column(
+                                  width = 8,
+                                  shinydashboard::box(
+                                    title = "Event Paramater",
+                                    status = "success",
+                                    collapsible = TRUE,
+                                    width = NULL,
+                                    shiny::plotOutput("distPlot")
+                                  )
+                                )
+                              )),
       shinydashboard::tabItem(
         tabName = "measures",
         shiny::fluidRow(
