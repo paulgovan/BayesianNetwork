@@ -24,15 +24,13 @@ shinydashboard::dashboardPage(
         "Inference",
         icon = shiny::icon("arrow-right"),
         tabName = "inference",
-        badgeLabel = "Coming Soon",
-        badgeColor = "yellow"
+        badgeLabel = "New",
+        badgeColor = "green"
       ),
       shinydashboard::menuItem(
         "Measures",
         tabName = "measures",
-        icon = shiny::icon("table"),
-        badgeLabel = "New",
-        badgeColor = "green"
+        icon = shiny::icon("table")
       ),
       shinydashboard::menuItem(
         "Simulation",
@@ -281,9 +279,12 @@ shinydashboard::dashboardPage(
                                                       ""
                                                     )),
                                       shiny::column(6,
-                                                    shiny::selectInput(
-                                                      "evidence", label = shiny::h5("Evidence:"),
-                                                      ""
+                                                    shiny::conditionalPanel(
+                                                      "input.param == 'barchart' || input.param == 'dotplot'",
+                                                      shiny::selectInput(
+                                                        "evidence", label = shiny::h5("Evidence:"),
+                                                        ""
+                                                      )
                                                     )
                                       )
                                     )

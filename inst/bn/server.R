@@ -38,6 +38,13 @@ shinyServer(function(input, output, session) {
   dag <- shiny::reactive({
     if (is.null(data()))
       return(NULL)
+
+    # Create a Progress object
+    progress <- shiny::Progress$new()
+    # Make sure it closes when we exit this reactive, even if there's an error
+    on.exit(progress$close())
+    progress$set(message = "Learning network structure", value = 0)
+
     if (input$alg == "gs") {
       dag <- bnlearn::cextend(bnlearn::gs(data()), strict = FALSE)
     } else if (input$alg == "iamb") {
@@ -91,6 +98,7 @@ shinyServer(function(input, output, session) {
   output$netPlot <- networkD3::renderSimpleNetwork({
     if (is.null(data()))
       return(NULL)
+
     networkData <- data.frame(bnlearn::arcs(dag()))
     networkD3::simpleNetwork(
       networkData,
@@ -264,11 +272,11 @@ shinyServer(function(input, output, session) {
       shiny::validate(
         shiny::need(
           try(distPlot != ""),
-          "Inference is currently not available for continuous variables..."
+          "Inference is currently not supported for continuous variables..."
         )
       )
-    str <- paste0("(", input$evidenceNode, "=='", input$evidence, "')")
-    nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, eval(parse(text = str)))))
+    str1 <<- paste0("(", input$evidenceNode, "=='", input$evidence, "')")
+    nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, eval(parse(text = str1)))))
     barplot(
       nodeProbs,
       col = "lightblue",
