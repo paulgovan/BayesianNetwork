@@ -2,8 +2,8 @@ name: BayesianNetwork
 account: paulgovan
 server: shinyapps.io
 appId: 60783
-bundleId: 562168
+bundleId: 602016
 url: https://paulgovan.shinyapps.io/BayesianNetwork/
-when: 1474335100.21275
+when: 1477962296.24992
 asMultiple: FALSE
 asStatic: FALSE

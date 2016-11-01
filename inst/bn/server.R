@@ -283,7 +283,8 @@ shinyServer(function(input, output, session) {
       main = "Conditional Probabilities",
       border = NA,
       xlab = "Levels",
-      ylab = "Probabilities"
+      ylab = "Probabilities",
+      ylim = c(0, 1)
     )
   })
 
