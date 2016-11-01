@@ -27,7 +27,7 @@ To launch the app:
 BayesianNetwork()
 ```
 
-Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNetwork](https://paulgovan.shinyapps.io/Bayesiannetwork). 
+Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNetwork](https://paulgovan.shinyapps.io/BayesianNetwork/). 
 
 # Example
 ## Dashboard
