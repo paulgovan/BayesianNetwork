@@ -1,25 +1,40 @@
+# Green dashboard page
 shinydashboard::dashboardPage(
   skin = "green",
+
+  # Dashboard header and title
   shinydashboard::dashboardHeader(
     title = "BayesianNetwork"
   ),
+
+  # Dashboard sidebar
   shinydashboard::dashboardSidebar(
+
+    # Sidebar menu
     shinydashboard::sidebarMenu(
+
+      # Home menu item
       shinydashboard::menuItem(
         "Home",
-        tabName = "dashboard",
+        tabName = "home",
         icon = shiny::icon("home")
       ),
+
+      # Structure menu item
       shinydashboard::menuItem(
         "Structure",
         icon = shiny::icon("globe"),
         tabName = "structure"
       ),
+
+      # Parameters menu item
       shinydashboard::menuItem(
         "Parameters",
         tabName = "paramaters",
         icon = shiny::icon("bar-chart")
       ),
+
+      # Inference menu item
       shinydashboard::menuItem(
         "Inference",
         icon = shiny::icon("arrow-right"),
@@ -27,47 +42,63 @@ shinydashboard::dashboardPage(
         badgeLabel = "New",
         badgeColor = "green"
       ),
+
+      # Measures menu item
       shinydashboard::menuItem(
         "Measures",
         tabName = "measures",
         icon = shiny::icon("table")
       ),
+
+      # Simulation menu item
       shinydashboard::menuItem(
         "Simulation",
         tabName = "simulation",
         icon = shiny::icon("random")
       ),
       br(),
+
+      # Help page link
       shinydashboard::menuItem("Help",
                                icon = icon("info-circle"),
                                href = "http://paulgovan.github.io/BayesianNetwork/"),
+
+      # Source code link
       shinydashboard::menuItem("Source Code",
                                icon = icon("code"),
                                href = "https://github.com/paulgovan/BayesianNetwork")
     )
   ),
+
+  # Dashboard body
   shinydashboard::dashboardBody(
+
+    # Add favicon and title to header
     tags$head(
       tags$link(rel = "icon", type = "image/png", href = "favicon.png"),
       tags$title("BayesianNetwork")
     ),
+
+    # Dashboard tab items
     shinydashboard::tabItems(
+
+      # Home tab item
       shinydashboard::tabItem(
-        tabName = "dashboard",
+        tabName = "home",
         shiny::fluidRow(
+
+          # Welcome box
           shinydashboard::box(
             title = "",
             status = "success",
             width = 8,
-            shiny::img(
-              src = "favicon.png",
+            shiny::img(src = "favicon.png",
               height = 50,
               width = 50
             ),
             shiny::h3("Welcome to BayesianNetwork!"),
             br(),
-            shiny::h4(
-              "BayesianNetwork is a ",
+            shiny::h4("BayesianNetwork is a ",
               shiny::a(href = 'http://shiny.rstudio.com', 'Shiny'),
               "web application for Bayesian network modeling and analysis, powered by",
               shiny::a(href = 'http://www.bnlearn.com', 'bnlearn'),
@@ -75,54 +106,61 @@ shinydashboard::dashboardPage(
               shiny::a(href = 'http://christophergandrud.github.io/networkD3/', 'networkD3'),
               '.'
             ),
-            shiny::h4(
-              "Click",
+            shiny::h4("Click",
               shiny::em("Structure"),
               " in the sidepanel to get started"
             ),
             br(),
-            shiny::h4(
-              shiny::HTML('&copy'),
+            shiny::h4(shiny::HTML('&copy'),
               '2016 By Paul Govan. ',
               shiny::a(href = 'http://www.apache.org/licenses/LICENSE-2.0', 'Terms of Use.')
             )
           ),
+
+          # Nodes and arcs value boxes
           shiny::uiOutput("nodesBox"),
           shiny::uiOutput("arcsBox")
         )
       ),
+
+      # Structure tab item
       shinydashboard::tabItem(tabName = "structure",
                               shiny::fluidRow(
                                 shiny::column(
                                   width = 4,
+
+                                  # Network input box
                                   shinydashboard::box(
                                     title = "Network Input",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText("Select a sample network or upload your Bayesian network data:"),
+
+                                    # Demo network input select
                                     shiny::selectInput(
                                       "net",
                                       h5("Bayesian Network:"),
-                                      c(
-                                        "Sample Discrete Network" = 1,
+                                      c("Sample Discrete Network" = 1,
                                         "Sample Gaussian Network" = 2,
                                         "Sample Insurance Network" = 3,
                                         "Sample Hailfinder Network" = 4,
                                         "Upload your Bayesian network data" = 5
                                       )
                                     ),
+
+                                    # Conditional panel for file input selection
                                     shiny::conditionalPanel(
                                       condition = "input.net == 5",
-                                      shiny::p(
-                                        'Note: your data should be structured as a ',
+                                      shiny::p('Note: your data should be structured as a ',
                                         shiny::a(href = 'http://en.wikipedia.org/wiki/Comma-separated_values', 'csv file')
                                       ),
+
+                                      # File input
                                       shiny::fileInput(
                                         'file',
                                         strong('File Input:'),
-                                        accept = c(
-                                          'text/csv',
+                                        accept = c('text/csv',
                                           'text/comma-separated-values',
                                           'text/tab-separated-values',
                                           'text/plain',
@@ -130,34 +168,37 @@ shinydashboard::dashboardPage(
                                           '.tsv'
                                         )
                                       ),
+
+                                      # Header T/F checkbox
                                       shiny::checkboxInput('header', 'Header', TRUE),
+
+                                      # Separator input select
                                       shiny::selectInput(
                                         'sep',
                                         shiny::strong('Separator:'),
-                                        c(
-                                          Comma = ',',
-                                          Semicolon =
-                                            ';',
-                                          Tab =
-                                            '\t'
-                                        ),
-                                        ','
+                                        c(Comma = ',',
+                                          Semicolon = ';',
+                                          Tab = '\t'
+                                        ), ','
                                       )
                                     )
                                   ),
+
+                                  # Structural learning box
                                   shinydashboard::box(
                                     title = "Structural Learning",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText("Select a structural learning algorithm:"),
+
+                                    # Structural learning algorithm input select
                                     shiny::selectizeInput(
                                       "alg",
                                       shiny::h5("Learning Algorithm:"),
                                       choices = list(
                                         "Constraint-based Learning" =
-                                          c(
-                                            "Grow-Shrink" = "gs",
+                                          c("Grow-Shrink" = "gs",
                                             "Incremental Association" = "iamb",
                                             "Fast IAMB" = "fast.iamb",
                                             "Inter IAMB" = "inter.iamb"
@@ -166,13 +207,11 @@ shinydashboard::dashboardPage(
                                           c("Hill Climbing" = "hc",
                                             "Tabu" = "tabu"),
                                         "Hybrid Learning" =
-                                          c(
-                                            "Max-Min Hill Climbing" = "mmhc",
+                                          c("Max-Min Hill Climbing" = "mmhc",
                                             "2-phase Restricted Maximization" = 'rsmax2'
                                           ),
                                         "Local Discovery Learning" =
-                                          c(
-                                            "Max-Min Parents and Children" = 'mmpc',
+                                          c("Max-Min Parents and Children" = 'mmpc',
                                             "Semi-Interleaved HITON-PC" = "si.hiton.pc",
                                             "ARACNE" = "aracne",
                                             "Chow-Liu" = "chow.liu"
@@ -180,65 +219,86 @@ shinydashboard::dashboardPage(
                                       )
                                     )
                                   ),
+
+                                  # Network score box
                                   shinydashboard::box(
                                     title = "Network Score",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
+
+                                    # Network score function input select
                                     shiny::selectInput(
                                       "type",
                                       h5("Network Score:"),
-                                      c(
-                                        "Log-Likelihood" = "loglik",
+                                      c("Log-Likelihood" = "loglik",
                                         "Akaike Information Criterion" = "aic",
                                         "Bayesian Information Criterion" = "bic",
                                         "Bayesian Equivalent" = "be"
-                                      ),
-                                      'loglik-g'
+                                      ), 'loglik-g'
                                     ),
+
+                                    # Network score output
                                     shiny::verbatimTextOutput("score")
                                   )
                                 ),
                                 shiny::column(
                                   width = 8,
+
+                                  # Bayesian network box
                                   shinydashboard::box(
                                     title = "Bayesian Network",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
+
+                                    # d3 force directed network
                                     networkD3::simpleNetworkOutput("netPlot")
                                   )
                                 )
                               )),
+
+      # Paramaters tab item
       shinydashboard::tabItem(tabName = "paramaters",
                               shiny::fluidRow(
                                 shiny::column(
                                   width = 4,
+
+                                  # Paramater learning box
                                   shinydashboard::box(
                                     title = "Paramater Learning",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText("Select a parameter learning method:"),
+
+                                    # Paramater learning method input select
                                     shiny::selectInput(
                                       "met",
                                       shiny::h5("Learning Method:"),
-                                      c(
-                                        "Maximum Likelihood Estimation" = "mle",
+                                      c("Maximum Likelihood Estimation" = "mle",
                                         "Bayesian Estimation" = "bayes"
                                       )
                                     )
                                   ),
+
+                                  # Paramater infographic box
                                   shinydashboard::box(
                                     title = "Paramater Infographic",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
                                     helpText("Select a paramater infographic:"),
+
+                                    # Paramater infographic input select
                                     selectInput("param", label = h5("Paramater Infographic:"),
                                                 ""),
+
+                                    # Conditional panel for discrete data
                                     shiny::conditionalPanel(
                                       "input.param == 'barchart' || input.param == 'dotplot'",
+
+                                      # Node input select
                                       shiny::selectInput("Node", label = shiny::h5("Node:"), "")
                                     )
                                   )
@@ -253,19 +313,27 @@ shinydashboard::dashboardPage(
                                 ),
                                 shiny::column(
                                   width = 8,
+
+                                  # Network paramaters box
                                   shinydashboard::box(
                                     title = "Network Paramaters",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
+
+                                    # Conditional PD plot
                                     shiny::plotOutput("condPlot")
                                   )
                                 )
                               )),
+
+      # Inference tab item
       shinydashboard::tabItem(tabName = "inference",
                               shiny::fluidRow(
                                 shiny::column(
                                   width = 4,
+
+                                  # Evidence box
                                   shinydashboard::box(
                                     title = "Evidence",
                                     status = "success",
@@ -274,13 +342,19 @@ shinydashboard::dashboardPage(
                                     helpText("Select evidence to add to the model:"),
                                     shiny::fluidRow(
                                       shiny::column(6,
+
+                                                    # Evidence node input select
                                                     shiny::selectInput(
                                                       "evidenceNode", label = shiny::h5("Evidence Node:"),
                                                       ""
                                                     )),
                                       shiny::column(6,
+
+                                                    # Conditional panel for discrete data
                                                     shiny::conditionalPanel(
                                                       "input.param == 'barchart' || input.param == 'dotplot'",
+
+                                                      # Evidence input select
                                                       shiny::selectInput(
                                                         "evidence", label = shiny::h5("Evidence:"),
                                                         ""
@@ -289,41 +363,53 @@ shinydashboard::dashboardPage(
                                       )
                                     )
                                   ),
+
+                                  # Event box
                                   shinydashboard::box(
                                     title = "Event",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
                                     helpText("Select an event of interest:"),
+
+                                    # Event node input select
                                     shiny::selectInput("event", label = shiny::h5("Event Node:"),
                                                        "")
                                   )
                                 ),
                                 shiny::column(
                                   width = 8,
+
+                                  # Event paramater box
                                   shinydashboard::box(
                                     title = "Event Paramater",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
+
+                                    # Event conditional PD plot
                                     shiny::plotOutput("distPlot")
                                   )
                                 )
                               )),
-      shinydashboard::tabItem(
-        tabName = "measures",
+
+      # Measures tab item
+      shinydashboard::tabItem(tabName = "measures",
         shiny::fluidRow(
+
+          # Node measure controls box
           shinydashboard::box(
-            title = "Node Control",
+            title = "Node Measure Controls",
             status = "success",
             collapsible = TRUE,
             width = 4,
             shiny::helpText("Select a node measure:"),
+
+            # Node measure input select
             shiny::selectInput(
               "nodeMeasure",
               h5("Node Measure:"),
-              c(
-                "Markov Blanket" = "mb",
+              c("Markov Blanket" = "mb",
                 "Neighborhood" = "nbr",
                 "Parents" = "parents",
                 "Children" = "children",
@@ -334,48 +420,65 @@ shinydashboard::dashboardPage(
                 "Outgoing Arcs" = "outgoing.arcs"
               )
             ),
+
+            # Node input select
             shiny::selectInput("nodeNames", label = shiny::h5("Node:"),
                                "")
           ),
+
+          # Node measure box
           shinydashboard::box(
             title = "Node Measure",
             status = "success",
             collapsible = TRUE,
             width = 8,
+
+            # Node measure output
             shiny::verbatimTextOutput("nodeText")
           )
         ),
         fluidRow(
+
+          # Network measure control box
           shinydashboard::box(
-            title = "Network Control",
+            title = "Network Measure Control",
             status = "success",
             collapsible = TRUE,
             width = 4,
             shiny::helpText("Select a network measure:"),
+
+            # Network measure input select
             shiny::selectInput(
               "dendrogram",
               h5("Dendrogram:"),
-              c(
-                "Both" = "both",
+              c("Both" = "both",
                 "Row" = "row",
                 "Column" = "column",
                 "None" = "none"
               )
             )
           ),
+
+          # Network measure box
           shinydashboard::box(
             title = "Network Measure",
             status = "success",
             collapsible = TRUE,
             width = 8,
+
+            # d3 heatmap
             d3heatmap::d3heatmapOutput("netTable")
           )
         )
       ),
+
+      # Simulation tab item
       shinydashboard::tabItem(tabName = "simulation",
                               shiny::fluidRow(
                                 shiny::column(
                                   width = 4,
+
+                                  # Network simulation box
                                   shinydashboard::box(
                                     title = "Network Simulation",
                                     status = "success",
@@ -384,12 +487,16 @@ shinydashboard::dashboardPage(
                                     shiny::helpText(
                                       "Simulate random data from your network and download for future use:"
                                     ),
+
+                                    # Sample size input select
                                     shiny::numericInput(
                                       "n",
                                       label = h5("N (Sample Size):"),
                                       value = 100,
                                       min = 0
                                     ),
+
+                                    # Download handler
                                     shiny::downloadButton('downloadData', 'Download')
                                   )
                                 )

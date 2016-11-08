@@ -24,18 +24,18 @@ devtools::install_github('paulgovan/BayesianNetwork')
 To launch the app:
 
 ```
-BayesianNetwork()
+BayesianNetwork::BayesianNetwork()
 ```
 
 Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNetwork](https://paulgovan.shinyapps.io/BayesianNetwork/). 
 
 # Example
-## Dashboard
-Launching the app brings up the Dashboard tab. The Dashboard tab is basically a landing page that gives a brief introduction to the app and includes two value boxes, one each for the number of nodes and arcs in the network. The following figure shows the basic Dashboard tab.
+## Home
+Launching the app brings up the Home tab. The Home tab is basically a landing page that gives a brief introduction to the app and includes two value boxes, one each for the number of nodes and arcs in the network. The following figure shows the basic Home tab.
 
 BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the selected network by default.
 
-![Dashboard](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Dashboard.PNG?raw=true)
+![Home](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Dashboard.PNG?raw=true)
 
 ## Structure
 Click Structure in the sidepanel to begin learning the network from the data. The Bayesian network is automatically displayed in the Bayesian Network box.
