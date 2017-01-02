@@ -27,9 +27,7 @@ devtools::install_github('paulgovan/BayesianNetwork')
 To launch the app:
 
 ```c
-if (interactive()) {
-  BayesianNetwork::BayesianNetwork()
-}
+BayesianNetwork::BayesianNetwork()
 ```
 
 Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNetwork](https://paulgovan.shinyapps.io/Bayesiannetwork). 

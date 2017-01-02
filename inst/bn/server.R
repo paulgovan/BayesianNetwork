@@ -1,13 +1,3 @@
-# By default, the file size limit is 5MB. It can be changed by
-# setting this option. Here we'll raise limit to 9MB.
-options(shiny.maxRequestSize = 10 * 1024 ^ 2)
-
-# Load demo data from 'bnlearn'
-data(learning.test, package = "bnlearn")
-data(gaussian.test, package = "bnlearn")
-data(insurance, package = "bnlearn")
-data(hailfinder, package = "bnlearn")
-
 #' @import bnlearn
 #' @import shiny
 #' @import shinydashboard
@@ -21,8 +11,10 @@ shinyServer(function(input, output, session) {
     } else if (input$net == 2) {
       dat <- gaussian.test
     } else if (input$net == 3) {
-      dat <- insurance
+      dat <- alarm
     } else if (input$net == 4) {
+      dat <- insurance
+    } else if (input$net == 5) {
       dat <- hailfinder
     } else  {
 
@@ -31,8 +23,8 @@ shinyServer(function(input, output, session) {
       if (is.null(inFile))
         return(NULL)
       dat <- read.csv(inFile$datapath,
-                       header = input$header,
-                       sep = input$sep)
+                      header = input$header,
+                      sep = input$sep)
     }
   })
 
@@ -108,23 +100,24 @@ shinyServer(function(input, output, session) {
     if (is.null(dat()))
       return(NULL)
 
-    # Get the arc directions
-    networkData <- data.frame(bnlearn::arcs(dag()))
+      # Get the arc directions
+      networkData <- data.frame(bnlearn::arcs(dag()))
 
-    networkD3::simpleNetwork(
-      networkData,
-      Source = "from",
-      Target = "to",
-      zoom = TRUE
-    )
+      networkD3::simpleNetwork(
+        networkData,
+        Source = "from",
+        Target = "to",
+        zoom = TRUE
+      )
+
   })
 
   # Print the network score
   output$score <- shiny::renderText({
     if (bnlearn::directed(dag())) {
 
-      # If the data is continuous,...
-      if (is.numeric(dat()[, 1])) {
+      # If all of the data is numeric,...
+      if (all(sapply(dat(), is.numeric))) {
 
         # Get the selected score function from the user and calculate the score
         if (input$type == "loglik") {
@@ -167,7 +160,7 @@ shinyServer(function(input, output, session) {
     if (bnlearn::directed(dag())) {
 
       # Get the selected paramater learning method from the user and learn the paramaters
-      fit <- bnlearn::bn.fit(dag(), dat(), method = input$met)
+      fit <- bnlearn::bn.fit(dag(), dat(), method = input$met, iss = input$iss)
     }
   })
 
@@ -228,12 +221,12 @@ shinyServer(function(input, output, session) {
   graphic <- shiny::reactive({
 
     # If data is continuous, ...
-    if (is.numeric(dat()[, 1])) {
+    if (all(sapply(dat(), is.numeric))) {
       graphic <- c("Histogram" = "histogram",
                    "XY Plot" = "xyplot",
                    "QQ Plot" = "qqplot")
 
-    # If data is discrete,...
+      # If data is discrete,...
     } else {
       graphic <- c("Bar Chart" = "barchart",
                    "Dot Plot" = "dotplot")
@@ -299,7 +292,7 @@ shinyServer(function(input, output, session) {
   output$distPlot <- shiny::renderPlot({
     if (is.null(dat()))
       return(NULL)
-    if (is.numeric(dat()[,1]))
+    if (all(sapply(dat(), is.numeric)))
       shiny::validate(
         shiny::need(
           try(distPlot != ""),

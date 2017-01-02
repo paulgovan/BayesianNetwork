@@ -66,7 +66,11 @@ shinydashboard::dashboardPage(
       # Source code link
       shinydashboard::menuItem("Source Code",
                                icon = icon("code"),
-                               href = "https://github.com/paulgovan/BayesianNetwork")
+                               href = "https://github.com/paulgovan/BayesianNetwork"),
+
+      # Bookmark button
+      shiny::br(),
+      shiny::bookmarkButton()
     )
   ),
 
@@ -107,7 +111,7 @@ shinydashboard::dashboardPage(
               '.'
             ),
             shiny::h4("Click",
-              shiny::em("Structure"),
+              shiny::a("Structure", href="#shiny-tab-structure", "data-toggle" = "tab"),
               " in the sidepanel to get started"
             ),
             br(),
@@ -143,15 +147,16 @@ shinydashboard::dashboardPage(
                                       h5("Bayesian Network:"),
                                       c("Sample Discrete Network" = 1,
                                         "Sample Gaussian Network" = 2,
-                                        "Sample Insurance Network" = 3,
-                                        "Sample Hailfinder Network" = 4,
-                                        "Upload your Bayesian network data" = 5
+                                        "Alarm Network" = 3,
+                                        "Insurance Network" = 4,
+                                        "Hailfinder Network" = 5,
+                                        "Upload your Bayesian network data" = 6
                                       )
                                     ),
 
                                     # Conditional panel for file input selection
                                     shiny::conditionalPanel(
-                                      condition = "input.net == 5",
+                                      condition = "input.net == 6",
                                       shiny::p('Note: your data should be structured as a ',
                                         shiny::a(href = 'http://en.wikipedia.org/wiki/Comma-separated_values', 'csv file')
                                       ),
@@ -279,6 +284,16 @@ shinydashboard::dashboardPage(
                                       c("Maximum Likelihood Estimation" = "mle",
                                         "Bayesian Estimation" = "bayes"
                                       )
+                                    ),
+
+                                    shiny::helpText("Select an imaginary sample size:"),
+
+                                    # Imaginary Sample Size for illustrative purposes
+                                    shiny::numericInput(
+                                      "iss",
+                                      shiny::h5("Sample Size:"),
+                                      value = 10,
+                                      min = 1
                                     )
                                   ),
 
