@@ -1,3 +1,68 @@
+code =
+  '## Sample Code
+Here is some sample markdown.
+
+### Get some sample data and show the first few values
+### Use `dat()` to get the active data set
+```{r}
+dat <- learning.test
+head(dat)
+```
+
+### Learn the structure of the network
+```{r}
+dag <- bnlearn::cextend(bnlearn::gs(dat))
+```
+
+### Plot the force directed network
+```{r}
+networkData <- data.frame(bnlearn::arcs(dag))
+
+networkD3::simpleNetwork(
+  networkData,
+  Source = "from",
+  Target = "to"
+)
+```
+
+### Print the network score
+```{r}
+bnlearn::score(dag, dat)
+```
+
+### Fit the model parameters
+```{r}
+fit <- bnlearn::bn.fit(dag, dat)
+```
+
+### Plot the model parameters for node A
+```{r}
+bnlearn::bn.fit.barchart(fit[["A"]])
+```
+
+### Get the Markov blanket for node A
+```{r}
+bnlearn::mb(dag, "A")
+```
+
+### Plot a d3 heatmap of the adjacency matrix
+```{r}
+d3heatmap::d3heatmap(
+  bnlearn::amat(dag),
+  symm = TRUE,
+  colors = "Blues"
+)
+
+### Generate some random data from the network
+```{r}
+simData <- bnlearn::rbn(fit, n = 100, dat)
+head(simData)
+```
+
+```{r}
+# Put your own code here...
+'
+
 # Green dashboard page
 shinydashboard::dashboardPage(
   skin = "green",
@@ -50,11 +115,11 @@ shinydashboard::dashboardPage(
         icon = shiny::icon("table")
       ),
 
-      # Simulation menu item
+      # Editor menu item
       shinydashboard::menuItem(
-        "Simulation",
-        tabName = "simulation",
-        icon = shiny::icon("random")
+        "Editor",
+        tabName = "editor",
+        icon = shiny::icon("code")
       ),
       br(),
 
@@ -65,12 +130,12 @@ shinydashboard::dashboardPage(
 
       # Source code link
       shinydashboard::menuItem("Source Code",
-                               icon = icon("code"),
+                               icon = icon("github"),
                                href = "https://github.com/paulgovan/BayesianNetwork"),
 
       # Bookmark button
       shiny::br(),
-      shiny::bookmarkButton()
+      shiny::bookmarkButton(id = "bookmark")
     )
   ),
 
@@ -97,27 +162,27 @@ shinydashboard::dashboardPage(
             status = "success",
             width = 8,
             shiny::img(src = "favicon.png",
-              height = 50,
-              width = 50
+                       height = 50,
+                       width = 50
             ),
             shiny::h3("Welcome to BayesianNetwork!"),
             br(),
             shiny::h4("BayesianNetwork is a ",
-              shiny::a(href = 'http://shiny.rstudio.com', 'Shiny'),
-              "web application for Bayesian network modeling and analysis, powered by",
-              shiny::a(href = 'http://www.bnlearn.com', 'bnlearn'),
-              'and',
-              shiny::a(href = 'http://christophergandrud.github.io/networkD3/', 'networkD3'),
-              '.'
+                      shiny::a(href = 'http://shiny.rstudio.com', 'Shiny'),
+                      "web application for Bayesian network modeling and analysis, powered by",
+                      shiny::a(href = 'http://www.bnlearn.com', 'bnlearn'),
+                      'and',
+                      shiny::a(href = 'http://christophergandrud.github.io/networkD3/', 'networkD3'),
+                      '.'
             ),
             shiny::h4("Click",
-              shiny::a("Structure", href="#shiny-tab-structure", "data-toggle" = "tab"),
-              " in the sidepanel to get started"
+                      shiny::a("Structure", href="#shiny-tab-structure", "data-toggle" = "tab"),
+                      " in the sidepanel to get started"
             ),
             br(),
             shiny::h4(shiny::HTML('&copy'),
-              '2016 By Paul Govan. ',
-              shiny::a(href = 'http://www.apache.org/licenses/LICENSE-2.0', 'Terms of Use.')
+                      '2016 By Paul Govan. ',
+                      shiny::a(href = 'http://www.apache.org/licenses/LICENSE-2.0', 'Terms of Use.')
             )
           ),
 
@@ -158,7 +223,7 @@ shinydashboard::dashboardPage(
                                     shiny::conditionalPanel(
                                       condition = "input.net == 6",
                                       shiny::p('Note: your data should be structured as a ',
-                                        shiny::a(href = 'http://en.wikipedia.org/wiki/Comma-separated_values', 'csv file')
+                                               shiny::a(href = 'http://en.wikipedia.org/wiki/Comma-separated_values', 'csv file')
                                       ),
 
                                       # File input
@@ -166,11 +231,11 @@ shinydashboard::dashboardPage(
                                         'file',
                                         strong('File Input:'),
                                         accept = c('text/csv',
-                                          'text/comma-separated-values',
-                                          'text/tab-separated-values',
-                                          'text/plain',
-                                          '.csv',
-                                          '.tsv'
+                                                   'text/comma-separated-values',
+                                                   'text/tab-separated-values',
+                                                   'text/plain',
+                                                   '.csv',
+                                                   '.tsv'
                                         )
                                       ),
 
@@ -410,112 +475,101 @@ shinydashboard::dashboardPage(
 
       # Measures tab item
       shinydashboard::tabItem(tabName = "measures",
-        shiny::fluidRow(
+                              shiny::fluidRow(
 
-          # Node measure controls box
-          shinydashboard::box(
-            title = "Node Measure Controls",
-            status = "success",
-            collapsible = TRUE,
-            width = 4,
-            shiny::helpText("Select a node measure:"),
+                                # Node measure controls box
+                                shinydashboard::box(
+                                  title = "Node Measure Controls",
+                                  status = "success",
+                                  collapsible = TRUE,
+                                  width = 4,
+                                  shiny::helpText("Select a node measure:"),
 
-            # Node measure input select
-            shiny::selectInput(
-              "nodeMeasure",
-              h5("Node Measure:"),
-              c("Markov Blanket" = "mb",
-                "Neighborhood" = "nbr",
-                "Parents" = "parents",
-                "Children" = "children",
-                "In Degree" = "in.degree",
-                "Out Degree" = "out.degree",
-                "Incident Arcs" = "incident.arcs",
-                "Incoming Arcs" = "incoming.arcs",
-                "Outgoing Arcs" = "outgoing.arcs"
-              )
-            ),
+                                  # Node measure input select
+                                  shiny::selectInput(
+                                    "nodeMeasure",
+                                    h5("Node Measure:"),
+                                    c("Markov Blanket" = "mb",
+                                      "Neighborhood" = "nbr",
+                                      "Parents" = "parents",
+                                      "Children" = "children",
+                                      "In Degree" = "in.degree",
+                                      "Out Degree" = "out.degree",
+                                      "Incident Arcs" = "incident.arcs",
+                                      "Incoming Arcs" = "incoming.arcs",
+                                      "Outgoing Arcs" = "outgoing.arcs"
+                                    )
+                                  ),
 
-            # Node input select
-            shiny::selectInput("nodeNames", label = shiny::h5("Node:"),
-                               "")
-          ),
+                                  # Node input select
+                                  shiny::selectInput("nodeNames", label = shiny::h5("Node:"),
+                                                     "")
+                                ),
 
-          # Node measure box
-          shinydashboard::box(
-            title = "Node Measure",
-            status = "success",
-            collapsible = TRUE,
-            width = 8,
+                                # Node measure box
+                                shinydashboard::box(
+                                  title = "Node Measure",
+                                  status = "success",
+                                  collapsible = TRUE,
+                                  width = 8,
 
-            # Node measure output
-            shiny::verbatimTextOutput("nodeText")
-          )
-        ),
-        fluidRow(
+                                  # Node measure output
+                                  shiny::verbatimTextOutput("nodeText")
+                                )
+                              ),
+                              fluidRow(
 
-          # Network measure control box
-          shinydashboard::box(
-            title = "Network Measure Control",
-            status = "success",
-            collapsible = TRUE,
-            width = 4,
-            shiny::helpText("Select a network measure:"),
+                                # Network measure control box
+                                shinydashboard::box(
+                                  title = "Network Measure Control",
+                                  status = "success",
+                                  collapsible = TRUE,
+                                  width = 4,
+                                  shiny::helpText("Select a network measure:"),
 
-            # Network measure input select
-            shiny::selectInput(
-              "dendrogram",
-              h5("Dendrogram:"),
-              c("Both" = "both",
-                "Row" = "row",
-                "Column" = "column",
-                "None" = "none"
-              )
-            )
-          ),
+                                  # Network measure input select
+                                  shiny::selectInput(
+                                    "dendrogram",
+                                    h5("Dendrogram:"),
+                                    c("Both" = "both",
+                                      "Row" = "row",
+                                      "Column" = "column",
+                                      "None" = "none"
+                                    )
+                                  )
+                                ),
 
-          # Network measure box
-          shinydashboard::box(
-            title = "Network Measure",
-            status = "success",
-            collapsible = TRUE,
-            width = 8,
+                                # Network measure box
+                                shinydashboard::box(
+                                  title = "Network Measure",
+                                  status = "success",
+                                  collapsible = TRUE,
+                                  width = 8,
 
-            # d3 heatmap
-            d3heatmap::d3heatmapOutput("netTable")
-          )
-        )
+                                  # d3 heatmap
+                                  d3heatmap::d3heatmapOutput("netTable")
+                                )
+                              )
       ),
 
-      # Simulation tab item
-      shinydashboard::tabItem(tabName = "simulation",
-                              shiny::fluidRow(
-                                shiny::column(
-                                  width = 4,
+      # Editor tab item
+      shinydashboard::tabItem(tabName = "editor",
 
-                                  # Network simulation box
-                                  shinydashboard::box(
-                                    title = "Network Simulation",
-                                    status = "success",
-                                    collapsible = TRUE,
-                                    width = NULL,
-                                    shiny::helpText(
-                                      "Simulate random data from your network and download for future use:"
-                                    ),
+                              # shinyAce editor box
+                              shinydashboard::box(
+                                title = "Editor",
+                                status = "success",
+                                collapsible = TRUE,
+                                width = 12,
 
-                                    # Sample size input select
-                                    shiny::numericInput(
-                                      "n",
-                                      label = h5("N (Sample Size):"),
-                                      value = 100,
-                                      min = 0
-                                    ),
+                                # shinyAce Editor
+                                shinyAce::aceEditor("rmd", mode = "markdown", value = code),
+                                shiny::actionButton("eval", "Run")
+                              ),
 
-                                    # Download handler
-                                    shiny::downloadButton('downloadData', 'Download')
-                                  )
-                                )
-                              ))
+                              # knitr output
+                              shiny::htmlOutput("knitr")
+      )
     )
   )
 )

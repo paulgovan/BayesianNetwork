@@ -365,18 +365,15 @@ shinyServer(function(input, output, session) {
     )
   })
 
-  # Get the sample size from the user and simulate data from the network
-  simData <- shiny::reactive({
-    simData <- bnlearn::rbn(fit(), input$n)
+  # Knit shinyAce editor code
+  output$knitr <- shiny::renderUI({
+    input$eval
+    return(
+      shiny::isolate(
+        shiny::HTML(
+          knitr::knit2html(text = input$rmd, fragment.only = TRUE, quiet = TRUE)
+          )
+        )
+      )
   })
-
-  # Create a handler for downloading the simulated data
-  output$downloadData <- shiny::downloadHandler(
-    filename = function() {
-      paste('bn', '.csv', sep = '')
-    },
-    content = function(file) {
-      write.csv(simData(), file)
-    }
-  )
 })
