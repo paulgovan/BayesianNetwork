@@ -1,5 +1,5 @@
 code =
-  '## Sample Code
+'## Sample Code
 Here is some sample markdown.
 
 ### Get some sample data and show the first few values
@@ -30,9 +30,10 @@ networkD3::simpleNetwork(
 bnlearn::score(dag, dat)
 ```
 
-### Fit the model parameters
+### Fit the model parameters and show the CPT for node A
 ```{r}
 fit <- bnlearn::bn.fit(dag, dat)
+fit$A
 ```
 
 ### Plot the model parameters for node A
@@ -53,7 +54,7 @@ d3heatmap::d3heatmap(
   colors = "Blues"
 )
 
-### Generate some random data from the network
+### Generate some random data from the network and show the first few values
 ```{r}
 simData <- bnlearn::rbn(fit, n = 100, dat)
 head(simData)
