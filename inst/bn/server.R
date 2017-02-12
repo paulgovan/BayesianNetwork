@@ -1,8 +1,28 @@
 #' @import bnlearn
+#' @import rintrojs
 #' @import shiny
+#' @import shinyAce
 #' @import shinydashboard
 # Define required server logic
 shinyServer(function(input, output, session) {
+
+  # Observe intro btn and start the intro
+  shiny::observeEvent(input$introBtn,
+                      rintrojs::introjs(session, options = list(steps = helpData),
+                                        events = list(
+                                          "onchange" = "if (this._currentStep==3) {
+                                            $('a[data-value=\"Structure\"]').removeClass('active');
+                                            $('a[data-value=\"Home\"]').addClass('active');
+                                            $('a[data-value=\"Home\"]').trigger('click');
+                                          }
+                                          if (this._currentStep==4) {
+                                            $('a[data-value=\"Home\"]').removeClass('active');
+                                            $('a[data-value=\"Structure\"]').addClass('active');
+                                            $('a[data-value=\"Structure\"]').trigger('click');
+                                          }"
+                                        )
+                      )
+  )
 
   # Get the data selection from user
   dat <- shiny::reactive({
@@ -100,15 +120,15 @@ shinyServer(function(input, output, session) {
     if (is.null(dat()))
       return(NULL)
 
-      # Get the arc directions
-      networkData <- data.frame(bnlearn::arcs(dag()))
+    # Get the arc directions
+    networkData <- data.frame(bnlearn::arcs(dag()))
 
-      networkD3::simpleNetwork(
-        networkData,
-        Source = "from",
-        Target = "to",
-        zoom = TRUE
-      )
+    networkD3::simpleNetwork(
+      networkData,
+      Source = "from",
+      Target = "to",
+      zoom = TRUE
+    )
 
   })
 
@@ -367,13 +387,22 @@ shinyServer(function(input, output, session) {
 
   # Knit shinyAce editor code
   output$knitr <- shiny::renderUI({
+
+    # Create a Progress object
+    progress <- shiny::Progress$new()
+    # Make sure it closes when we exit this reactive, even if there's an error
+    on.exit(progress$close())
+    progress$set(message = "Building report...", value = 0)
+
     input$eval
     return(
       shiny::isolate(
         shiny::HTML(
           knitr::knit2html(text = input$rmd, fragment.only = TRUE, quiet = TRUE)
-          )
         )
       )
+    )
   })
+
 })
+

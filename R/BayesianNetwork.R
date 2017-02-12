@@ -4,10 +4,12 @@
 #' analysis.
 #' @import bnlearn
 #' @import d3heatmap
+#' @import rintrojs
 #' @import lattice
 #' @import networkD3
 #' @import rhandsontable
 #' @import shiny
+#' @import shinyAce
 #' @import shinydashboard
 #' @export
 #' @seealso \url{http://paulgovan.github.io/BayesianNetwork/}

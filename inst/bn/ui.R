@@ -1,6 +1,6 @@
 code =
-'## Sample Code
-Here is some sample markdown.
+  '## Sample Code
+Here is some sample markdown to help illustrate the editor.
 
 ### Get some sample data and show the first few values
 ### Use `dat()` to get the active data set
@@ -78,6 +78,7 @@ shinydashboard::dashboardPage(
 
     # Sidebar menu
     shinydashboard::sidebarMenu(
+      id = "sidebarMenu",
 
       # Home menu item
       shinydashboard::menuItem(
@@ -104,9 +105,7 @@ shinydashboard::dashboardPage(
       shinydashboard::menuItem(
         "Inference",
         icon = shiny::icon("arrow-right"),
-        tabName = "inference",
-        badgeLabel = "New",
-        badgeColor = "green"
+        tabName = "inference"
       ),
 
       # Measures menu item
@@ -120,7 +119,9 @@ shinydashboard::dashboardPage(
       shinydashboard::menuItem(
         "Editor",
         tabName = "editor",
-        icon = shiny::icon("code")
+        icon = shiny::icon("code"),
+        badgeLabel = "New",
+        badgeColor = "green"
       ),
       br(),
 
@@ -136,18 +137,24 @@ shinydashboard::dashboardPage(
 
       # Bookmark button
       shiny::br(),
-      shiny::bookmarkButton(id = "bookmark")
+      shiny::bookmarkButton(id = "bookmark"),
+      tags$style(type='text/css', "#bookmark { display: block; margin: 0 auto; }")
+
     )
   ),
 
   # Dashboard body
   shinydashboard::dashboardBody(
+    id = "dashboardBody",
 
     # Add favicon and title to header
     tags$head(
       tags$link(rel = "icon", type = "image/png", href = "favicon.png"),
       tags$title("BayesianNetwork")
     ),
+
+    # Include introjs UI
+    rintrojs::introjsUI(),
 
     # Dashboard tab items
     shinydashboard::tabItems(
@@ -178,13 +185,18 @@ shinydashboard::dashboardPage(
             ),
             shiny::h4("Click",
                       shiny::a("Structure", href="#shiny-tab-structure", "data-toggle" = "tab"),
-                      " in the sidepanel to get started"
+                      " in the sidepanel to get started."
             ),
-            br(),
             shiny::h4(shiny::HTML('&copy'),
                       '2016 By Paul Govan. ',
                       shiny::a(href = 'http://www.apache.org/licenses/LICENSE-2.0', 'Terms of Use.')
-            )
+            ),
+            br(),
+
+            # Add introjs btn
+            shiny::actionButton("introBtn", "Show me how it works"),
+            tags$style(type='text/css', "#introBtn { display: block; margin: 0 auto; }")
+
           ),
 
           # Nodes and arcs value boxes
@@ -555,21 +567,27 @@ shinydashboard::dashboardPage(
 
       # Editor tab item
       shinydashboard::tabItem(tabName = "editor",
+                              shiny::fluidRow(
+                                column(6,
 
-                              # shinyAce editor box
-                              shinydashboard::box(
-                                title = "Editor",
-                                status = "success",
-                                collapsible = TRUE,
-                                width = 12,
+                                       # shinyAce editor box
+                                       shinydashboard::box(
+                                         title = "Editor",
+                                         status = "success",
+                                         collapsible = TRUE,
+                                         width = 12,
 
-                                # shinyAce Editor
-                                shinyAce::aceEditor("rmd", mode = "markdown", value = code),
-                                shiny::actionButton("eval", "Run")
-                              ),
+                                         # shinyAce Editor
+                                         shinyAce::aceEditor("rmd", mode = "markdown", value = code),
+                                         shiny::actionButton("eval", "Run")
+                                       )
+                                ),
+                                column(6,
 
-                              # knitr output
-                              shiny::htmlOutput("knitr")
+                                       # knitr output
+                                       shiny::htmlOutput("knitr")
+                                )
+                              )
       )
     )
   )

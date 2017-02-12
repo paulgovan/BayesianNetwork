@@ -11,3 +11,17 @@ data(learning.test, package = "bnlearn")
 
 # Enable bookmarking for the app
 shiny::enableBookmarking(store = "url")
+
+helpData <-
+  data.frame(
+    step = c(1, 2),
+    intro = c(
+      "Here is the sidebar menu. Each link opens a new tab. You will probably start with the <b>Structure</b> tab and work your way down.",
+      "The body of the app is where you will find different features for modeling and analyzing your network."
+    ),
+    element = c(
+      "#sidebarMenu",
+      "#dashboardBody"
+    ),
+    position = c("auto", "auto")
+  )
