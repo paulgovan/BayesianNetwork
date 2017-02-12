@@ -213,7 +213,7 @@ shinydashboard::dashboardPage(
 
                                   # Network input box
                                   shinydashboard::box(
-                                    title = "Network Input",
+                                    title = "Data Input",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
@@ -377,7 +377,7 @@ shinydashboard::dashboardPage(
 
                                   # Paramater infographic box
                                   shinydashboard::box(
-                                    title = "Paramater Infographic",
+                                    title = "Paramater Graphic",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
@@ -492,7 +492,7 @@ shinydashboard::dashboardPage(
 
                                 # Node measure controls box
                                 shinydashboard::box(
-                                  title = "Node Measure Controls",
+                                  title = "Node Measure Control",
                                   status = "success",
                                   collapsible = TRUE,
                                   width = 4,

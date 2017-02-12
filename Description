@@ -17,7 +17,9 @@ Imports:
     lattice,
     networkD3,
     rhandsontable,
+    rintrojs,
     shiny,
+    shinyAce,
     shinydashboard
 RoxygenNote: 5.0.1
 Suggests: knitr,
