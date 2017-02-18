@@ -17,7 +17,7 @@ homeHelp <-
     step = c(1, 2),
     intro = c(
       "Here is the sidebar menu. Each link opens a new tab. You will probably start with the <b>Structure</b> tab and work your way down.",
-      "The body of the app is where you will find different features for modeling and analyzing your network. Each tab will have its own help button."
+      "The body of the app is where you will find different features for modeling and analyzing your network. Each tab has its own help button."
     ),
     element = c(
       "#sidebarMenu",
@@ -54,7 +54,7 @@ measuresHelp <-
   data.frame(
     step = c(1, 2),
     intro = c(
-      "Select a node measure in the box to the left and the result will be displayed here.",
+      "Select a node measure in the box to the left and the result is displayed here.",
       "Here is where you can view the adjacency matrix. Configure the matrix using the control to the left."
     ),
     element = c(
@@ -68,7 +68,7 @@ editorHelp <-
   data.frame(
     step = c(1, 2),
     intro = c(
-      "Here is the editor. Click run to knit the rmarkdown report.",
+      "Here is the editor. Click <b>Run</b> to knit the rmarkdown report.",
       "The resulting rmarkdown report is displayed here."
     ),
     element = c(
