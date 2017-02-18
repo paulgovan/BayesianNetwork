@@ -173,7 +173,8 @@ shinydashboard::dashboardPage(
                        height = 50,
                        width = 50
             ),
-            shiny::h3("Welcome to BayesianNetwork!"),
+            shiny::h2("BayesianNetwork"),
+            shiny::h4("Bayesian Network Modeling and Analysis"),
             br(),
             shiny::h4("BayesianNetwork is a ",
                       shiny::a(href = 'http://shiny.rstudio.com', 'Shiny'),
@@ -187,16 +188,15 @@ shinydashboard::dashboardPage(
                       shiny::a("Structure", href="#shiny-tab-structure", "data-toggle" = "tab"),
                       " in the sidepanel to get started."
             ),
+            br(),
             shiny::h4(shiny::HTML('&copy'),
                       '2016 By Paul Govan. ',
                       shiny::a(href = 'http://www.apache.org/licenses/LICENSE-2.0', 'Terms of Use.')
             ),
             br(),
-
             # Add introjs btn
-            shiny::actionButton("introBtn", "Show me how it works"),
-            tags$style(type='text/css', "#introBtn { display: block; margin: 0 auto; }")
-
+            shiny::actionButton("homeIntro", "Show me how it works"),
+            tags$style(type='text/css', "#homeIntro { display: block; margin: 0 auto; }")
           ),
 
           # Nodes and arcs value boxes
@@ -221,7 +221,7 @@ shinydashboard::dashboardPage(
 
                                     # Demo network input select
                                     shiny::selectInput(
-                                      "net",
+                                      inputId = "net",
                                       h5("Bayesian Network:"),
                                       c("Sample Discrete Network" = 1,
                                         "Sample Gaussian Network" = 2,
@@ -277,7 +277,7 @@ shinydashboard::dashboardPage(
 
                                     # Structural learning algorithm input select
                                     shiny::selectizeInput(
-                                      "alg",
+                                      inputId = "alg",
                                       shiny::h5("Learning Algorithm:"),
                                       choices = list(
                                         "Constraint-based Learning" =
@@ -339,7 +339,11 @@ shinydashboard::dashboardPage(
                                     networkD3::simpleNetworkOutput("netPlot")
                                   )
                                 )
-                              )),
+                              ),
+
+                              # Add introjs btn
+                              shiny::actionButton("structureIntro", "Show me how")
+      ),
 
       # Paramaters tab item
       shinydashboard::tabItem(tabName = "paramaters",
@@ -418,7 +422,11 @@ shinydashboard::dashboardPage(
                                     shiny::plotOutput("condPlot")
                                   )
                                 )
-                              )),
+                              ),
+
+                              # Add introjs btn
+                              shiny::actionButton("parametersIntro", "Show me how")
+      ),
 
       # Inference tab item
       shinydashboard::tabItem(tabName = "inference",
@@ -484,7 +492,11 @@ shinydashboard::dashboardPage(
                                     shiny::plotOutput("distPlot")
                                   )
                                 )
-                              )),
+                              ),
+
+                              # Add introjs btn
+                              shiny::actionButton("inferenceIntro", "Show me how")
+      ),
 
       # Measures tab item
       shinydashboard::tabItem(tabName = "measures",
@@ -562,7 +574,9 @@ shinydashboard::dashboardPage(
                                   # d3 heatmap
                                   d3heatmap::d3heatmapOutput("netTable")
                                 )
-                              )
+                              ),
+                              # Add introjs btn
+                              shiny::actionButton("measuresIntro", "Show me how")
       ),
 
       # Editor tab item
@@ -580,7 +594,10 @@ shinydashboard::dashboardPage(
                                          # shinyAce Editor
                                          shinyAce::aceEditor("rmd", mode = "markdown", value = code),
                                          shiny::actionButton("eval", "Run")
-                                       )
+                                       ),
+
+                                       # Add introjs btn
+                                       shiny::actionButton("editorIntro", "Show me how")
                                 ),
                                 column(6,
 

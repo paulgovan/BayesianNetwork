@@ -6,24 +6,6 @@
 # Define required server logic
 shinyServer(function(input, output, session) {
 
-  # Observe intro btn and start the intro
-  shiny::observeEvent(input$introBtn,
-                      rintrojs::introjs(session, options = list(steps = helpData),
-                                        events = list(
-                                          "onchange" = "if (this._currentStep==3) {
-                                            $('a[data-value=\"Structure\"]').removeClass('active');
-                                            $('a[data-value=\"Home\"]').addClass('active');
-                                            $('a[data-value=\"Home\"]').trigger('click');
-                                          }
-                                          if (this._currentStep==4) {
-                                            $('a[data-value=\"Home\"]').removeClass('active');
-                                            $('a[data-value=\"Structure\"]').addClass('active');
-                                            $('a[data-value=\"Structure\"]').trigger('click');
-                                          }"
-                                        )
-                      )
-  )
-
   # Get the data selection from user
   dat <- shiny::reactive({
     if (input$net == 1) {
@@ -115,6 +97,11 @@ shinyServer(function(input, output, session) {
                              color = "green")
   })
 
+  # Observe intro btn and start the intro
+  shiny::observeEvent(input$homeIntro,
+                      rintrojs::introjs(session, options = list(steps = homeHelp))
+  )
+
   # Plot the d3 force directed network
   output$netPlot <- networkD3::renderSimpleNetwork({
     if (is.null(dat()))
@@ -172,6 +159,11 @@ shinyServer(function(input, output, session) {
         )
       )
   })
+
+  # Observe intro btn and start the intro
+  shiny::observeEvent(input$structureIntro,
+                      rintrojs::introjs(session, options = list(steps = structureHelp))
+  )
 
   # Fit the model parameters
   fit <- shiny::reactive({
@@ -291,6 +283,11 @@ shinyServer(function(input, output, session) {
       )
   })
 
+  # Observe intro btn and start the intro
+  shiny::observeEvent(input$parametersIntro,
+                      rintrojs::introjs(session, options = list(steps = parametersHelp))
+  )
+
   # Send the evidence node choices to the user
   shiny::observe({
     shiny::updateSelectInput(session, "evidenceNode", choices = names(dat()))
@@ -337,6 +334,11 @@ shinyServer(function(input, output, session) {
       ylim = c(0, 1)
     )
   })
+
+  # Observe intro btn and start the intro
+  shiny::observeEvent(input$inferenceIntro,
+                      rintrojs::introjs(session, options = list(steps = inferenceHelp))
+  )
 
   # Send the node names to the user
   shiny::observe({
@@ -385,6 +387,11 @@ shinyServer(function(input, output, session) {
     )
   })
 
+  # Observe intro btn and start the intro
+  shiny::observeEvent(input$measuresIntro,
+                      rintrojs::introjs(session, options = list(steps = measuresHelp))
+  )
+
   # Knit shinyAce editor code
   output$knitr <- shiny::renderUI({
 
@@ -403,6 +410,11 @@ shinyServer(function(input, output, session) {
       )
     )
   })
+
+  # Observe intro btn and start the intro
+  shiny::observeEvent(input$editorIntro,
+                      rintrojs::introjs(session, options = list(steps = editorHelp))
+  )
 
 })
 
