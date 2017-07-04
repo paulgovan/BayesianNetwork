@@ -1,10 +1,14 @@
-# BayesianNetwork 0.1.2
+# BayesianNetwork 0.1.3
 
 ## Major changes
+* Added interactive tutorial (rintrojs)
+* Added interactive editor (shinyAce)
+* Added sample size input for Bayesian estimation
 
-* Now supporting Bayesian inference (see 'Inference' tab)
-* Added links for help pages and source code
-* Added progress indicator for networkD3 plot
-* Added further commentary
-* minor user interface changes
+## Minor changes
+* UI improvements
+
+## Bug fixes
+* Fixed bookmark button
+* Fixed web app link
 

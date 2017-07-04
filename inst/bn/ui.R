@@ -53,6 +53,7 @@ d3heatmap::d3heatmap(
   symm = TRUE,
   colors = "Blues"
 )
+````
 
 ### Generate some random data from the network and show the first few values
 ```{r}

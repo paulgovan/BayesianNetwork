@@ -9,9 +9,7 @@ data(hailfinder, package = "bnlearn")
 data(insurance, package = "bnlearn")
 data(learning.test, package = "bnlearn")
 
-# Enable bookmarking for the app
-shiny::enableBookmarking(store = "url")
-
+# Help data for Home tab
 homeHelp <-
   data.frame(
     step = c(1, 2),
@@ -26,6 +24,7 @@ homeHelp <-
     position = c("auto", "auto")
   )
 
+# Help data for Structure data
 structureHelp <-
   data.frame(
     step = c(1),
@@ -34,6 +33,7 @@ structureHelp <-
     position = c("auto")
   )
 
+# Help data for Parameters tab
 parametersHelp <-
   data.frame(
     step = c(1),
@@ -42,6 +42,7 @@ parametersHelp <-
     position = c("auto")
   )
 
+# Help data for Inference tab
 inferenceHelp <-
   data.frame(
     step = c(1),
@@ -50,6 +51,7 @@ inferenceHelp <-
     position = c("auto")
   )
 
+# Help data for Measures tab
 measuresHelp <-
   data.frame(
     step = c(1, 2),
@@ -64,6 +66,7 @@ measuresHelp <-
     position = c("auto", "auto")
   )
 
+# Help data for Editor tab
 editorHelp <-
   data.frame(
     step = c(1, 2),
@@ -77,3 +80,7 @@ editorHelp <-
     ),
     position = c("auto", "auto")
   )
+
+# Enable bookmarking for the app
+shiny::enableBookmarking(store = "url")
+

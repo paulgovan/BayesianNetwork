@@ -1,4 +1,5 @@
 #' @import bnlearn
+#' @import deal
 #' @import rintrojs
 #' @import shiny
 #' @import shinyAce
@@ -416,5 +417,12 @@ shinyServer(function(input, output, session) {
                       rintrojs::introjs(session, options = list(steps = editorHelp))
   )
 
-})
+  # Trigger bookmarking
+  observeEvent(input$bookmark, {
+    session$doBookmark()
+  })
 
+  # Need to exclude the buttons from themselves being bookmarked
+  setBookmarkExclude("bookmark")
+
+})
