@@ -66,7 +66,7 @@ Select a learning algorithm from the Parameter Learning box. This app supports b
 ## Inference
 Click Inference in the sidebar to add evidence to the network and estimate the corresponding conditional probabilities of events. Add evidence to the network using the Evidence box and select a conditional event using the Event box. 
 
-![Inference](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.PNG?raw=true)
+![Inference](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.png?raw=true)
 
 ## Measures
 Click Measures in the sidepanel to bring up a number of tools for classic network analysis. The Measures tab has a number of node and network measures. The node measures include:
