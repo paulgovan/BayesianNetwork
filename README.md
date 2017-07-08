@@ -64,7 +64,7 @@ Select a learning algorithm from the Parameter Learning box. This app supports b
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true)
 
 ## Inference
-Click Inference in the sidebar to add evidence to the network and estimate the corresponding conditional probability of events. Add evidence to the network using the Evidence box and select a conditional event using the Event box. 
+Click Inference in the sidebar to add evidence to the network and estimate the corresponding conditional probabilities of events. Add evidence to the network using the Evidence box and select a conditional event using the Event box. 
 
 ![Inference](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.PNG?raw=true)
 
@@ -82,7 +82,7 @@ Click Measures in the sidepanel to bring up a number of tools for classic networ
 
 Select a node measure in the Node Measure Control box and the result will be displayed in the Node Measure box.
 
-The Network Measure Control box contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the Network Measure box.
+The Network Measure Control box contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) is displayed along with the adjacency matrix in the Network Measure box.
 
 ![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true)
 
