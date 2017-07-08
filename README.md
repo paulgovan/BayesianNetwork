@@ -6,7 +6,7 @@
 * Generate data from your network and export to your favorite app
 
 # Overview
-BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, check out this [publication](http://ascelibrary.org/doi/abs/10.1061/(ASCE)CO.1943-7862.0001136). For even more background, see this [publication](http://dx.doi.org/10.1061/(ASCE)CO.1943-7862.0001136).
+BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, check out this [publication](http://ascelibrary.org/doi/abs/10.1061/(ASCE)CO.1943-7862.0001136). 
 
 # Getting Started
 To install BayesianNetwork in [R](https://www.r-project.org):
@@ -34,10 +34,6 @@ Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNe
 Launching the app brings up the Home tab. The Home tab is basically a landing page that gives a brief introduction to the app and includes two value boxes, one each for the number of nodes and arcs in the network. The following figure shows the basic Home tab.
 
 ![Home](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Dashboard.PNG?raw=true)
-
-The basic layout consists of the sidebar menu and the body of the app. Each link in the sidebar opens a new tab. Start with the Structure tab and work down from there. Toward the bottom of the sidebar are links to the help pages and the source code, and below that is a bookmark button that will create a link storing the current state of the application.
-
-The body of the app contains the different features for modeling and analyzing the network. The body of each tab contains a "Show Me" button that launches an interactive tutorial that walks through the different features. 
 
 BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the selected network by default.
 
@@ -68,7 +64,7 @@ Select a learning algorithm from the Parameter Learning box. This app supports b
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true)
 
 ## Inference
-Click Inference in the sidebar to estimate the conditional probability of an event given evidence added to the network. Add evidence to the network using the Evidence box and select a conditional event using the Event box. 
+Click Inference in the sidebar to add evidence to the network and estimate the corresponding conditional probability of events. Add evidence to the network using the Evidence box and select a conditional event using the Event box. 
 
 ![Inference](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.PNG?raw=true)
 
