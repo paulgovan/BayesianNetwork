@@ -87,7 +87,6 @@ The Network Measure Control box contains different options for displaying hierar
 ![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true)
 
 ## Editor
-
 Finally, click Editor in the sidepanel in order to bring up the interactive code editor. Click the Run button to knit the code displayed in the Editor box, and the resulting report is displayed in the body of the app.
 
 ![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true)

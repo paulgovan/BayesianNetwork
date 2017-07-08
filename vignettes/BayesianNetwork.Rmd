@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, check out this [publication](http://ascelibrary.org/doi/abs/10.1061/(ASCE)CO.1943-7862.0001136). For even more background, see this [publication](http://dx.doi.org/10.1061/(ASCE)CO.1943-7862.0001136).
+BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the excellent [bnlearn](http://www.bnlearn.com) and [networkD3](http://christophergandrud.github.io/networkD3/) packages. This app is a more general version of the [RiskNetwork](https://github.com/paulgovan/RiskNetwork) web app. To learn more about our project, check out this [publication](http://ascelibrary.org/doi/abs/10.1061/(ASCE)CO.1943-7862.0001136). 
 
 # Getting Started
 To install BayesianNetwork in [R](https://www.r-project.org):
@@ -66,6 +66,11 @@ Select a learning algorithm from the Parameter Learning box. This app supports b
 
 <img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true" height="500px" />
 
+## Inference
+Click Inference in the sidebar to add evidence to the network and estimate the corresponding conditional probabilities of events. Add evidence to the network using the Evidence box and select a conditional event using the Event box. 
+
+<img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.png?raw=true" height="500px" />
+
 ## Measures
 Click Measures in the sidepanel to bring up a number of tools for classic network analysis. The Measures tab has a number of node and network measures. The node measures include:
 * Markov blanket
@@ -78,25 +83,16 @@ Click Measures in the sidepanel to bring up a number of tools for classic networ
 * Incoming arcs
 * Outgoing arcs
 
-Select a node measure in the Node Control box and the result will be displayed in the Node Measure box.
+Select a node measure in the Node Measure Control box and the result will be displayed in the Node Measure box.
 
-The Network Control box contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the Network Measure box.
+The Network Measure Control box contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the Network Measure box.
 
 <img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true" height="500px" />
 
-## Simulation
-
-Finally, click Simulation in the sidepanel in order to simulate data from the network for future use. Simply enter the sample size *N* in the Network Simulation box and click Download in order to download a random sample of data from the Bayesian network. 
+## Editor
+Finally, click Editor in the sidepanel in order to bring up the interactive code editor. Click the Run button to knit the code displayed in the Editor box, and the resulting report is displayed in the body of the app.
 
 <img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true" height="500px" />
-
-# Future Work
-This package is very much still in development and mutiple improvements are planned, including:
-
-* Bayesian Inference
-* Expert Kowledge
-
-Please let us know if there are things you would like to see added (or problems with the app!) by opening up an issue using the GitHub issue tracker at [https://github.com/paulgovan/BayesianNetwork/issues](https://github.com/paulgovan/BayesianNetwork/issues)
 
 # Source Code
 BayesianNetwork is an [open source](http://opensource.org) project, and the source code is available at [https://github.com/paulgovan/BayesianNetwork](https://github.com/paulgovan/BayesianNetwork)
