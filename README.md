@@ -31,13 +31,15 @@ Or to access the app through a browser, visit [paulgovan.shinyapps.io/BayesianNe
 
 # Example
 ## Home
-Launching the app brings up the Home tab. The Home tab is basically a landing page that gives a brief introduction to the app. On the left is the sidebar menu where each link opens a new tab. Start with the Structure tab and work down from there. Toward the bottom of the sidebar are links to the help pages and the source code, and below that is a bookmark button that will save the current state of the app at any time. 
-
-The body of the app contains different features for modeling and analyzing the network. The body of each tab contains a help button that launches an interactive tutorial that walks through the features of the app. The following figure shows the basic Home tab.
-
-BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the selected network by default.
+Launching the app brings up the Home tab. The Home tab is basically a landing page that gives a brief introduction to the app and includes two value boxes, one each for the number of nodes and arcs in the network. The following figure shows the basic Home tab.
 
 ![Home](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Dashboard.PNG?raw=true)
+
+The basic layout consists of the sidebar menu and the body of the app. Each link in the sidebar opens a new tab. Start with the Structure tab and work down from there. Toward the bottom of the sidebar are links to the help pages and the source code, and below that is a bookmark button that will create a link storing the current state of the application.
+
+The body of the app contains the different features for modeling and analyzing the network. The body of each tab contains a "Show Me" button that launches an interactive tutorial that walks through the different features. 
+
+BayesianNetwork comes with a number of simulated and "real world" data sets. This example will use the "Sample Discrete Network", which is the selected network by default.
 
 ## Structure
 Click Structure in the sidepanel to begin learning the network from the data. The Bayesian network is automatically displayed in the Bayesian Network box.
@@ -66,7 +68,7 @@ Select a learning algorithm from the Parameter Learning box. This app supports b
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true)
 
 ## Inference
-Select the Inference tab to view the conditional probability distribution of an event. Using the Evidence box, add evidence to the model and in the Event box, select a conditional event to view.
+Click Inference in the sidebar to estimate the conditional probability of an event given evidence added to the network. Add evidence to the network using the Evidence box and select a conditional event using the Event box. 
 
 ![Inference](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.PNG?raw=true)
 
@@ -90,7 +92,7 @@ The Network Measure Control box contains different options for displaying hierar
 
 ## Editor
 
-Finally, click Editor in the sidepanel in order to interactively write code within the app. Click the Run button to knit the code in the Editor box. The resulting report is displayed on the in the body of the tab.
+Finally, click Editor in the sidepanel in order to bring up the interactive code editor. Click the Run button to knit the code displayed in the Editor box, and the resulting report is displayed in the body of the app.
 
 ![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true)
 
