@@ -16,12 +16,11 @@ Imports:
     d3heatmap,
     lattice,
     networkD3,
-    rhandsontable,
     rintrojs,
     shiny,
     shinyAce,
     shinydashboard
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

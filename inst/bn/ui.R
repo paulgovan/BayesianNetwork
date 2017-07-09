@@ -48,10 +48,11 @@ bnlearn::mb(dag, "A")
 
 ### Plot a d3 heatmap of the adjacency matrix
 ```{r}
-d3heatmap::d3heatmap(
+d3heatmap(
   bnlearn::amat(dag),
   symm = TRUE,
-  colors = "Blues"
+  colors = "Blues",
+  opacity = 0.75
 )
 ````
 
@@ -503,9 +504,9 @@ shinydashboard::dashboardPage(
       shinydashboard::tabItem(tabName = "measures",
                               shiny::fluidRow(
 
-                                # Node measure controls box
+                                # Measure controls box
                                 shinydashboard::box(
-                                  title = "Node Measure Control",
+                                  title = "Controls",
                                   status = "success",
                                   collapsible = TRUE,
                                   width = 4,
@@ -529,28 +530,7 @@ shinydashboard::dashboardPage(
 
                                   # Node input select
                                   shiny::selectInput("nodeNames", label = shiny::h5("Node:"),
-                                                     "")
-                                ),
-
-                                # Node measure box
-                                shinydashboard::box(
-                                  title = "Node Measure",
-                                  status = "success",
-                                  collapsible = TRUE,
-                                  width = 8,
-
-                                  # Node measure output
-                                  shiny::verbatimTextOutput("nodeText")
-                                )
-                              ),
-                              fluidRow(
-
-                                # Network measure control box
-                                shinydashboard::box(
-                                  title = "Network Measure Control",
-                                  status = "success",
-                                  collapsible = TRUE,
-                                  width = 4,
+                                                     ""),
                                   shiny::helpText("Select a network measure:"),
 
                                   # Network measure input select
@@ -565,9 +545,20 @@ shinydashboard::dashboardPage(
                                   )
                                 ),
 
+                                # Node measure box
+                                shinydashboard::box(
+                                  title = "Node Measure",
+                                  status = "success",
+                                  collapsible = TRUE,
+                                  width = 8,
+
+                                  # Node measure output
+                                  shiny::verbatimTextOutput("nodeText")
+                                ),
+
                                 # Network measure box
                                 shinydashboard::box(
-                                  title = "Network Measure",
+                                  title = "Adjacency Matrix",
                                   status = "success",
                                   collapsible = TRUE,
                                   width = 8,
@@ -576,6 +567,7 @@ shinydashboard::dashboardPage(
                                   d3heatmap::d3heatmapOutput("netTable")
                                 )
                               ),
+
                               # Add introjs btn
                               shiny::actionButton("measuresIntro", "Show me how")
       ),

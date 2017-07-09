@@ -1,4 +1,5 @@
 #' @import bnlearn
+#' @import d3heatmap
 #' @import deal
 #' @import rintrojs
 #' @import shiny
@@ -115,6 +116,7 @@ shinyServer(function(input, output, session) {
       networkData,
       Source = "from",
       Target = "to",
+      opacity = 0.75,
       zoom = TRUE
     )
 
@@ -380,7 +382,6 @@ shinyServer(function(input, output, session) {
     # Plot a d3 heatmap of the adjacency matrix
     d3heatmap::d3heatmap(
       bnlearn::amat(dag()),
-      dendrogram = input$dendrogram,
       symm = TRUE,
       cexRow = 0.7,
       cexCol = 0.7,

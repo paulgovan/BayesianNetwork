@@ -18,4 +18,3 @@ if (interactive()) {
 \seealso{
 \url{http://paulgovan.github.io/BayesianNetwork/}
 }
-

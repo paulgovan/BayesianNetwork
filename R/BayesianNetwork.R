@@ -7,7 +7,6 @@
 #' @import rintrojs
 #' @import lattice
 #' @import networkD3
-#' @import rhandsontable
 #' @import shiny
 #' @import shinyAce
 #' @import shinydashboard
