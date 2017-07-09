@@ -64,7 +64,7 @@ Select a learning algorithm from the Parameter Learning box. This app supports b
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true)
 
 ## Inference
-Click Inference in the sidebar to add evidence to the network. Select evidence to add using the Evidence box and select a conditional event of interest using the Event box. The resulting conditional probabilities are automatically displayed in the Event Parameter box. For example, the following figure shows the conditional probability of event *B*, given evidence of *c* for node *A*. Changing the evidence for node *A* to *a* or *b* similarly changes the conditional probability of event *B*. Note that inference is currently not supported for continuous variables. 
+Click Inference in the sidebar to add evidence to the network. Select evidence to add to the model using the Evidence box and select a conditional event of interest using the Event box. The resulting conditional probabilities are automatically displayed in the Event Parameter box. For example, the following figure shows the conditional probability of event *B*, given evidence of *c* for node *A*. Changing the evidence for node *A* to *a* or *b* similarly changes the conditional probability of event *B*. Note that inference is currently not supported for continuous variables. 
 
 ![Inference](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.png?raw=true)
 
@@ -82,12 +82,12 @@ Click Measures in the sidepanel to bring up a number of tools for classic networ
 
 Select a node measure in the Controls box and the result will be displayed in the Node Measure box.
 
-The Controls box also contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) is displayed along with the adjacency matrix in the Adjacency Matrix box.
+The Controls box also contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the Adjacency Matrix box.
 
 ![Measures](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true)
 
 ## Editor
-Finally, click Editor in the sidepanel in order to bring up the interactive code editor. Some example markdown is automatically displayed in the Editor box. Click the Run button to knit the code, and the resulting report is displayed in the body of the app. 
+Finally, click Editor in the sidepanel in order to bring up the interactive code editor. Some example markdown is automatically displayed in the Editor box. Click the Run button to knit the code and the resulting report will be displayed in the body of the app. 
 
 ![Simulation](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true)
 
