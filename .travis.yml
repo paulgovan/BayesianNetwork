@@ -1,15 +1,2 @@
-sudo: false
-
 language: r
-
 cache: packages
-
-install:
-  - Rscript -e 'install.packages(c("devtools","roxygen2"))'
-script:
-  - Rscript -e 'devtools::check("BayesianNetwork")'
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
