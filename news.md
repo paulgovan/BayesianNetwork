@@ -7,6 +7,7 @@
 
 ## Minor changes
 * UI improvements
+* Removed d3heatmap dependency and added heatmaply
 
 ## Bug fixes
 * Fixed bookmark button

@@ -2,9 +2,10 @@
 
 export(BayesianNetwork)
 import(bnlearn)
-import(d3heatmap)
+import(heatmaply)
 import(lattice)
 import(networkD3)
+import(plotly)
 import(rintrojs)
 import(shiny)
 import(shinyAce)

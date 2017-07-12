@@ -1,6 +1,7 @@
 #' @import bnlearn
-#' @import d3heatmap
 #' @import deal
+#' @import heatmaply
+#' @import plotly
 #' @import rintrojs
 #' @import shiny
 #' @import shinyAce
@@ -375,17 +376,19 @@ shinyServer(function(input, output, session) {
   })
 
   # Get the selected network measure from the user and plot the results
-  output$netTable <- d3heatmap::renderD3heatmap({
+  output$netTable <- plotly::renderPlotly({
     if (is.null(dat()))
       return(NULL)
 
     # Plot a d3 heatmap of the adjacency matrix
-    d3heatmap::d3heatmap(
+    heatmaply::heatmaply(
       bnlearn::amat(dag()),
+      grid_gap = 1,
+      colors = blues9,
+      dendrogram = input$dendrogram,
       symm = TRUE,
-      cexRow = 0.7,
-      cexCol = 0.7,
-      colors = "Blues"
+      margins = c(100, 100, NA, 0),
+      hide_colorbar = TRUE
     )
   })
 

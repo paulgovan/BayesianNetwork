@@ -13,9 +13,10 @@ License: Apache License | file LICENSE
 LazyData: TRUE
 Imports:
     bnlearn,
-    d3heatmap,
+    heatmaply,
     lattice,
     networkD3,
+    plotly,
     rintrojs,
     shiny,
     shinyAce,

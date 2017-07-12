@@ -3,7 +3,8 @@
 #' BayesianNetwork is a Shiny web application for Bayesian Network modeling and
 #' analysis.
 #' @import bnlearn
-#' @import d3heatmap
+#' @import heatmaply
+#' @import plotly
 #' @import rintrojs
 #' @import lattice
 #' @import networkD3

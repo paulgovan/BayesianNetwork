@@ -564,7 +564,7 @@ shinydashboard::dashboardPage(
                                   width = 8,
 
                                   # d3 heatmap
-                                  d3heatmap::d3heatmapOutput("netTable")
+                                  plotly::plotlyOutput("netTable")
                                 )
                               ),
 
