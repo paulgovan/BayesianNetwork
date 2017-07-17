@@ -1,3 +1,7 @@
+![](http://www.r-pkg.org/badges/version/BayesianNetwork)
+![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
+![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
+[![Rdoc](http://www.rdocumentation.org/badges/version/BayesianNetwork)](http://www.rdocumentation.org/packages/BayesianNetwork) 
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 
 # Features
