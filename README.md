@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
+
 # Features
 * Create interactive Bayesian Network models in the cloud
 * Learn the structure of your network with powerful structural learning algorithms
