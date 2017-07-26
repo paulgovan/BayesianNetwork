@@ -3,7 +3,6 @@
 ![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
 [![Rdoc](http://www.rdocumentation.org/badges/version/BayesianNetwork)](http://www.rdocumentation.org/packages/BayesianNetwork) 
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
-[![Github All Releases](https://img.shields.io/github/downloads/paulgovan/BayesianNetwork/total.svg)]()
 
 # Features
 * Create interactive Bayesian Network models in the cloud
