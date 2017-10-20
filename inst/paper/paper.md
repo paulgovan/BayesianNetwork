@@ -14,7 +14,6 @@ date: "14 July 2017"
 output:
   pdf_document: default
   html_document: default
-bibliography: paper.bib
 affiliations:
 - name: GE Renewable Energy
   index: 1
