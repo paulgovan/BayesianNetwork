@@ -1,23 +1,24 @@
 ---
 title: 'BayesianNetwork: Interactive Bayesian Network Modeling and Analysis'
-authors:
-- affiliation: 1
-  name: Paul B. Govan
-  orcid: 0000-0002-1821-8492
-date: "14 July 2017"
-output:
-  pdf_document: default
-  html_document: default
-bibliography: paper.bib
 tags:
 - bayesian-networks
 - network-measures
 - learning-algorithms
 - r
 - shiny
+authors:
+- name: Paul B. Govan
+  orcid: 0000-0002-1821-8492
+  affiliation: 1
+date: "14 July 2017"
+output:
+  pdf_document: default
+  html_document: default
+bibliography: paper.bib
 affiliations:
-- index: 1
-  name: GE Renewable Energy
+- name: GE Renewable Energy
+  index: 1
+bibliography: paper.bib
 ---
 
 # Summary
