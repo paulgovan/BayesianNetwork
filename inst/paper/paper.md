@@ -10,13 +10,10 @@ authors:
 - name: Paul B. Govan
   orcid: 0000-0002-1821-8492
   affiliation: 1
-date: "14 July 2017"
-output:
-  pdf_document: default
-  html_document: default
 affiliations:
 - name: GE Renewable Energy
   index: 1
+date: "14 July 2017"
 bibliography: paper.bib
 ---
 
