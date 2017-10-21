@@ -48,11 +48,14 @@ bnlearn::mb(dag, "A")
 
 ### Plot a d3 heatmap of the adjacency matrix
 ```{r}
-d3heatmap(
+heatmaply::heatmaply(
   bnlearn::amat(dag),
+  grid_gap = 1,
+  colors = blues9,
+  dendrogram = "both",
   symm = TRUE,
-  colors = "Blues",
-  opacity = 0.75
+  margins = c(100, 100, NA, 0),
+  hide_colorbar = TRUE
 )
 ````
 
@@ -99,7 +102,7 @@ shinydashboard::dashboardPage(
       # Parameters menu item
       shinydashboard::menuItem(
         "Parameters",
-        tabName = "paramaters",
+        tabName = "parameters",
         icon = shiny::icon("bar-chart")
       ),
 
@@ -221,24 +224,35 @@ shinydashboard::dashboardPage(
                                     width = NULL,
                                     shiny::helpText("Select a sample network or upload your Bayesian network data:"),
 
-                                    # Demo network input select
-                                    shiny::selectInput(
-                                      inputId = "net",
-                                      h5("Bayesian Network:"),
-                                      c("Sample Discrete Network" = 1,
-                                        "Sample Gaussian Network" = 2,
-                                        "Alarm Network" = 3,
-                                        "Insurance Network" = 4,
-                                        "Hailfinder Network" = 5,
-                                        "Upload your Bayesian network data" = 6
+                                    shinyWidgets::radioGroupButtons(inputId = "dataInput",
+                                                                    choices = c("Sample Network" = 1,
+                                                                                "Upload Data" = 2),
+                                                                    selected = 1,
+                                                                    justified = TRUE
+                                                                    ),
+
+                                    # Conditional panel for sample network selection
+                                    shiny::conditionalPanel(
+                                      condition = "input.dataInput == 1",
+
+                                      # Demo network input select
+                                      shiny::selectInput(
+                                        inputId = "net",
+                                        h5("Bayesian Network:"),
+                                        c("Sample Discrete Network" = 1,
+                                          "Sample Gaussian Network" = 2,
+                                          "Alarm Network" = 3,
+                                          "Insurance Network" = 4,
+                                          "Hailfinder Network" = 5
+                                        )
                                       )
                                     ),
 
                                     # Conditional panel for file input selection
                                     shiny::conditionalPanel(
-                                      condition = "input.net == 6",
-                                      shiny::p('Note: your data should be structured as a ',
-                                               shiny::a(href = 'http://en.wikipedia.org/wiki/Comma-separated_values', 'csv file')
+                                      condition = "input.dataInput == 2",
+
+                                      shiny::p('Note: your data should be structured as a csv file with header of variable names.'
                                       ),
 
                                       # File input
@@ -252,19 +266,6 @@ shinydashboard::dashboardPage(
                                                    '.csv',
                                                    '.tsv'
                                         )
-                                      ),
-
-                                      # Header T/F checkbox
-                                      shiny::checkboxInput('header', 'Header', TRUE),
-
-                                      # Separator input select
-                                      shiny::selectInput(
-                                        'sep',
-                                        shiny::strong('Separator:'),
-                                        c(Comma = ',',
-                                          Semicolon = ';',
-                                          Tab = '\t'
-                                        ), ','
                                       )
                                     )
                                   ),
@@ -347,21 +348,21 @@ shinydashboard::dashboardPage(
                               shiny::actionButton("structureIntro", "Show me how")
       ),
 
-      # Paramaters tab item
-      shinydashboard::tabItem(tabName = "paramaters",
+      # parameters tab item
+      shinydashboard::tabItem(tabName = "parameters",
                               shiny::fluidRow(
                                 shiny::column(
                                   width = 4,
 
-                                  # Paramater learning box
+                                  # parameter learning box
                                   shinydashboard::box(
-                                    title = "Paramater Learning",
+                                    title = "Parameter Learning",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
                                     shiny::helpText("Select a parameter learning method:"),
 
-                                    # Paramater learning method input select
+                                    # Parameter learning method input select
                                     shiny::selectInput(
                                       "met",
                                       shiny::h5("Learning Method:"),
@@ -381,16 +382,16 @@ shinydashboard::dashboardPage(
                                     )
                                   ),
 
-                                  # Paramater infographic box
+                                  # Parameter infographic box
                                   shinydashboard::box(
-                                    title = "Paramater Graphic",
+                                    title = "Parameter Graphic",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
-                                    helpText("Select a paramater infographic:"),
+                                    helpText("Select a parameter infographic:"),
 
-                                    # Paramater infographic input select
-                                    selectInput("param", label = h5("Paramater Infographic:"),
+                                    # Parameter infographic input select
+                                    selectInput("param", label = h5("Parameter Infographic:"),
                                                 ""),
 
                                     # Conditional panel for discrete data
@@ -413,9 +414,9 @@ shinydashboard::dashboardPage(
                                 shiny::column(
                                   width = 8,
 
-                                  # Network paramaters box
+                                  # Network parameters box
                                   shinydashboard::box(
-                                    title = "Network Paramaters",
+                                    title = "Network Parameters",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
@@ -483,9 +484,9 @@ shinydashboard::dashboardPage(
                                 shiny::column(
                                   width = 8,
 
-                                  # Event paramater box
+                                  # Event parameter box
                                   shinydashboard::box(
-                                    title = "Event Paramater",
+                                    title = "Event Parameter",
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,

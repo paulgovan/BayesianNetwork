@@ -11,6 +11,7 @@
 #' @import shiny
 #' @import shinyAce
 #' @import shinydashboard
+#' @import shinyWidgets
 #' @export
 #' @seealso \url{http://paulgovan.github.io/BayesianNetwork/}
 #' @examples

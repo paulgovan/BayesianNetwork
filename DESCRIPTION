@@ -20,7 +20,8 @@ Imports:
     rintrojs,
     shiny,
     shinyAce,
-    shinydashboard
+    shinydashboard,
+    shinyWidgets
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
