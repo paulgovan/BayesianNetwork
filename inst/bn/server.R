@@ -7,6 +7,9 @@
 #' @import shinyAce
 #' @import shinydashboard
 #' @import shinyWidgets
+
+options(shiny.testmode=TRUE)
+
 # Define required server logic
 shinyServer(function(input, output, session) {
 
@@ -31,9 +34,7 @@ shinyServer(function(input, output, session) {
       inFile <- input$file
       if (is.null(inFile))
         return(NULL)
-      dat <- read.csv(inFile$datapath,
-                      header = input$header,
-                      sep = input$sep)
+      dat <- read.csv(inFile$datapath)
     }
   })
 
