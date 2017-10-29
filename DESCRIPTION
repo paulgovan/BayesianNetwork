@@ -24,6 +24,5 @@ Imports:
     shinyWidgets
 RoxygenNote: 6.0.1
 Suggests: knitr,
-    rmarkdown,
-    shinytest
+    rmarkdown
 VignetteBuilder: knitr
