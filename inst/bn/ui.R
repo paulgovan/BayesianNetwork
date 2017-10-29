@@ -61,6 +61,7 @@ heatmaply::heatmaply(
 
 ### Generate some random data from the network and show the first few values
 ```{r}
+set.seed(1)
 simData <- bnlearn::rbn(fit, n = 100, dat)
 head(simData)
 ```
