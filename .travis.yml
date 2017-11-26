@@ -23,5 +23,7 @@ before_install:
   - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then hash -r; fi"
   - "phantomjs --version"
 
+r_github_packages: rstudio/shinytest
+
 script:
   - R -f run_tests.R

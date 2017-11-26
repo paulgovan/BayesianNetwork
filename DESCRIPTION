@@ -25,7 +25,7 @@ Imports:
     shinyWidgets,
     testthat
 Remotes:
-    rstudio/shinytest@dev
+    rstudio/shinytest
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
