@@ -21,6 +21,7 @@ Imports:
     shiny,
     shinyAce,
     shinydashboard,
+    shinytest,
     shinyWidgets,
     testthat
 Remotes:
