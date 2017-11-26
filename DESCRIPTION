@@ -13,6 +13,7 @@ License: Apache License | file LICENSE
 LazyData: TRUE
 Imports:
     bnlearn,
+    Cairo,
     heatmaply,
     lattice,
     networkD3,
