@@ -21,7 +21,10 @@ Imports:
     shiny,
     shinyAce,
     shinydashboard,
-    shinyWidgets
+    shinyWidgets,
+    testthat
+Remotes:
+    rstudio/shinytest
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
