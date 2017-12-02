@@ -1,7 +1,7 @@
 # dist: trusty   # Use Ubuntu 14.04 image (instead of 12.04)
 language: r
 sudo: false
-r: 3.4.1
+# r: 3.4.1
 
 cache:
   # Main R library
@@ -23,7 +23,6 @@ before_install:
   - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then hash -r; fi"
   - "phantomjs --version"
 
-r_github_packages: rstudio/shinytest
-
 script:
+  - R CMD INSTALL --no-test-load cairoDevice_2.19.tar.gz
   - R -f run_tests.R
