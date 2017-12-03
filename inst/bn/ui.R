@@ -563,11 +563,10 @@ shinydashboard::dashboardPage(
                                   title = "Adjacency Matrix",
                                   status = "success",
                                   collapsible = TRUE,
-                                  width = 8
-                                  # ,
+                                  width = 8,
 
                                   # d3 heatmap
-                                  # plotly::plotlyOutput("netTable")
+                                  plotly::plotlyOutput("netTable")
                                 )
                               ),
 
