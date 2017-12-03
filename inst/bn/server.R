@@ -1,5 +1,4 @@
 #' @import bnlearn
-#' @import deal
 #' @import heatmaply
 #' @import plotly
 #' @import rintrojs
