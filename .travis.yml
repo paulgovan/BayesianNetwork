@@ -24,5 +24,4 @@ before_install:
   - "phantomjs --version"
 
 script:
-  - R CMD INSTALL --no-test-load Cairo_1.5-9.tar.gz
   - R -f run_tests.R
