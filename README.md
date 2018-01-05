@@ -3,6 +3,7 @@
 ![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
 [![Rdoc](http://www.rdocumentation.org/badges/version/BayesianNetwork)](http://www.rdocumentation.org/packages/BayesianNetwork) 
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
 # Features
 * Create interactive Bayesian Network models in the cloud
