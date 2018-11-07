@@ -6,7 +6,7 @@ Description: A 'Shiny' web application for creating interactive Bayesian Network
     network analysis.
 URL: https://github.com/paulgovan/bayesiannetwork
 BugReports: https://github.com/paulgovan/bayesiannetwork/issues
-Authors@R: person("Paul", "Govan", email = "pgovan1@aggienetwork.com", role = c("aut", "cre"))
+Authors@R: person("Paul", "Govan", email = "pgovan1@aggienetwork.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-1821-8492"))
 Depends:
     R (>= 2.10.0)
 License: Apache License | file LICENSE
