@@ -1,6 +1,6 @@
-# BayesianNetwork 0.1.4
+# BayesianNetwork 0.1.5
 
-## Major changes
-* Added automatic testing via 'shinytest' package
-* Added JOSS paper in inst/paper
+## Minor changes
+* Added orcid
+* Minor UI improvements
 
