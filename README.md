@@ -8,7 +8,7 @@
 # Features
 * Create interactive Bayesian Network models in the cloud
 * Learn the structure of your network with powerful structural learning algorithms
-* Learn the paramaters of your network with effective paramater learning methods
+* Learn the parameters of your network with effective parameter learning methods
 * Measure the importance of connections in your network with node and network measures
 * Generate data from your network and export to your favorite app
 
@@ -64,9 +64,9 @@ To view the network score, select a score function from the The Network Score bo
 Try different combinations of structural learning algorithms and score functions in order to see the effect (if any) on the resulting Bayesian network.
 
 ## Parameters
-Select the grow-shrink algorithm once again and then click Parameters in the sidepanel in order to learn the parameters of the network. The selected paramaters are automically displayed in the *Network Paramaters* box.
+Select the grow-shrink algorithm once again and then click Parameters in the sidepanel in order to learn the parameters of the network. The selected parameters are automically displayed in the *Network Parameters* box.
 
-Select a learning algorithm from the Parameter Learning box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian parameter learning is currently only implemented for discrete data sets. Then select the type of chart to display in the Paramter Infographic box and, for the discrete case, choose the preferred node. For example, the selected node *A* is a discrete node with three levels: *a*, *b*, and *c*.
+Select a learning algorithm from the Parameter Learning box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian parameter learning is currently only implemented for discrete data sets. Then select the type of chart to display in the Parameter Infographic box and, for the discrete case, choose the preferred node. For example, the selected node *A* is a discrete node with three levels: *a*, *b*, and *c*.
 
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true)
 
