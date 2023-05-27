@@ -185,10 +185,11 @@ shinyServer(function(input, output, session) {
       return(NULL)
     if (bnlearn::directed(dag())) {
 
+      if (all(sapply(dat(), is.numeric))) met = "mle-g"
+      else met = input$met
+
       # Get the selected parameter learning method from the user and learn the paramaters
-      fit <- bnlearn::bn.fit(dag(), dat(), method = input$met)
-      # Get the selected parameter learning method from the user and learn the parameters
-      fit <- bnlearn::bn.fit(dag(), dat(), method = input$met, iss = input$iss)
+      fit <- bnlearn::bn.fit(dag(), dat(), method = met)
     }
   })
 
