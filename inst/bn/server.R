@@ -185,12 +185,14 @@ shinyServer(function(input, output, session) {
       return(NULL)
     if (bnlearn::directed(dag())) {
 
-      # Get the selected paramater learning method from the user and learn the paramaters
+      # Get the selected parameter learning method from the user and learn the paramaters
       fit <- bnlearn::bn.fit(dag(), dat(), method = input$met)
+      # Get the selected parameter learning method from the user and learn the parameters
+      fit <- bnlearn::bn.fit(dag(), dat(), method = input$met, iss = input$iss)
     }
   })
 
-  # # Create data frame for selected paramater
+  # # Create data frame for selected parameter
   # param <- shiny::reactive({
   #   param <- data.frame(coef(fit()[[input$Node]]))
   #   if (is.numeric(dat()[,1])) {
@@ -243,7 +245,7 @@ shinyServer(function(input, output, session) {
   #   }
   # })
 
-  # Set the paramater graphic options
+  # Set the parameter graphic options
   graphic <- shiny::reactive({
 
     # If data is continuous, ...
@@ -259,7 +261,7 @@ shinyServer(function(input, output, session) {
     }
   })
 
-  # Send the paramater choices to the user
+  # Send the parameter choices to the user
   shiny::observe({
     shiny::updateSelectInput(session, "param", choices = graphic())
   })
@@ -275,7 +277,7 @@ shinyServer(function(input, output, session) {
       return(NULL)
     if (bnlearn::directed(dag())) {
 
-      # Get the selected graphic from the user and plot the paramaters
+      # Get the selected graphic from the user and plot the parameters
       if (input$param == "histogram") {
         bnlearn::bn.fit.histogram(fit())
       } else if (input$param == "xyplot") {
@@ -292,7 +294,7 @@ shinyServer(function(input, output, session) {
         shiny::need(
           try(condPlot != "")
           ,
-          "Make sure your network is completely directed in order to view the paramater infographics..."
+          "Make sure your network is completely directed in order to view the parameter infographics..."
         )
       )
   })

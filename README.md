@@ -1,16 +1,14 @@
 ![](http://www.r-pkg.org/badges/version/BayesianNetwork)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
 ![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
-[![Rdoc](http://www.rdocumentation.org/badges/version/BayesianNetwork)](http://www.rdocumentation.org/packages/BayesianNetwork) 
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
-
 # BayesianNetwork
 
-![](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true){width=25%}
+![](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true)
 
-BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the [bnlearn](http://www.bnlearn.com) package. 
+BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the [bnlearn](http://www.bnlearn.com) package. To learn more about this project, check out this [paper](https://joss.theoj.org/papers/10.21105/joss.00425). 
 
 # Getting Started
 To install BayesianNetwork in [R](https://www.r-project.org):
@@ -61,9 +59,9 @@ To view the network score, select a score function from the The Network Score bo
 Try different combinations of structural learning algorithms and score functions in order to see the effect (if any) on the resulting Bayesian network.
 
 ## Parameters
-Select the grow-shrink algorithm once again and then click Parameters in the sidepanel in order to learn the parameters of the network. The selected paramaters are automically displayed in the *Network Paramaters* box.
+Select the grow-shrink algorithm once again and then click Parameters in the sidepanel in order to learn the parameters of the network. The selected parameters are automically displayed in the *Network Parameters* box.
 
-Select a learning algorithm from the Parameter Learning box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian parameter learning is currently only implemented for discrete data sets. Then select the type of chart to display in the Paramter Infographic box and, for the discrete case, choose the preferred node. For example, the selected node *A* is a discrete node with three levels: *a*, *b*, and *c*.
+Select a learning algorithm from the Parameter Learning box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian parameter learning is currently only implemented for discrete data sets. Then select the type of chart to display in the Parameter Infographic box and, for the discrete case, choose the preferred node. For example, the selected node *A* is a discrete node with three levels: *a*, *b*, and *c*.
 
 ![Parameters](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true)
 
