@@ -1,7 +1,6 @@
 require(bnlearn)
-require(d3heatmap)
+require(heatmaply)
 require(lattice)
 require(networkD3)
-require(rhandsontable)
 require(shiny)
 require(shinydashboard)

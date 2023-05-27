@@ -22,9 +22,7 @@ Imports:
     shiny,
     shinyAce,
     shinydashboard,
-    shinytest,
     shinyWidgets,
-    testthat
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
