@@ -570,7 +570,9 @@ shinydashboard::dashboardPage(
 
                               # Add introjs btn
                               shiny::actionButton("measuresIntro", "Show me how")
-      ),
+      )
+
+      ,
 
       # Editor tab item
       shinydashboard::tabItem(tabName = "editor",

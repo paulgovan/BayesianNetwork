@@ -1,6 +1,7 @@
 
 ![](http://www.r-pkg.org/badges/version/BayesianNetwork)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
+![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
@@ -135,3 +136,6 @@ displayed in the Editor box. Click the Run button to knit the code and
 the resulting report will be displayed in the body of the app.
 
 ![](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true)
+
+Note that the Editor is only available in the package (not on
+shinyapps.io).
