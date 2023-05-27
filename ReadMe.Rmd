@@ -5,16 +5,16 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+<!-- ![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master) -->
 ![](http://www.r-pkg.org/badges/version/BayesianNetwork)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
-![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
+# BayesianNetwork
+
 ![](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true){width=25%}
 
-# BayesianNetwork
 BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application for Bayesian network modeling and analysis, powered by the [bnlearn](http://www.bnlearn.com) package. To learn more about this project, check out this [paper](https://joss.theoj.org/papers/10.21105/joss.00425). 
 
 # Getting Started

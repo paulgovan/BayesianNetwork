@@ -1,13 +1,14 @@
 
+<!-- ![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master) -->
+
 ![](http://www.r-pkg.org/badges/version/BayesianNetwork)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
-![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
-<img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true" style="width:25.0%" />
-
 # BayesianNetwork
+
+<img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true" style="width:25.0%" />
 
 BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application
 for Bayesian network modeling and analysis, powered by the
