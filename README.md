@@ -1,7 +1,6 @@
 
 ![](http://www.r-pkg.org/badges/version/BayesianNetwork)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
-![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master)
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
