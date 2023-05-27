@@ -14,6 +14,7 @@
 #' @import shinyWidgets
 #' @export
 #' @seealso \url{http://paulgovan.github.io/BayesianNetwork/}
+#' @return This function does not return a value.
 #' @examples
 #' if (interactive()) {
 #'   BayesianNetwork()

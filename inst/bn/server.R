@@ -37,6 +37,12 @@ shinyServer(function(input, output, session) {
     }
   })
 
+  # bnlearn no longer supports character vars.
+  # Temp step to convert character to factor
+  # dat <- shiny::reactive({
+  #   dat <- dplyr::mutate_if(dat0(), is.character, as.factor)
+  # })
+
   # Learn the structure of the network
   dag <- shiny::reactive({
     if (is.null(dat()))
@@ -180,7 +186,7 @@ shinyServer(function(input, output, session) {
     if (bnlearn::directed(dag())) {
 
       # Get the selected paramater learning method from the user and learn the paramaters
-      fit <- bnlearn::bn.fit(dag(), dat(), method = input$met, iss = input$iss)
+      fit <- bnlearn::bn.fit(dag(), dat(), method = input$met)
     }
   })
 
@@ -414,7 +420,7 @@ shinyServer(function(input, output, session) {
     return(
       shiny::isolate(
         shiny::HTML(
-          knitr::knit2html(text = input$rmd, fragment.only = TRUE, quiet = TRUE)
+          knitr::knit2html(text = input$rmd, quiet = TRUE)
         )
       )
     )

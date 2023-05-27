@@ -5,3 +5,8 @@
 ^\.travis\.yml$
 ^run_tests\.R$
 ^.*\.dcf$
+^LICENSE$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

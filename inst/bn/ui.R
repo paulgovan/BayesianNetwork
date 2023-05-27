@@ -57,7 +57,7 @@ heatmaply::heatmaply(
   margins = c(100, 100, NA, 0),
   hide_colorbar = TRUE
 )
-````
+```
 
 ### Generate some random data from the network and show the first few values
 ```{r}
@@ -125,9 +125,7 @@ shinydashboard::dashboardPage(
       shinydashboard::menuItem(
         "Editor",
         tabName = "editor",
-        icon = shiny::icon("code"),
-        badgeLabel = "New",
-        badgeColor = "green"
+        icon = shiny::icon("code")
       ),
       br(),
 
@@ -176,8 +174,8 @@ shinydashboard::dashboardPage(
             status = "success",
             width = 8,
             shiny::img(src = "favicon.png",
-                       height = 50,
-                       width = 50
+                       height = 200,
+                       width = 175
             ),
             shiny::h2("BayesianNetwork"),
             shiny::h4("Bayesian Network Modeling and Analysis"),
@@ -370,17 +368,17 @@ shinydashboard::dashboardPage(
                                       c("Maximum Likelihood Estimation" = "mle",
                                         "Bayesian Estimation" = "bayes"
                                       )
-                                    ),
+                                    )
 
-                                    shiny::helpText("Select an imaginary sample size:"),
+                                    # shiny::helpText("Select an imaginary sample size:"),
 
                                     # Imaginary Sample Size for illustrative purposes
-                                    shiny::numericInput(
-                                      "iss",
-                                      shiny::h5("Sample Size:"),
-                                      value = 10,
-                                      min = 1
-                                    )
+                                    # shiny::numericInput(
+                                    #   "iss",
+                                    #   shiny::h5("Sample Size:"),
+                                    #   value = 10,
+                                    #   min = 1
+                                    # )
                                   ),
 
                                   # Parameter infographic box
