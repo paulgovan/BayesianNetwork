@@ -1,6 +1,8 @@
+# BayesianNetwork 0.3
+
 # BayesianNetwork 0.2
 
-# Minor improvements and bug fixes
+## Minor improvements and bug fixes
 
 * Parameter learning methods no longer return error.
 * `BayesianNetwork()` now has the same UI locally as on shinyapps.io.
