@@ -1,0 +1,6 @@
+require(bnlearn)
+require(heatmaply)
+require(lattice)
+require(networkD3)
+require(shiny)
+require(shinydashboard)

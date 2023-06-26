@@ -1,5 +1,5 @@
 Package: BayesianNetwork
-Version: 0.1.6
+Version: 0.2
 Title: Bayesian Network Modeling and Analysis
 Description: A "Shiny"" web application for creating interactive Bayesian Network models,
     learning the structure and parameters of Bayesian networks, and utilities for classic
@@ -11,7 +11,6 @@ Authors@R: person("Paul", "Govan", email = "pgovan1@aggienetwork.com", role = c(
 Depends:
     R (>= 2.10.0)
 License: Apache License
-LazyData: TRUE
 Imports:
     bnlearn,
     heatmaply,
@@ -26,4 +25,3 @@ Imports:
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown
-VignetteBuilder: knitr

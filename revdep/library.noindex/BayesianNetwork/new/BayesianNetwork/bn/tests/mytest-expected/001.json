@@ -1,0 +1,74 @@
+{
+  "input": {
+    "alg": "gs",
+    "bookmark": 0,
+    "dataInput": "1",
+    "dendrogram": "both",
+    "editorIntro": 0,
+    "eval": 0,
+    "event": "A",
+    "evidence": "b",
+    "evidenceNode": "A",
+    "file": null,
+    "homeIntro": 0,
+    "inferenceIntro": 0,
+    "iss": 10,
+    "measuresIntro": 0,
+    "met": "mle",
+    "net": "1",
+    "Node": "A",
+    "nodeMeasure": "mb",
+    "nodeNames": "A",
+    "param": "barchart",
+    "parametersIntro": 0,
+    "rmd": "## Sample Code\nHere is some sample markdown to help illustrate the editor.\n\n### Get some sample data and show the first few values\n### Use `dat()` to get the active data set\n```{r}\ndat <- learning.test\nhead(dat)\n```\n\n### Learn the structure of the network\n```{r}\ndag <- bnlearn::cextend(bnlearn::gs(dat))\n```\n\n### Plot the force directed network\n```{r}\nnetworkData <- data.frame(bnlearn::arcs(dag))\n\nnetworkD3::simpleNetwork(\n  networkData,\n  Source = \"from\",\n  Target = \"to\"\n)\n```\n\n### Print the network score\n```{r}\nbnlearn::score(dag, dat)\n```\n\n### Fit the model parameters and show the CPT for node A\n```{r}\nfit <- bnlearn::bn.fit(dag, dat)\nfit$A\n```\n\n### Plot the model parameters for node A\n```{r}\nbnlearn::bn.fit.barchart(fit[[\"A\"]])\n```\n\n### Get the Markov blanket for node A\n```{r}\nbnlearn::mb(dag, \"A\")\n```\n\n### Plot a d3 heatmap of the adjacency matrix\n```{r}\nheatmaply::heatmaply(\n  bnlearn::amat(dag),\n  grid_gap = 1,\n  colors = blues9,\n  dendrogram = \"both\",\n  symm = TRUE,\n  margins = c(100, 100, NA, 0),\n  hide_colorbar = TRUE\n)\n````\n\n### Generate some random data from the network and show the first few values\n```{r}\nset.seed(1)\nsimData <- bnlearn::rbn(fit, n = 100, dat)\nhead(simData)\n```\n\n```{r}\n# Put your own code here...\n",
+    "sidebarCollapsed": false,
+    "sidebarItemExpanded": null,
+    "sidebarMenu": "home",
+    "structureIntro": 0,
+    "type": "loglik"
+  },
+  "output": {
+    "arcsBox": {
+      "html": "<div class=\"col-sm-4\">\n  <div class=\"small-box bg-green\">\n    <div class=\"inner\">\n      <h3>5<\/h3>\n      <p>Arcs<\/p>\n    <\/div>\n    <div class=\"icon-large\">\n      <i class=\"fa fa-arrow-right\"><\/i>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "4.7.0",
+          "src": {
+            "href": "shared/font-awesome"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/font-awesome.min.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "nodesBox": {
+      "html": "<div class=\"col-sm-4\">\n  <div class=\"small-box bg-blue\">\n    <div class=\"inner\">\n      <h3>6<\/h3>\n      <p>Nodes<\/p>\n    <\/div>\n    <div class=\"icon-large\">\n      <i class=\"fa fa-circle\"><\/i>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "4.7.0",
+          "src": {
+            "href": "shared/font-awesome"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/font-awesome.min.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

@@ -1,0 +1,23 @@
+Package: BayesianNetwork
+Version: 0.2
+Title: Bayesian Network Modeling and Analysis
+Description: A "Shiny"" web application for creating interactive Bayesian Network models,
+    learning the structure and parameters of Bayesian networks, and utilities for classic
+    network analysis.
+URL: https://github.com/paulgovan/bayesiannetwork,
+        http://paulgovan.github.io/BayesianNetwork/
+BugReports: https://github.com/paulgovan/bayesiannetwork/issues
+Authors@R: person("Paul", "Govan", email = "pgovan1@aggienetwork.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-1821-8492"))
+Depends: R (>= 2.10.0)
+License: Apache License
+Imports: bnlearn, heatmaply, lattice, networkD3, plotly, rintrojs,
+        shiny, shinyAce, shinydashboard, shinyWidgets,
+RoxygenNote: 6.0.1
+Suggests: knitr, rmarkdown
+RemoteType: local
+RemoteUrl: /Users/paulgovan/Documents/BayesianNetwork
+NeedsCompilation: no
+Packaged: 2023-06-26 20:30:11 UTC; paulgovan
+Author: Paul Govan [aut, cre, cph] (<https://orcid.org/0000-0002-1821-8492>)
+Maintainer: Paul Govan <pgovan1@aggienetwork.com>
+Built: R 4.2.3; ; 2023-06-26 20:30:14 UTC; unix

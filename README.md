@@ -3,7 +3,6 @@
 
 ![](http://www.r-pkg.org/badges/version/BayesianNetwork)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
-![](http://cranlogs.r-pkg.org/badges/BayesianNetwork)
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
@@ -63,10 +62,8 @@ already be loaded.
 
 Select a learning algorithm from the *Structural Learning* box. The
 classes of available structural learning algorithms include:  
-* Constraint-based algorithms 
-* Score-based algorithms 
-* Hybrid-structure algorithms 
-* Local discovery algorithms
+\* Constraint-based algorithms \* Score-based algorithms \*
+Hybrid-structure algorithms \* Local discovery algorithms
 
 To view the network score, select a score function from the The Network
 Score box.
@@ -117,16 +114,9 @@ not supported for continuous variables.
 
 Click Measures in the sidepanel to bring up a number of tools for
 classic network analysis. The Measures tab has a number of node and
-network measures. The node measures include: 
-* Markov blanket 
-* Neighborhood 
-* Parents 
-* Children
-* In degree 
-* Out degree 
-* Incident arcs 
-* Incoming arcs 
-* Outgoing arcs
+network measures. The node measures include: \* Markov blanket \*
+Neighborhood \* Parents \* Children \* In degree \* Out degree \*
+Incident arcs \* Incoming arcs \* Outgoing arcs
 
 Select a node measure in the Controls box and the result will be
 displayed in the Node Measure box.
