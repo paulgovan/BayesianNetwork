@@ -12,3 +12,4 @@
 ^\.github$
 ^ReadMe\.Rmd$
 ^ReadMe\.md$
+^CRAN-SUBMISSION$

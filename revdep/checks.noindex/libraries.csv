@@ -1,6 +1,0 @@
-package,old,new,delta
-BayesianNetwork,0.1.5,0.2,*
-bslib,NA,0.5.0,*
-digest,NA,0.6.31,*
-igraph,NA,1.5.0,*
-vctrs,NA,0.6.3,*

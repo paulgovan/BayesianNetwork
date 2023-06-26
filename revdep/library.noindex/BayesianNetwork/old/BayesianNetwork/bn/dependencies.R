@@ -1,7 +1,0 @@
-require(bnlearn)
-require(d3heatmap)
-require(lattice)
-require(networkD3)
-require(rhandsontable)
-require(shiny)
-require(shinydashboard)
