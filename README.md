@@ -2,6 +2,7 @@
 <!-- ![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master) -->
 
 ![](http://www.r-pkg.org/badges/version/BayesianNetwork)
+![](http://cranlogs.r-pkg.org/badges/BayesianNetwork)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
@@ -140,3 +141,7 @@ the resulting report will be displayed in the body of the app.
 
 Note that the Editor is only available in the package (not on
 shinyapps.io).
+
+## Code of Conduct
+
+Please note that the BayesianNetwork project is released with a [Contributor Code of Conduct](http://paulgovan.github.io/BayesianNetwork/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

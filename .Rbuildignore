@@ -11,5 +11,5 @@
 ^pkgdown$
 ^\.github$
 ^ReadMe\.Rmd$
-^ReadMe\.md$
 ^CRAN-SUBMISSION$
+^CODE_OF_CONDUCT\.md$
