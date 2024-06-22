@@ -9,7 +9,9 @@
 
 # BayesianNetwork
 
-<img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true" style="width:25.0%" />
+<img
+src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true"
+style="width:15.0%" />
 
 BayesianNetwork is a [Shiny](http://shiny.rstudio.com) web application
 for Bayesian network modeling and analysis, powered by the
@@ -144,4 +146,7 @@ shinyapps.io).
 
 ## Code of Conduct
 
-Please note that the BayesianNetwork project is released with a [Contributor Code of Conduct](http://paulgovan.github.io/BayesianNetwork/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the BayesianNetwork project is released with a
+[Contributor Code of
+Conduct](http://paulgovan.github.io/BayesianNetwork/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
