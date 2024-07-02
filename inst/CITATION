@@ -22,9 +22,9 @@ citEntry(
   title = "BayesianNetwork: Bayesian Network Modeling and Analysis",
   author = "Paul Govan",
   year = "2023",
-  note = "R package version 0.3.1",
-  url = "https://github.com/paulgovan/bayesiannetwork",
-  doi = "110.5281/zenodo.8088500",
+  note = "R package version 0.3",
+  url = "https://cran.r-project.org/package=BayesianNetwork",
+  doi = "https://doi.org/10.32614/CRAN.package.BayesianNetwork",
   textVersion = paste(
 
   )
