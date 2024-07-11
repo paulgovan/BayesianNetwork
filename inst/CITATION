@@ -1,7 +1,7 @@
 citHeader("To cite BayesianNetwork in publications use:")
 
-citEntry(
-  entry    = "Article",
+bibentry(
+  bibtype = "Article",
   doi = "10.21105/joss.00425",
   url = "https://doi.org/10.21105/joss.00425",
   year = "2018",
@@ -11,23 +11,17 @@ citEntry(
   pages = "425",
   author = "Paul B. Govan",
   title = "BayesianNetwork: Interactive Bayesian Network Modeling and Analysis",
-  journal = "Journal of Open Source Software",
-  textVersion = paste(
-
-  )
+  journal = "Journal of Open Source Software"
 )
 
-citEntry(
-  entry    = "Manual",
+bibentry(
+  bibtype = "Manual",
   title = "BayesianNetwork: Bayesian Network Modeling and Analysis",
   author = "Paul Govan",
   year = "2023",
   note = "R package version 0.3.1",
-  url = "https://github.com/paulgovan/bayesiannetwork",
-  doi = "110.5281/zenodo.8088500",
-  textVersion = paste(
-
-  )
+  url = "https://CRAN.R-project.org/package=BayesianNetwork",
+  doi = "10.32614/CRAN.package.BayesianNetwork"
 )
 
 
