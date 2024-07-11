@@ -1,27 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/404.html</loc>
-  </url>
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/authors.html</loc>
-  </url>
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/index.html</loc>
-  </url>
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/news.html</loc>
-  </url>
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/reference/BayesianNetwork.html</loc>
-  </url>
-  <url>
-    <loc>http://paulgovan.github.io/BayesianNetwork/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/404.html</loc></url>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/LICENSE-text.html</loc></url>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/authors.html</loc></url>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/index.html</loc></url>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/news.html</loc></url>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/reference/BayesianNetwork.html</loc></url>
+<url><loc>http://paulgovan.github.io/BayesianNetwork/reference/index.html</loc></url>
 </urlset>
+
