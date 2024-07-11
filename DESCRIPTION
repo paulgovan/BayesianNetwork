@@ -1,12 +1,11 @@
 Package: BayesianNetwork
-Version: 0.3.1
+Version: 0.3.2
 Title: Bayesian Network Modeling and Analysis
 Description: A "Shiny"" web application for creating interactive Bayesian Network models,
     learning the structure and parameters of Bayesian networks, and utilities for classic
     network analysis.
-URL: https://github.com/paulgovan/bayesiannetwork,
-    http://paulgovan.github.io/BayesianNetwork/
-BugReports: https://github.com/paulgovan/bayesiannetwork/issues
+URL: https://github.com/paulgovan/bayesiannetwork, http://paulgovan.github.io/BayesianNetwork/, https://github.com/paulgovan/BayesianNetwork
+BugReports: https://github.com/paulgovan/BayesianNetwork/issues
 Authors@R: person("Paul", "Govan", email = "paul.govan2@gmail.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-1821-8492"))
 Depends:
     R (>= 2.10.0)
@@ -23,5 +22,6 @@ Imports:
     shinydashboard,
     shinyWidgets,
 RoxygenNote: 6.0.1
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown
