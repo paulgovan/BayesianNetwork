@@ -19,7 +19,7 @@ bibentry(
   title = "BayesianNetwork: Bayesian Network Modeling and Analysis",
   author = "Paul Govan",
   year = "2023",
-  note = "R package version 0.3.1",
+  note = "R package version 0.3",
   url = "https://CRAN.R-project.org/package=BayesianNetwork",
   doi = "10.32614/CRAN.package.BayesianNetwork"
 )
