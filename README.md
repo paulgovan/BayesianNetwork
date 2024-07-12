@@ -9,6 +9,8 @@
 
 # BayesianNetwork
 
+<img src="inst/bn/www/favicon.png" style="width:25.0%" />
+
 BayesianNetwork is a [Shiny](https://shiny.posit.co/) web application
 for Bayesian network modeling and analysis, powered by the
 [bnlearn](https://www.bnlearn.com/) package. To learn more about this

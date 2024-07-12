@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # BayesianNetwork
 
+![](inst/bn/www/favicon.png){width=25%}
+
 BayesianNetwork is a [Shiny](https://shiny.posit.co/) web application for Bayesian network modeling and analysis, powered by the [bnlearn](https://www.bnlearn.com/) package. To learn more about this project, check out this [paper](https://joss.theoj.org/papers/10.21105/joss.00425). 
 
 # Getting Started
