@@ -9,7 +9,9 @@
 
 # BayesianNetwork
 
-<img src="inst/bn/www/favicon.png" style="width:25.0%" />
+<img
+src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/bn/www/favicon.png?raw=true"
+style="width:25.0%" />
 
 BayesianNetwork is a [Shiny](https://shiny.posit.co/) web application
 for Bayesian network modeling and analysis, powered by the
