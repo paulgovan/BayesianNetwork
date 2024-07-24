@@ -1,9 +1,12 @@
 
 <!-- ![](https://travis-ci.org/paulgovan/BayesianNetwork.svg?branch=master) -->
 
-![](http://www.r-pkg.org/badges/version/BayesianNetwork)
-![](http://cranlogs.r-pkg.org/badges/BayesianNetwork)
-![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/BayesianNetwork)](https://CRAN.R-project.org/package=BayesianNetwork)
+[![CRAN
+checks](https://badges.cranchecks.info/summary/BayesianNetwork.svg)](https://cran.r-project.org/web/checks/check_results_BayesianNetwork.html)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/BayesianNetwork)](https://cran.r-project.org/package=BayesianNetwork)
+[![](http://cranlogs.r-pkg.org/badges/last-month/BayesianNetwork)](https://cran.r-project.org/package=BayesianNetwork)
 [![DOI](https://zenodo.org/badge/42831223.svg)](https://zenodo.org/badge/latestdoi/42831223)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00425/status.svg)](https://doi.org/10.21105/joss.00425)
 
