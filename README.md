@@ -64,8 +64,11 @@ already be loaded.
 
 Select a learning algorithm from the *Structural Learning* box. The
 classes of available structural learning algorithms include:  
-\* Constraint-based algorithms \* Score-based algorithms \*
-Hybrid-structure algorithms \* Local discovery algorithms
+
+* Constraint-based algorithms 
+* Score-based algorithms
+* Hybrid-structure algorithms 
+* Local discovery algorithms
 
 To view the network score, select a score function from the The Network
 Score box.
@@ -116,9 +119,17 @@ not supported for continuous variables.
 
 Click Measures in the sidepanel to bring up a number of tools for
 classic network analysis. The Measures tab has a number of node and
-network measures. The node measures include: \* Markov blanket \*
-Neighborhood \* Parents \* Children \* In degree \* Out degree \*
-Incident arcs \* Incoming arcs \* Outgoing arcs
+network measures. The node measures include: 
+
+* Markov blanket
+* Neighborhood 
+* Parents 
+* Children 
+* In degree 
+* Out degree 
+* Incident arcs 
+* Incoming arcs 
+* Outgoing arcs
 
 Select a node measure in the Controls box and the result will be
 displayed in the Node Measure box.
