@@ -1,8 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-07-26T02:30Z
+last_built: 2024-11-25T21:39Z
 urls:
   reference: http://paulgovan.github.io/BayesianNetwork/reference
   article: http://paulgovan.github.io/BayesianNetwork/articles

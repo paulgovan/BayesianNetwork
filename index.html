@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Bayesian Network Modeling and Analysis">
 <meta name="description" content='A "Shiny"" web application for creating interactive Bayesian Network models, learning the structure and parameters of Bayesian networks, and utilities for classic network analysis.'>
 <meta property="og:description" content='A "Shiny"" web application for creating interactive Bayesian Network models, learning the structure and parameters of Bayesian networks, and utilities for classic network analysis.'>
@@ -86,8 +86,13 @@
 </h2>
 <p>Click Structure in the sidepanel to begin learning the network from the data. The Bayesian network is automatically displayed in the Bayesian Network box.</p>
 <p>In order to learn the structure of a network for a given data set, upload the data set in csv format using The Data Input box. Data should be numeric or factored and should not contain any NULL/NaN/NA values. Again, this example uses the “Sample Discrete Network”, which should already be loaded.</p>
-<p>Select a learning algorithm from the <em>Structural Learning</em> box. The classes of available structural learning algorithms include:<br>
-* Constraint-based algorithms * Score-based algorithms * Hybrid-structure algorithms * Local discovery algorithms</p>
+<p>Select a learning algorithm from the <em>Structural Learning</em> box. The classes of available structural learning algorithms include:</p>
+<ul>
+<li>Constraint-based algorithms</li>
+<li>Score-based algorithms</li>
+<li>Hybrid-structure algorithms</li>
+<li>Local discovery algorithms</li>
+</ul>
 <p>To view the network score, select a score function from the The Network Score box.</p>
 <p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Structure.PNG?raw=true"></p>
 <p>“Sample Discrete Network” contains six discrete variables, stored as factors with either 2 or 3 levels. The structure of this simple Bayesian network can be learned using the grow-shrink algorithm, which is the selected algorithm by default.</p>
@@ -109,7 +114,18 @@
 <div class="section level2">
 <h2 id="measures">Measures<a class="anchor" aria-label="anchor" href="#measures"></a>
 </h2>
-<p>Click Measures in the sidepanel to bring up a number of tools for classic network analysis. The Measures tab has a number of node and network measures. The node measures include: * Markov blanket * Neighborhood * Parents * Children * In degree * Out degree * Incident arcs * Incoming arcs * Outgoing arcs</p>
+<p>Click Measures in the sidepanel to bring up a number of tools for classic network analysis. The Measures tab has a number of node and network measures. The node measures include:</p>
+<ul>
+<li>Markov blanket</li>
+<li>Neighborhood</li>
+<li>Parents</li>
+<li>Children</li>
+<li>In degree</li>
+<li>Out degree</li>
+<li>Incident arcs</li>
+<li>Incoming arcs</li>
+<li>Outgoing arcs</li>
+</ul>
 <p>Select a node measure in the Controls box and the result will be displayed in the Node Measure box.</p>
 <p>The Controls box also contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the Adjacency Matrix box.</p>
 <p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true"></p>
@@ -176,7 +192,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
