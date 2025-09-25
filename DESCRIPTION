@@ -9,7 +9,7 @@ BugReports: https://github.com/paulgovan/BayesianNetwork/issues
 Authors@R: person("Paul", "Govan", email = "paul.govan2@gmail.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-1821-8492"))
 Depends:
     R (>= 2.10.0)
-License: Apache License
+License: Apache License (>= 2)
 Imports:
     bnlearn,
     heatmaply,
