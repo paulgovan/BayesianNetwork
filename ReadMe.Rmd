@@ -5,6 +5,9 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# BayesianNetwork <a href="http://paulgovan.github.io/BayesianNetwork/"><img src="man/figures/logo.png" align="right" height="139" alt="BayesianNetwork website" /></a>
+
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN status](https://www.r-pkg.org/badges/version/BayesianNetwork)](https://CRAN.R-project.org/package=BayesianNetwork)
@@ -16,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 BayesianNetwork is a [shiny](https://shiny.posit.co/) web application for Bayesian network modeling and analysis, powered by the [bnlearn](https://www.bnlearn.com/) package. To learn more about this project, check out this [article](https://joss.theoj.org/papers/10.21105/joss.00425). 
 
-# Getting Started
+## Installation
 
 To install BayesianNetwork in [R](https://www.r-project.org):
 

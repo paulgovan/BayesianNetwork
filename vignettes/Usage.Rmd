@@ -1,5 +1,5 @@
 ---
-title: "Usage"
+title: "Getting Started"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Usage}
@@ -12,10 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
-library(BayesianNetwork)
 ```
 
 ## Home
