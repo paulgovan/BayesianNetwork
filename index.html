@@ -24,7 +24,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="index.html">BayesianNetwork</a>
 
@@ -38,6 +38,18 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/Usage.html">Usage</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-tutorials" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Tutorials</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-tutorials">
+<li><a class="dropdown-item" href="tutorials/BayesianNetwork.html">Bayesian Network Modeling and Analysis</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -52,90 +64,20 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9">
+<p>BayesianNetwork is a <a href="https://shiny.posit.co/" class="external-link">shiny</a> web application for Bayesian network modeling and analysis, powered by the <a href="https://www.bnlearn.com/" class="external-link">bnlearn</a> package. To learn more about this project, check out this <a href="https://joss.theoj.org/papers/10.21105/joss.00425" class="external-link">article</a>.</p>
 <div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="bayesiannetwork">BayesianNetwork<a class="anchor" aria-label="anchor" href="#bayesiannetwork"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
 </h1>
 </div>
-<p>BayesianNetwork is a <a href="https://shiny.posit.co/" class="external-link">Shiny</a> web application for Bayesian network modeling and analysis, powered by the <a href="https://www.bnlearn.com/" class="external-link">bnlearn</a> package. To learn more about this project, check out this <a href="https://joss.theoj.org/papers/10.21105/joss.00425" class="external-link">paper</a>.</p>
-</div>
-<div class="section level1">
-<h1 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
-</h1>
 <p>To install BayesianNetwork in <a href="https://www.r-project.org" class="external-link">R</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BayesianNetwork"</span>)</span></code></pre></div>
-<p>Or to install the latest developmental version:</p>
+<p>Or to install the latest development version:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'paulgovan/BayesianNetwork'</span>)</span></code></pre></div>
 <p>To launch the app:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>BayesianNetwork<span class="sc">::</span><span class="fu">BayesianNetwork</span>()</span></code></pre></div>
 <p>Or to access the app through a browser, visit <a href="https://paulgovan.shinyapps.io/BayesianNetwork/" class="external-link">paulgovan.shinyapps.io/BayesianNetwork</a>.</p>
-</div>
-<div class="section level1">
-<h1 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
-</h1>
-<div class="section level2">
-<h2 id="home">Home<a class="anchor" aria-label="anchor" href="#home"></a>
-</h2>
-<p>Launching the app brings up the Home tab. The Home tab is basically a landing page that gives a brief introduction to the app and includes two value boxes, one each for the number of nodes and arcs in the network. The following figure shows the basic Home tab.</p>
 <p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Dashboard.PNG?raw=true"></p>
-<p>BayesianNetwork comes with a number of simulated and “real world” data sets. This example will use the “Sample Discrete Network”, which is the selected network by default.</p>
-</div>
-<div class="section level2">
-<h2 id="structure">Structure<a class="anchor" aria-label="anchor" href="#structure"></a>
-</h2>
-<p>Click Structure in the sidepanel to begin learning the network from the data. The Bayesian network is automatically displayed in the Bayesian Network box.</p>
-<p>In order to learn the structure of a network for a given data set, upload the data set in csv format using The Data Input box. Data should be numeric or factored and should not contain any NULL/NaN/NA values. Again, this example uses the “Sample Discrete Network”, which should already be loaded.</p>
-<p>Select a learning algorithm from the <em>Structural Learning</em> box. The classes of available structural learning algorithms include:</p>
-<ul>
-<li>Constraint-based algorithms</li>
-<li>Score-based algorithms</li>
-<li>Hybrid-structure algorithms</li>
-<li>Local discovery algorithms</li>
-</ul>
-<p>To view the network score, select a score function from the The Network Score box.</p>
-<p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Structure.PNG?raw=true"></p>
-<p>“Sample Discrete Network” contains six discrete variables, stored as factors with either 2 or 3 levels. The structure of this simple Bayesian network can be learned using the grow-shrink algorithm, which is the selected algorithm by default.</p>
-<p>Try different combinations of structural learning algorithms and score functions in order to see the effect (if any) on the resulting Bayesian network.</p>
-</div>
-<div class="section level2">
-<h2 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
-</h2>
-<p>Select the grow-shrink algorithm once again and then click Parameters in the sidepanel in order to learn the parameters of the network. The selected parameters are automically displayed in the <em>Network Parameters</em> box.</p>
-<p>Select a learning algorithm from the Parameter Learning box. This app supports both maximum-likelihood and Bayesian estimation of the parameters. Note that Bayesian parameter learning is currently only implemented for discrete data sets. Then select the type of chart to display in the Parameter Infographic box and, for the discrete case, choose the preferred node. For example, the selected node <em>A</em> is a discrete node with three levels: <em>a</em>, <em>b</em>, and <em>c</em>.</p>
-<p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Parameters.PNG?raw=true"></p>
-</div>
-<div class="section level2">
-<h2 id="inference">Inference<a class="anchor" aria-label="anchor" href="#inference"></a>
-</h2>
-<p>Click Inference in the sidebar to add evidence to the network. Select evidence to add to the model using the Evidence box and select a conditional event of interest using the Event box. The resulting conditional probabilities are automatically displayed in the Event Parameter box. For example, the following figure shows the conditional probability of event <em>B</em>, given evidence of <em>c</em> for node <em>A</em>. Changing the evidence for node <em>A</em> to <em>a</em> or <em>b</em> similarly changes the conditional probability of event <em>B</em>. Note that inference is currently not supported for continuous variables.</p>
-<p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Inference.png?raw=true"></p>
-</div>
-<div class="section level2">
-<h2 id="measures">Measures<a class="anchor" aria-label="anchor" href="#measures"></a>
-</h2>
-<p>Click Measures in the sidepanel to bring up a number of tools for classic network analysis. The Measures tab has a number of node and network measures. The node measures include:</p>
-<ul>
-<li>Markov blanket</li>
-<li>Neighborhood</li>
-<li>Parents</li>
-<li>Children</li>
-<li>In degree</li>
-<li>Out degree</li>
-<li>Incident arcs</li>
-<li>Incoming arcs</li>
-<li>Outgoing arcs</li>
-</ul>
-<p>Select a node measure in the Controls box and the result will be displayed in the Node Measure box.</p>
-<p>The Controls box also contains different options for displaying hierarchical clusters/dendograms for the network. Select the type of dendogram to display (row, column, both, or none) and the resulting dendogram(s) will be displayed along with the adjacency matrix in the Adjacency Matrix box.</p>
-<p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true"></p>
-</div>
-<div class="section level2">
-<h2 id="editor">Editor<a class="anchor" aria-label="anchor" href="#editor"></a>
-</h2>
-<p>Finally, click Editor in the sidepanel in order to bring up the interactive code editor. Some example markdown is automatically displayed in the Editor box. Click the Run button to knit the code and the resulting report will be displayed in the body of the app.</p>
-<p><img src="https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true"></p>
-<p>Note that the Editor is only available in the package (not on shinyapps.io).</p>
-</div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h2>
@@ -163,6 +105,7 @@
 <div class="community">
 <h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
