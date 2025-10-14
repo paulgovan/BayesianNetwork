@@ -1,7 +1,6 @@
 url: http://paulgovan.github.io/BayesianNetwork/
 template:
   bootstrap: 5
-  bootswatch: minty
 development:
   mode: auto
 tutorials:
