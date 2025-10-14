@@ -121,12 +121,12 @@ shinydashboard::dashboardPage(
         icon = shiny::icon("table")
       ),
 
-      # Editor menu item
-      shinydashboard::menuItem(
-        "Editor",
-        tabName = "editor",
-        icon = shiny::icon("code")
-      ),
+      # # Editor menu item
+      # shinydashboard::menuItem(
+      #   "Editor",
+      #   tabName = "editor",
+      #   icon = shiny::icon("code")
+      # ),
       br(),
 
       # Help page link
@@ -189,11 +189,6 @@ shinydashboard::dashboardPage(
             shiny::h4("Click",
                       shiny::a("Structure", href="#shiny-tab-structure", "data-toggle" = "tab"),
                       " in the sidepanel to get started."
-            ),
-            br(),
-            shiny::h4(shiny::HTML('&copy'),
-                      '2025 By Paul Govan. ',
-                      shiny::a(href = 'http://www.apache.org/licenses/LICENSE-2.0', 'Terms of Use.')
             ),
             br(),
             # Add introjs btn
@@ -570,35 +565,35 @@ shinydashboard::dashboardPage(
                               shiny::actionButton("measuresIntro", "Show me how")
       )
 
-      ,
-
-      # Editor tab item
-      shinydashboard::tabItem(tabName = "editor",
-                              shiny::fluidRow(
-                                column(6,
-
-                                       # shinyAce editor box
-                                       shinydashboard::box(
-                                         title = "Editor",
-                                         status = "success",
-                                         collapsible = TRUE,
-                                         width = 12,
-
-                                         # shinyAce Editor
-                                         shinyAce::aceEditor("rmd", mode = "markdown", value = code),
-                                         shiny::actionButton("eval", "Run")
-                                       ),
-
-                                       # Add introjs btn
-                                       shiny::actionButton("editorIntro", "Show me how")
-                                ),
-                                column(6,
-
-                                       # knitr output
-                                       shiny::htmlOutput("knitr")
-                                )
-                              )
-      )
+      # ,
+      #
+      # # Editor tab item
+      # shinydashboard::tabItem(tabName = "editor",
+      #                         shiny::fluidRow(
+      #                           column(6,
+      #
+      #                                  # shinyAce editor box
+      #                                  shinydashboard::box(
+      #                                    title = "Editor",
+      #                                    status = "success",
+      #                                    collapsible = TRUE,
+      #                                    width = 12,
+      #
+      #                                    # shinyAce Editor
+      #                                    shinyAce::aceEditor("rmd", mode = "markdown", value = code),
+      #                                    shiny::actionButton("eval", "Run")
+      #                                  ),
+      #
+      #                                  # Add introjs btn
+      #                                  shiny::actionButton("editorIntro", "Show me how")
+      #                           ),
+      #                           column(6,
+      #
+      #                                  # knitr output
+      #                                  shiny::htmlOutput("knitr")
+      #                           )
+      #                         )
+      # )
     )
   )
 )

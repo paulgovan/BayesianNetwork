@@ -6,6 +6,10 @@
 \usage{
 BayesianNetwork()
 }
+\value{
+The function returns no value. It launches a shiny web application for
+Bayesian Network modeling and analysis.
+}
 \description{
 BayesianNetwork is a Shiny web application for Bayesian Network modeling and
 analysis.

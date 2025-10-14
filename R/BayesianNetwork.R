@@ -14,7 +14,8 @@
 #' @import shinyWidgets
 #' @export
 #' @seealso \url{http://paulgovan.github.io/BayesianNetwork/}
-#' @return A Shiny web application for Bayesian Network modeling and analysis.
+#' @return The function returns no value. It launches a shiny web application for
+#' Bayesian Network modeling and analysis.
 #' @examples
 #' if (interactive()) {
 #'   BayesianNetwork()
