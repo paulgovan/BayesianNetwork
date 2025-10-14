@@ -14,7 +14,7 @@
 #' @import shinyWidgets
 #' @export
 #' @seealso \url{http://paulgovan.github.io/BayesianNetwork/}
-#' @returns Launches the BayesianNetwork shiny web application.
+#' @return A Shiny web application for Bayesian Network modeling and analysis.
 #' @examples
 #' if (interactive()) {
 #'   BayesianNetwork()
