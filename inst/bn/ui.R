@@ -181,12 +181,10 @@ shinydashboard::dashboardPage(
             shiny::h4("Bayesian Network Modeling and Analysis"),
             br(),
             shiny::h4("BayesianNetwork is a ",
-                      shiny::a(href = 'http://shiny.rstudio.com', 'Shiny'),
+                      shiny::a(href = 'http://shiny.rstudio.com', 'shiny'),
                       "web application for Bayesian network modeling and analysis, powered by",
                       shiny::a(href = 'http://www.bnlearn.com', 'bnlearn'),
-                      'and',
-                      shiny::a(href = 'http://christophergandrud.github.io/networkD3/', 'networkD3'),
-                      '.'
+                      'package.'
             ),
             shiny::h4("Click",
                       shiny::a("Structure", href="#shiny-tab-structure", "data-toggle" = "tab"),
@@ -194,7 +192,7 @@ shinydashboard::dashboardPage(
             ),
             br(),
             shiny::h4(shiny::HTML('&copy'),
-                      '2016 By Paul Govan. ',
+                      '2025 By Paul Govan. ',
                       shiny::a(href = 'http://www.apache.org/licenses/LICENSE-2.0', 'Terms of Use.')
             ),
             br(),

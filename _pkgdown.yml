@@ -1,5 +1,10 @@
 url: http://paulgovan.github.io/BayesianNetwork/
 template:
   bootstrap: 5
+  bootswatch: minty
 development:
   mode: auto
+tutorials:
+- name: BayesianNetwork
+  title: Bayesian Network Modeling and Analysis
+  url: paulgovan.shinyapps.io/BayesianNetwork

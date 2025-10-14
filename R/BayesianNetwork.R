@@ -20,5 +20,5 @@
 #'   BayesianNetwork()
 #' }
 BayesianNetwork <- function() {
-  shiny::runApp(system.file('bn', package = 'BayesianNetwork'))
+  shiny::runApp(system.file("bn", package = "BayesianNetwork"))
 }

@@ -1,0 +1,254 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "BayesianNetwork",
+  "description": "A \"Shiny\"\" web application for creating interactive Bayesian Network models, learning the structure and parameters of Bayesian networks, and utilities for classic network analysis.",
+  "name": "BayesianNetwork: Bayesian Network Modeling and Analysis",
+  "relatedLink": ["http://paulgovan.github.io/BayesianNetwork/", "https://github.com/paulgovan/BayesianNetwork", "https://CRAN.R-project.org/package=BayesianNetwork"],
+  "codeRepository": "https://github.com/paulgovan/bayesiannetwork",
+  "issueTracker": "https://github.com/paulgovan/BayesianNetwork/issues",
+  "license": "Apache License 2",
+  "version": "0.3.2",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Govan",
+      "email": "paul.govan2@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1821-8492"
+    }
+  ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Govan",
+      "email": "paul.govan2@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1821-8492"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Govan",
+      "email": "paul.govan2@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1821-8492"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    }
+  ],
+  "softwareRequirements": {
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 2.10.0"
+    },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "bnlearn",
+      "name": "bnlearn",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=bnlearn"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "heatmaply",
+      "name": "heatmaply",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=heatmaply"
+    },
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "lattice",
+      "name": "lattice",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=lattice"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "networkD3",
+      "name": "networkD3",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=networkD3"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "plotly",
+      "name": "plotly",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=plotly"
+    },
+    "7": {
+      "@type": "SoftwareApplication",
+      "identifier": "rintrojs",
+      "name": "rintrojs",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rintrojs"
+    },
+    "8": {
+      "@type": "SoftwareApplication",
+      "identifier": "shiny",
+      "name": "shiny",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shiny"
+    },
+    "9": {
+      "@type": "SoftwareApplication",
+      "identifier": "shinyAce",
+      "name": "shinyAce",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shinyAce"
+    },
+    "10": {
+      "@type": "SoftwareApplication",
+      "identifier": "shinydashboard",
+      "name": "shinydashboard",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shinydashboard"
+    },
+    "11": {
+      "@type": "SoftwareApplication",
+      "identifier": "shinyWidgets",
+      "name": "shinyWidgets",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shinyWidgets"
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "3589.396KB",
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2018",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": ["Paul", "B."],
+          "familyName": "Govan"
+        }
+      ],
+      "name": "BayesianNetwork: Interactive Bayesian Network Modeling and Analysis",
+      "identifier": "10.21105/joss.00425",
+      "url": "https://doi.org/10.21105/joss.00425",
+      "pagination": "425",
+      "@id": "https://doi.org/10.21105/joss.00425",
+      "sameAs": "https://doi.org/10.21105/joss.00425",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "issueNumber": "21",
+        "datePublished": "2018",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "3",
+          "name": "Journal of Open Source Software"
+        }
+      }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2023",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Paul",
+          "familyName": "Govan"
+        }
+      ],
+      "name": "BayesianNetwork: Bayesian Network Modeling and Analysis",
+      "identifier": "10.32614/CRAN.package.BayesianNetwork",
+      "url": "https://CRAN.R-project.org/package=BayesianNetwork",
+      "description": "R package version 0.3",
+      "@id": "https://doi.org/10.32614/CRAN.package.BayesianNetwork",
+      "sameAs": "https://doi.org/10.32614/CRAN.package.BayesianNetwork"
+    }
+  ],
+  "releaseNotes": "https://github.com/paulgovan/bayesiannetwork/blob/main/NEWS.md"
+}
