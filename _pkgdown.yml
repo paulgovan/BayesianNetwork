@@ -3,7 +3,7 @@ template:
   bootstrap: 5
 development:
   mode: auto
-Tutorials:
+tutorials:
 - name: BayesianNetwork
   title: BayesianNetwork
   url: https://paulgovan.shinyapps.io/BayesianNetwork
