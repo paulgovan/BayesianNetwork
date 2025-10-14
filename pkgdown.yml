@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   Usage: Usage.html
-last_built: 2025-10-14T11:27Z
+last_built: 2025-10-14T15:12Z
 urls:
   reference: http://paulgovan.github.io/BayesianNetwork/reference
   article: http://paulgovan.github.io/BayesianNetwork/articles
