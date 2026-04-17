@@ -357,15 +357,10 @@ shinydashboard::dashboardPage(
                                                     )),
                                       shiny::column(6,
 
-                                                    # Conditional panel for discrete data
-                                                    shiny::conditionalPanel(
-                                                      "input.param == 'barchart' || input.param == 'dotplot'",
-
-                                                      # Evidence input select
-                                                      shiny::selectInput(
-                                                        "evidence", label = shiny::h5("Evidence:"),
-                                                        ""
-                                                      )
+                                                    # Evidence input select
+                                                    shiny::selectInput(
+                                                      "evidence", label = shiny::h5("Evidence:"),
+                                                      ""
                                                     )
                                       )
                                     )

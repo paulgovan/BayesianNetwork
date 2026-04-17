@@ -3,7 +3,6 @@
 #' @import plotly
 #' @import rintrojs
 #' @import shiny
-#' @import shinyAce
 #' @import shinydashboard
 #' @import shinyWidgets
 
@@ -44,9 +43,22 @@ shinyServer(function(input, output, session) {
         }
       )
       if (is.null(dat)) return(NULL)
+      if (nrow(dat) < 2) {
+        shiny::showNotification(
+          "Data must contain at least 2 rows.",
+          type = "error", duration = 8
+        )
+        return(NULL)
+      }
       if (anyNA(dat)) {
         shiny::showNotification(
           "Data contains missing values (NA). Please clean your data before uploading.",
+          type = "warning", duration = 8
+        )
+      }
+      if (any(sapply(dat, is.character))) {
+        shiny::showNotification(
+          "Data contains character columns. Please convert them to factors before uploading.",
           type = "warning", duration = 8
         )
       }
@@ -182,11 +194,7 @@ shinyServer(function(input, output, session) {
       }
     } else
       shiny::validate(
-        shiny::need(
-          try(score != "")
-          ,
-          "Make sure your network is completely directed in order to view your network's score..."
-        )
+        shiny::need(FALSE, "Make sure your network is completely directed in order to view your network's score...")
       )
   })
 
@@ -259,11 +267,7 @@ shinyServer(function(input, output, session) {
       }
     } else
       shiny::validate(
-        shiny::need(
-          try(condPlot != "")
-          ,
-          "Make sure your network is completely directed in order to view the parameter infographics..."
-        )
+        shiny::need(FALSE, "Make sure your network is completely directed in order to view the parameter infographics...")
       )
   })
 
@@ -291,24 +295,27 @@ shinyServer(function(input, output, session) {
     shiny::updateSelectInput(session, "event", choices = names(dat()))
   })
 
+  # Build evidence as a named list for use in inference outputs
+  evidence_reactive <- shiny::reactive({
+    shiny::req(input$evidenceNode, input$evidence)
+    ev <- list(input$evidence)
+    names(ev) <- input$evidenceNode
+    ev
+  })
+
   # Perform Bayesian inference based on evidence and plot results
   output$distPlot <- shiny::renderPlot({
     if (is.null(dat()))
       return(NULL)
+    if (is.null(fit()))
+      return(NULL)
     if (all(sapply(dat(), is.numeric)))
       shiny::validate(
-        shiny::need(
-          try(distPlot != ""),
-          "Inference is currently not supported for continuous variables..."
-        )
+        shiny::need(FALSE, "Inference is currently not supported for continuous variables...")
       )
 
-    # Build evidence as a named list — avoids eval(parse()) injection risk
-    evidence_list <- list(input$evidence)
-    names(evidence_list) <- input$evidenceNode
-
     # Estimate the conditional PD and tabularize the results
-    nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, evidence = evidence_list, method = "lw")))
+    nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, evidence = evidence_reactive(), method = "lw")))
 
     # Create a bar plot of the conditional PD
     barplot(
@@ -326,10 +333,9 @@ shinyServer(function(input, output, session) {
   output$downloadInference <- shiny::downloadHandler(
     filename = function() paste0("inference_", Sys.Date(), ".csv"),
     content  = function(file) {
-      evidence_list <- list(input$evidence)
-      names(evidence_list) <- input$evidenceNode
+      if (is.null(fit())) return(NULL)
       nodeProbs <- prop.table(
-        table(bnlearn::cpdist(fit(), input$event, evidence = evidence_list, method = "lw"))
+        table(bnlearn::cpdist(fit(), input$event, evidence = evidence_reactive(), method = "lw"))
       )
       write.csv(as.data.frame(nodeProbs), file, row.names = FALSE)
     }
