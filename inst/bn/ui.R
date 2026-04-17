@@ -1,75 +1,3 @@
-code =
-  '## Sample Code
-Here is some sample markdown to help illustrate the editor.
-
-### Get some sample data and show the first few values
-### Use `dat()` to get the active data set
-```{r}
-dat <- learning.test
-head(dat)
-```
-
-### Learn the structure of the network
-```{r}
-dag <- bnlearn::cextend(bnlearn::gs(dat))
-```
-
-### Plot the force directed network
-```{r}
-networkData <- data.frame(bnlearn::arcs(dag))
-
-networkD3::simpleNetwork(
-  networkData,
-  Source = "from",
-  Target = "to"
-)
-```
-
-### Print the network score
-```{r}
-bnlearn::score(dag, dat)
-```
-
-### Fit the model parameters and show the CPT for node A
-```{r}
-fit <- bnlearn::bn.fit(dag, dat)
-fit$A
-```
-
-### Plot the model parameters for node A
-```{r}
-bnlearn::bn.fit.barchart(fit[["A"]])
-```
-
-### Get the Markov blanket for node A
-```{r}
-bnlearn::mb(dag, "A")
-```
-
-### Plot a d3 heatmap of the adjacency matrix
-```{r}
-heatmaply::heatmaply(
-  bnlearn::amat(dag),
-  grid_gap = 1,
-  colors = blues9,
-  dendrogram = "both",
-  symm = TRUE,
-  margins = c(100, 100, NA, 0),
-  hide_colorbar = TRUE
-)
-```
-
-### Generate some random data from the network and show the first few values
-```{r}
-set.seed(1)
-simData <- bnlearn::rbn(fit, n = 100, dat)
-head(simData)
-```
-
-```{r}
-# Put your own code here...
-'
-
 # Green dashboard page
 shinydashboard::dashboardPage(
   skin = "green",
@@ -331,7 +259,8 @@ shinydashboard::dashboardPage(
                                     width = NULL,
 
                                     # d3 force directed network
-                                    networkD3::simpleNetworkOutput("netPlot")
+                                    networkD3::simpleNetworkOutput("netPlot"),
+                                    shiny::downloadButton("downloadArcs", "Download Arcs")
                                   )
                                 )
                               ),
@@ -362,16 +291,6 @@ shinydashboard::dashboardPage(
                                         "Bayesian Estimation" = "bayes"
                                       )
                                     )
-
-                                    # shiny::helpText("Select an imaginary sample size:"),
-
-                                    # Imaginary Sample Size for illustrative purposes
-                                    # shiny::numericInput(
-                                    #   "iss",
-                                    #   shiny::h5("Sample Size:"),
-                                    #   value = 10,
-                                    #   min = 1
-                                    # )
                                   ),
 
                                   # Parameter infographic box
@@ -394,14 +313,6 @@ shinydashboard::dashboardPage(
                                       shiny::selectInput("Node", label = shiny::h5("Node:"), "")
                                     )
                                   )
-                                  #                                    shinydashboard::box(
-                                  #                                      title = "Expert Knowledge", status = "success", solidHeader = TRUE, collapsible = TRUE, width = NULL, height = 1000,
-                                  #                                      shiny::selectInput("Node", label = h5("Node:"),
-                                  #                                                  ""),
-                                  #                                      shiny::helpText("Add expert knowledge to your model (Experimental):"),
-                                  #                                      shiny::actionButton("saveBtn", "Save"),
-                                  #                                      rhandsontable::rHandsontableOutput("hot")
-                                  #                                    )
                                 ),
                                 shiny::column(
                                   width = 8,
@@ -484,7 +395,8 @@ shinydashboard::dashboardPage(
                                     width = NULL,
 
                                     # Event conditional PD plot
-                                    shiny::plotOutput("distPlot")
+                                    shiny::plotOutput("distPlot"),
+                                    shiny::downloadButton("downloadInference", "Download Results")
                                   )
                                 )
                               ),
@@ -565,35 +477,6 @@ shinydashboard::dashboardPage(
                               shiny::actionButton("measuresIntro", "Show me how")
       )
 
-      # ,
-      #
-      # # Editor tab item
-      # shinydashboard::tabItem(tabName = "editor",
-      #                         shiny::fluidRow(
-      #                           column(6,
-      #
-      #                                  # shinyAce editor box
-      #                                  shinydashboard::box(
-      #                                    title = "Editor",
-      #                                    status = "success",
-      #                                    collapsible = TRUE,
-      #                                    width = 12,
-      #
-      #                                    # shinyAce Editor
-      #                                    shinyAce::aceEditor("rmd", mode = "markdown", value = code),
-      #                                    shiny::actionButton("eval", "Run")
-      #                                  ),
-      #
-      #                                  # Add introjs btn
-      #                                  shiny::actionButton("editorIntro", "Show me how")
-      #                           ),
-      #                           column(6,
-      #
-      #                                  # knitr output
-      #                                  shiny::htmlOutput("knitr")
-      #                           )
-      #                         )
-      # )
     )
   )
 )

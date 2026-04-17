@@ -33,15 +33,26 @@ shinyServer(function(input, output, session) {
       inFile <- input$file
       if (is.null(inFile))
         return(NULL)
-      dat <- read.csv(inFile$datapath)
+      dat <- tryCatch(
+        read.csv(inFile$datapath, stringsAsFactors = TRUE),
+        error = function(e) {
+          shiny::showNotification(
+            paste("Could not read file:", conditionMessage(e)),
+            type = "error", duration = 8
+          )
+          NULL
+        }
+      )
+      if (is.null(dat)) return(NULL)
+      if (anyNA(dat)) {
+        shiny::showNotification(
+          "Data contains missing values (NA). Please clean your data before uploading.",
+          type = "warning", duration = 8
+        )
+      }
+      dat
     }
   })
-
-  # bnlearn no longer supports character vars.
-  # Temp step to convert character to factor
-  # dat <- shiny::reactive({
-  #   dat <- dplyr::mutate_if(dat0(), is.character, as.factor)
-  # })
 
   # Learn the structure of the network
   dag <- shiny::reactive({
@@ -54,32 +65,31 @@ shinyServer(function(input, output, session) {
     on.exit(progress$close())
     progress$set(message = "Learning network structure", value = 0)
 
-    # Get the selected learning algorithm from the user and learn the network
-    if (input$alg == "gs") {
-      dag <- bnlearn::cextend(bnlearn::gs(dat()), strict = FALSE)
-    } else if (input$alg == "iamb") {
-      dag <- bnlearn::cextend(bnlearn::iamb(dat()), strict = FALSE)
-    } else if (input$alg == "fast.iamb") {
-      dag <- bnlearn::cextend(bnlearn::fast.iamb(dat()), strict = FALSE)
-    } else if (input$alg == "inter.iamb") {
-      dag <- bnlearn::cextend(bnlearn::inter.iamb(dat()), strict = FALSE)
-    } else if (input$alg == "hc") {
-      dag <- bnlearn::cextend(bnlearn::hc(dat()), strict = FALSE)
-    } else if (input$alg == "tabu") {
-      dag <- bnlearn::cextend(bnlearn::tabu(dat()), strict = FALSE)
-    } else if (input$alg == "mmhc") {
-      dag <- bnlearn::cextend(bnlearn::mmhc(dat()), strict = FALSE)
-    } else if (input$alg == "rsmax2") {
-      dag <- bnlearn::cextend(bnlearn::rsmax2(dat()), strict = FALSE)
-    } else if (input$alg == "mmpc") {
-      dag <- bnlearn::cextend(bnlearn::mmpc(dat()), strict = FALSE)
-    } else if (input$alg == "si.hiton.pc") {
-      dag <- bnlearn::cextend(bnlearn::si.hiton.pc(dat()), strict = FALSE)
-    } else if (input$alg == "aracne") {
-      dag <- bnlearn::cextend(bnlearn::aracne(dat()), strict = FALSE)
-    } else if (input$alg == "chow.liu") {
-      dag <- bnlearn::cextend(bnlearn::chow.liu(dat()), strict = FALSE)
-    }
+    # Dispatch to the selected learning algorithm via lookup table
+    alg_fns <- list(
+      gs          = bnlearn::gs,
+      iamb        = bnlearn::iamb,
+      fast.iamb   = bnlearn::fast.iamb,
+      inter.iamb  = bnlearn::inter.iamb,
+      hc          = bnlearn::hc,
+      tabu        = bnlearn::tabu,
+      mmhc        = bnlearn::mmhc,
+      rsmax2      = bnlearn::rsmax2,
+      mmpc        = bnlearn::mmpc,
+      si.hiton.pc = bnlearn::si.hiton.pc,
+      aracne      = bnlearn::aracne,
+      chow.liu    = bnlearn::chow.liu
+    )
+    tryCatch(
+      bnlearn::cextend(alg_fns[[input$alg]](dat()), strict = FALSE),
+      error = function(e) {
+        shiny::showNotification(
+          paste("Structure learning failed:", conditionMessage(e)),
+          type = "error", duration = 10
+        )
+        NULL
+      }
+    )
   })
 
   # Create the nodes value box
@@ -132,6 +142,12 @@ shinyServer(function(input, output, session) {
     )
 
   })
+
+  # Download network arcs as CSV
+  output$downloadArcs <- shiny::downloadHandler(
+    filename = function() paste0("network_arcs_", Sys.Date(), ".csv"),
+    content  = function(file) write.csv(data.frame(bnlearn::arcs(dag())), file, row.names = FALSE)
+  )
 
   # Print the network score
   output$score <- shiny::renderText({
@@ -188,63 +204,14 @@ shinyServer(function(input, output, session) {
       if (all(sapply(dat(), is.numeric))) met = "mle-g"
       else met = input$met
 
+      progress <- shiny::Progress$new()
+      on.exit(progress$close())
+      progress$set(message = "Fitting model parameters", value = 0)
+
       # Get the selected parameter learning method from the user and learn the paramaters
       fit <- bnlearn::bn.fit(dag(), dat(), method = met)
     }
   })
-
-  # # Create data frame for selected parameter
-  # param <- shiny::reactive({
-  #   param <- data.frame(coef(fit()[[input$Node]]))
-  #   if (is.numeric(dat()[,1])) {
-  #     colnames(param) <- "Param"
-  #     param <- cbind(param = rownames(param), param)
-  #     param[,"Param"] <- round(param[,"Param"], digits = 3)
-  #     param <- transform(param, Param = as.numeric(Param))
-  #   } else {
-  #     param[,"Freq"] <- round(param[,"Freq"], digits = 3)
-  #     param <- transform(param, Freq = as.numeric(Freq))
-  #   }
-  # })
-
-  # # Plot Handsontable for selected parameter
-  # values = shiny::reactiveValues()
-  # setHot = function(x) values[["hot"]] <<- x
-  # output$hot = rhandsontable::renderRHandsontable({
-  #   if (!is.null(input$hot)) {
-  #     DF = rhandsontable::hot_to_r(input$hot)
-  #   } else {
-  #     DF = param()
-  #   }
-  #   if (is.numeric(dat()[,1])) {
-  #     col <- "Param"
-  #   } else {
-  #     col <- "Freq"
-  #   }
-  #   setHot(DF)
-  #   rhandsontable::rhandsontable(DF, readOnly = TRUE, rowHeaders = NULL) %>%
-  #     rhandsontable::hot_table(highlightCol = TRUE, highlightRow = TRUE) %>%
-  #     rhandsontabl::hot_context_menu(allowRowEdit = FALSE, allowColEdit = FALSE) %>%
-  #     rhandsontable::hot_col(col, readOnly = FALSE)
-  # })
-  #
-  # # Add expert knowledge to the model
-  # expertFit <- shiny::reactive({
-  #   if (!is.null(values[["hot"]])) {
-  #     expertFit <- fit()
-  #     temp <- data.frame(values[["hot"]])
-  #     if (is.numeric(dat()[,1])) {
-  #       stdev <- as.numeric(fit()[[input$Node]]["sd"])
-  #       expertFit[[input$Node]] <- list(coef = as.numeric(temp[,"Param"]), sd = stdev)
-  #     } else {
-  #       cpt <- coef(expertFit()[[input$Node]])
-  #       cpt[1:length(param()[,"Freq"])] <- as.numeric(temp[,"Freq"])
-  #       expertFit[[input$Node]] <- cpt
-  #     }
-  #   } else {
-  #     expertFit <- fit()
-  #   }
-  # })
 
   # Set the parameter graphic options
   graphic <- shiny::reactive({
@@ -312,8 +279,10 @@ shinyServer(function(input, output, session) {
 
   # Send the evidence choices to the user
   shiny::observe({
+    shiny::req(input$evidenceNode, nchar(input$evidenceNode) > 0)
     whichNode <- which(colnames(dat()) == input$evidenceNode)
-    evidenceLevels <- as.vector(unique(dat()[,whichNode]))
+    if (length(whichNode) == 0) return()
+    evidenceLevels <- as.vector(unique(dat()[, whichNode]))
     shiny::updateSelectInput(session, "evidence", choices = evidenceLevels)
   })
 
@@ -334,11 +303,12 @@ shinyServer(function(input, output, session) {
         )
       )
 
-    # Create a string of the selected evidence
-    str1 <<- paste0("(", input$evidenceNode, "=='", input$evidence, "')")
+    # Build evidence as a named list — avoids eval(parse()) injection risk
+    evidence_list <- list(input$evidence)
+    names(evidence_list) <- input$evidenceNode
 
     # Estimate the conditional PD and tabularize the results
-    nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, eval(parse(text = str1)))))
+    nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, evidence = evidence_list, method = "lw")))
 
     # Create a bar plot of the conditional PD
     barplot(
@@ -351,6 +321,19 @@ shinyServer(function(input, output, session) {
       ylim = c(0, 1)
     )
   })
+
+  # Download inference results as CSV
+  output$downloadInference <- shiny::downloadHandler(
+    filename = function() paste0("inference_", Sys.Date(), ".csv"),
+    content  = function(file) {
+      evidence_list <- list(input$evidence)
+      names(evidence_list) <- input$evidenceNode
+      nodeProbs <- prop.table(
+        table(bnlearn::cpdist(fit(), input$event, evidence = evidence_list, method = "lw"))
+      )
+      write.csv(as.data.frame(nodeProbs), file, row.names = FALSE)
+    }
+  )
 
   # Observe intro btn and start the intro
   shiny::observeEvent(input$inferenceIntro,
@@ -366,26 +349,19 @@ shinyServer(function(input, output, session) {
   output$nodeText <- shiny::renderText({
     if (is.null(dat()))
       return(NULL)
-    if (input$nodeMeasure == "mb") {
-      bnlearn::mb(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "nbr") {
-      bnlearn::nbr(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "parents") {
-      bnlearn::parents(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "children") {
-      bnlearn::children(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "in.degree") {
-      bnlearn::in.degree(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "out.degree") {
-      bnlearn::out.degree(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "incident.arcs") {
-      bnlearn::incident.arcs(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "incoming.arcs") {
-      bnlearn::incoming.arcs(dag(), input$nodeNames)
-    } else if (input$nodeMeasure == "outgoing.arcs") {
-      bnlearn::outgoing.arcs(dag(), input$nodeNames)
-    } else
-      bnlearn::incident.arcs(dag(), input$nodeNames)
+    measure_fns <- list(
+      mb            = bnlearn::mb,
+      nbr           = bnlearn::nbr,
+      parents       = bnlearn::parents,
+      children      = bnlearn::children,
+      in.degree     = bnlearn::in.degree,
+      out.degree    = bnlearn::out.degree,
+      incident.arcs = bnlearn::incident.arcs,
+      incoming.arcs = bnlearn::incoming.arcs,
+      outgoing.arcs = bnlearn::outgoing.arcs
+    )
+    fn <- measure_fns[[input$nodeMeasure]]
+    if (!is.null(fn)) fn(dag(), input$nodeNames)
   })
 
   # Get the selected network measure from the user and plot the results
@@ -408,30 +384,6 @@ shinyServer(function(input, output, session) {
   # Observe intro btn and start the intro
   shiny::observeEvent(input$measuresIntro,
                       rintrojs::introjs(session, options = list(steps = measuresHelp))
-  )
-
-  # Knit shinyAce editor code
-  output$knitr <- shiny::renderUI({
-
-    # Create a Progress object
-    progress <- shiny::Progress$new()
-    # Make sure it closes when we exit this reactive, even if there's an error
-    on.exit(progress$close())
-    progress$set(message = "Building report...", value = 0)
-
-    input$eval
-    return(
-      shiny::isolate(
-        shiny::HTML(
-          knitr::knit2html(text = input$rmd, quiet = TRUE)
-        )
-      )
-    )
-  })
-
-  # Observe intro btn and start the intro
-  shiny::observeEvent(input$editorIntro,
-                      rintrojs::introjs(session, options = list(steps = editorHelp))
   )
 
   # Trigger bookmarking
