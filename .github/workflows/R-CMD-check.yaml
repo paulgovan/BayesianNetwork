@@ -42,8 +42,13 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, any::testthat, any::shinytest2
           needs: check
+
+      - name: Install Chromium for shinytest2
+        if: runner.os == 'Linux'
+        run: |
+          Rscript -e "shinytest2::install_chromium()"
 
       - uses: r-lib/actions/check-r-package@v2
         with:

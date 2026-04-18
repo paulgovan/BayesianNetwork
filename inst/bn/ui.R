@@ -223,7 +223,8 @@ shinydashboard::dashboardPage(
                                             "Chow-Liu" = "chow.liu"
                                           )
                                       )
-                                    )
+                                    ),
+                                    shiny::uiOutput("algHelp")
                                   ),
 
                                   # Network score box
@@ -260,7 +261,9 @@ shinydashboard::dashboardPage(
 
                                     # d3 force directed network
                                     networkD3::simpleNetworkOutput("netPlot"),
-                                    shiny::downloadButton("downloadArcs", "Download Arcs")
+                                    shiny::downloadButton("downloadArcs", "Download Arcs"),
+                                    shiny::br(), shiny::br(),
+                                    shiny::downloadButton("downloadBIF", "Download Network (BIF)")
                                   )
                                 )
                               ),
@@ -283,12 +286,15 @@ shinydashboard::dashboardPage(
                                     width = NULL,
                                     shiny::helpText("Select a parameter learning method:"),
 
-                                    # Parameter learning method input select
-                                    shiny::selectInput(
-                                      "met",
-                                      shiny::h5("Learning Method:"),
-                                      c("Maximum Likelihood Estimation" = "mle",
-                                        "Bayesian Estimation" = "bayes"
+                                    # Parameter learning method input select (hidden for continuous data)
+                                    shiny::conditionalPanel(
+                                      condition = "output.isNumericData === false",
+                                      shiny::selectInput(
+                                        "met",
+                                        shiny::h5("Learning Method:"),
+                                        c("Maximum Likelihood Estimation" = "mle",
+                                          "Bayesian Estimation" = "bayes"
+                                        )
                                       )
                                     )
                                   ),
@@ -325,7 +331,9 @@ shinydashboard::dashboardPage(
                                     width = NULL,
 
                                     # Conditional PD plot
-                                    shiny::plotOutput("condPlot")
+                                    shiny::plotOutput("condPlot"),
+                                    shiny::br(),
+                                    shiny::downloadButton("downloadParams", "Download Parameters (.rds)")
                                   )
                                 )
                               ),
@@ -346,24 +354,31 @@ shinydashboard::dashboardPage(
                                     status = "success",
                                     collapsible = TRUE,
                                     width = NULL,
-                                    helpText("Select evidence to add to the model:"),
+                                    shiny::helpText("Select evidence to add to the model:"),
                                     shiny::fluidRow(
                                       shiny::column(6,
-
-                                                    # Evidence node input select
-                                                    shiny::selectInput(
-                                                      "evidenceNode", label = shiny::h5("Evidence Node:"),
-                                                      ""
-                                                    )),
+                                        shiny::selectInput(
+                                          "evidenceNode", label = shiny::h5("Evidence Node:"),
+                                          ""
+                                        )
+                                      ),
                                       shiny::column(6,
-
-                                                    # Evidence input select
-                                                    shiny::selectInput(
-                                                      "evidence", label = shiny::h5("Evidence:"),
-                                                      ""
-                                                    )
+                                        shiny::uiOutput("evidenceValueUI")
                                       )
-                                    )
+                                    ),
+                                    shiny::fluidRow(
+                                      shiny::column(6,
+                                        shiny::actionButton("addEvidence", "Add", icon = shiny::icon("plus"), class = "btn-success btn-sm")
+                                      ),
+                                      shiny::column(6,
+                                        shiny::actionButton("clearEvidence", "Clear All", icon = shiny::icon("times"), class = "btn-danger btn-sm")
+                                      )
+                                    ),
+                                    shiny::br(),
+                                    shiny::strong("Active Evidence:"),
+                                    shiny::uiOutput("evidencePanel"),
+                                    shiny::br(),
+                                    shiny::helpText("Use 'Add' to accumulate multiple evidence nodes. If no evidence is added, the current selection is used directly.")
                                   ),
 
                                   # Event box
@@ -464,7 +479,9 @@ shinydashboard::dashboardPage(
                                   width = 8,
 
                                   # d3 heatmap
-                                  plotly::plotlyOutput("netTable")
+                                  plotly::plotlyOutput("netTable"),
+                                  shiny::br(),
+                                  shiny::downloadButton("downloadAdjMatrix", "Download Adjacency Matrix")
                                 )
                               ),
 

@@ -81,6 +81,22 @@ editorHelp <-
     position = c("auto", "auto")
   )
 
+# Algorithm descriptions shown beneath the algorithm selector
+algDescriptions <- c(
+  gs            = "Grow-Shrink: constraint-based. Fast, good for sparse networks. Works with discrete and Gaussian data.",
+  iamb          = "IAMB: constraint-based. More accurate than GS but slower. Works with discrete and Gaussian data.",
+  fast.iamb     = "Fast IAMB: forward-selection variant of IAMB. Faster, with similar accuracy to IAMB.",
+  inter.iamb    = "Inter-IAMB: interleaved forward-backward search. Most accurate of the IAMB family.",
+  hc            = "Hill Climbing: score-based greedy search. General purpose. Works with any score type.",
+  tabu          = "Tabu Search: score-based. Avoids local minima better than Hill Climbing.",
+  mmhc          = "MMHC: hybrid. Combines constraint-based skeleton and score-based orientation. Often the fastest overall.",
+  rsmax2        = "RSmax2: hybrid two-phase restricted maximization. Good for large networks.",
+  mmpc          = "MMPC: local discovery. Returns skeleton only (undirected). Use when edge direction is not needed.",
+  si.hiton.pc   = "SI-HITON-PC: local discovery. Parent-children recovery, semi-interleaved variant.",
+  aracne        = "ARACNE: removes indirect dependencies using mutual information. Returns skeleton only.",
+  chow.liu      = "Chow-Liu: tree-structured network. Very fast, limited to tree topology."
+)
+
 # Enable bookmarking for the app
 shiny::enableBookmarking(store = "url")
 

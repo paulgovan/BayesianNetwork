@@ -50,17 +50,31 @@ shinyServer(function(input, output, session) {
         )
         return(NULL)
       }
-      if (anyNA(dat)) {
+      # Auto-convert character columns to factors
+      char_cols <- sapply(dat, is.character)
+      if (any(char_cols)) {
+        dat[char_cols] <- lapply(dat[char_cols], as.factor)
         shiny::showNotification(
-          "Data contains missing values (NA). Please clean your data before uploading.",
-          type = "warning", duration = 8
+          paste0("Character columns converted to factors: ",
+                 paste(names(dat)[char_cols], collapse = ", ")),
+          type = "message", duration = 8
         )
       }
-      if (any(sapply(dat, is.character))) {
+      # Remove rows with missing values
+      na_rows <- !complete.cases(dat)
+      if (any(na_rows)) {
+        dat <- dat[!na_rows, ]
         shiny::showNotification(
-          "Data contains character columns. Please convert them to factors before uploading.",
+          paste0(sum(na_rows), " row(s) with missing values were removed."),
           type = "warning", duration = 8
         )
+        if (nrow(dat) < 2) {
+          shiny::showNotification(
+            "After removing missing values, fewer than 2 rows remain. Please upload a larger dataset.",
+            type = "error", duration = 8
+          )
+          return(NULL)
+        }
       }
       dat
     }
@@ -209,8 +223,15 @@ shinyServer(function(input, output, session) {
       return(NULL)
     if (bnlearn::directed(dag())) {
 
-      if (all(sapply(dat(), is.numeric))) met = "mle-g"
-      else met = input$met
+      if (all(sapply(dat(), is.numeric))) {
+        met <- "mle-g"
+        shiny::showNotification(
+          "Continuous data detected: parameter learning method set to Maximum Likelihood (Gaussian). Bayesian Estimation is not available for continuous networks.",
+          type = "message", duration = 6
+        )
+      } else {
+        met <- input$met
+      }
 
       progress <- shiny::Progress$new()
       on.exit(progress$close())
@@ -281,26 +302,76 @@ shinyServer(function(input, output, session) {
     shiny::updateSelectInput(session, "evidenceNode", choices = names(dat()))
   })
 
-  # Send the evidence choices to the user
-  shiny::observe({
-    shiny::req(input$evidenceNode, nchar(input$evidenceNode) > 0)
-    whichNode <- which(colnames(dat()) == input$evidenceNode)
-    if (length(whichNode) == 0) return()
-    evidenceLevels <- as.vector(unique(dat()[, whichNode]))
-    shiny::updateSelectInput(session, "evidence", choices = evidenceLevels)
-  })
-
   # Send the event node choices to the user
   shiny::observe({
     shiny::updateSelectInput(session, "event", choices = names(dat()))
   })
 
-  # Build evidence as a named list for use in inference outputs
+  # Accumulated evidence list for multi-evidence support
+  evidenceList <- shiny::reactiveVal(list())
+
+  # Render the evidence value input based on data type (numeric vs discrete)
+  output$evidenceValueUI <- shiny::renderUI({
+    shiny::req(input$evidenceNode, nchar(input$evidenceNode) > 0, dat())
+    whichNode <- which(colnames(dat()) == input$evidenceNode)
+    if (length(whichNode) == 0) return(NULL)
+    if (all(sapply(dat(), is.numeric))) {
+      shiny::numericInput(
+        "evidenceValue",
+        shiny::h5("Evidence Value:"),
+        value = round(mean(dat()[, whichNode], na.rm = TRUE), 3)
+      )
+    } else {
+      evidenceLevels <- as.character(unique(dat()[, whichNode]))
+      shiny::selectInput(
+        "evidenceValue",
+        shiny::h5("Evidence:"),
+        choices = evidenceLevels
+      )
+    }
+  })
+
+  # Render the accumulated evidence panel
+  output$evidencePanel <- shiny::renderUI({
+    ev <- evidenceList()
+    if (length(ev) == 0) return(shiny::helpText("No additional evidence added."))
+    rows <- lapply(seq_along(ev), function(i) {
+      shiny::fluidRow(
+        shiny::column(6, shiny::strong(names(ev)[i])),
+        shiny::column(6, shiny::code(as.character(ev[[i]])))
+      )
+    })
+    do.call(shiny::tagList, rows)
+  })
+
+  # Add current staging selection to the accumulated evidence list
+  shiny::observeEvent(input$addEvidence, {
+    shiny::req(input$evidenceNode, nchar(input$evidenceNode) > 0, input$evidenceValue)
+    current <- evidenceList()
+    if (all(sapply(dat(), is.numeric))) {
+      current[[input$evidenceNode]] <- as.numeric(input$evidenceValue)
+    } else {
+      current[[input$evidenceNode]] <- as.character(input$evidenceValue)
+    }
+    evidenceList(current)
+  })
+
+  # Clear all accumulated evidence
+  shiny::observeEvent(input$clearEvidence, {
+    evidenceList(list())
+  })
+
+  # Build evidence as a named list; use accumulated list if non-empty, else staging selectors
   evidence_reactive <- shiny::reactive({
-    shiny::req(input$evidenceNode, input$evidence)
-    ev <- list(input$evidence)
-    names(ev) <- input$evidenceNode
-    ev
+    ev <- evidenceList()
+    if (length(ev) > 0) return(ev)
+    shiny::req(input$evidenceNode, input$evidenceValue)
+    fallback <- list(input$evidenceValue)
+    names(fallback) <- input$evidenceNode
+    if (all(sapply(dat(), is.numeric))) {
+      fallback[[input$evidenceNode]] <- as.numeric(input$evidenceValue)
+    }
+    fallback
   })
 
   # Perform Bayesian inference based on evidence and plot results
@@ -309,24 +380,30 @@ shinyServer(function(input, output, session) {
       return(NULL)
     if (is.null(fit()))
       return(NULL)
-    if (all(sapply(dat(), is.numeric)))
-      shiny::validate(
-        shiny::need(FALSE, "Inference is currently not supported for continuous variables...")
+
+    if (all(sapply(dat(), is.numeric))) {
+      # Gaussian branch: sample posterior and plot density
+      samples <- bnlearn::cpdist(fit(), input$event, evidence = evidence_reactive(), method = "lw")
+      plot(
+        density(samples[[1]]),
+        main = paste("Posterior Density:", input$event),
+        xlab = input$event,
+        col = "steelblue",
+        lwd = 2
       )
-
-    # Estimate the conditional PD and tabularize the results
-    nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, evidence = evidence_reactive(), method = "lw")))
-
-    # Create a bar plot of the conditional PD
-    barplot(
-      nodeProbs,
-      col = "lightblue",
-      main = "Conditional Probabilities",
-      border = NA,
-      xlab = "Levels",
-      ylab = "Probabilities",
-      ylim = c(0, 1)
-    )
+    } else {
+      # Discrete branch: tabulate and plot conditional probabilities
+      nodeProbs <- prop.table(table(bnlearn::cpdist(fit(), input$event, evidence = evidence_reactive(), method = "lw")))
+      barplot(
+        nodeProbs,
+        col = "lightblue",
+        main = "Conditional Probabilities",
+        border = NA,
+        xlab = "Levels",
+        ylab = "Probabilities",
+        ylim = c(0, 1)
+      )
+    }
   })
 
   # Download inference results as CSV
@@ -334,10 +411,13 @@ shinyServer(function(input, output, session) {
     filename = function() paste0("inference_", Sys.Date(), ".csv"),
     content  = function(file) {
       if (is.null(fit())) return(NULL)
-      nodeProbs <- prop.table(
-        table(bnlearn::cpdist(fit(), input$event, evidence = evidence_reactive(), method = "lw"))
-      )
-      write.csv(as.data.frame(nodeProbs), file, row.names = FALSE)
+      samples <- bnlearn::cpdist(fit(), input$event, evidence = evidence_reactive(), method = "lw")
+      if (all(sapply(dat(), is.numeric))) {
+        write.csv(samples, file, row.names = FALSE)
+      } else {
+        nodeProbs <- prop.table(table(samples))
+        write.csv(as.data.frame(nodeProbs), file, row.names = FALSE)
+      }
     }
   )
 
@@ -398,6 +478,45 @@ shinyServer(function(input, output, session) {
   })
 
   # Need to exclude the buttons from themselves being bookmarked
-  setBookmarkExclude("bookmark")
+  setBookmarkExclude(c("bookmark", "addEvidence", "clearEvidence"))
+
+  # Expose data type as reactive output for conditionalPanel in ui.R
+  output$isNumericData <- shiny::reactive({
+    shiny::req(dat())
+    all(sapply(dat(), is.numeric))
+  })
+  shiny::outputOptions(output, "isNumericData", suspendWhenHidden = FALSE)
+
+  # Render algorithm description beneath the algorithm selector
+  output$algHelp <- shiny::renderUI({
+    shiny::helpText(algDescriptions[[input$alg]])
+  })
+
+  # Download adjacency matrix as CSV
+  output$downloadAdjMatrix <- shiny::downloadHandler(
+    filename = function() paste0("adjacency_matrix_", Sys.Date(), ".csv"),
+    content  = function(file) {
+      shiny::req(dag())
+      write.csv(bnlearn::amat(dag()), file)
+    }
+  )
+
+  # Download fitted network in BIF format
+  output$downloadBIF <- shiny::downloadHandler(
+    filename = function() paste0("network_", Sys.Date(), ".bif"),
+    content  = function(file) {
+      shiny::req(fit())
+      bnlearn::write.bif(file, fit())
+    }
+  )
+
+  # Download fitted parameters as RDS
+  output$downloadParams <- shiny::downloadHandler(
+    filename = function() paste0("bn_fit_", Sys.Date(), ".rds"),
+    content  = function(file) {
+      shiny::req(fit())
+      saveRDS(fit(), file)
+    }
+  )
 
 })

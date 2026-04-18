@@ -22,7 +22,10 @@ Imports:
     shinydashboard,
     shinyWidgets,
 RoxygenNote: 7.3.3
-Suggests: 
+Suggests:
+    chromote,
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0),
+    shinytest2
 VignetteBuilder: knitr
