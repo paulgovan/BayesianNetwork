@@ -20,7 +20,7 @@ for Bayesian network modeling and analysis, powered by the
 project, check out this
 [article](https://joss.theoj.org/papers/10.21105/joss.00425).
 
-## Getting Started
+## Installation
 
 To install BayesianNetwork in [R](https://www.r-project.org):
 
