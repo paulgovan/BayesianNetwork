@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/paulgovan/BayesianNetwork/blob/v0.4/inst/CITATION)
 
 Govan PB (2018). “BayesianNetwork: Interactive Bayesian Network Modeling
 and Analysis.” *Journal of Open Source Software*, **3**(21), 425.
