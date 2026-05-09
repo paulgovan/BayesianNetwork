@@ -14,6 +14,7 @@ launches the bundled Shiny app from `inst/bn/`.
 ## Common Commands
 
 ``` r
+
 # Install dependencies
 install.packages(c("bnlearn", "shiny", "shinydashboard", "shinyWidgets", "shinyAce",
                    "rintrojs", "networkD3", "plotly", "heatmaply", "lattice"))
