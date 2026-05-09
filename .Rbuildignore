@@ -17,3 +17,5 @@ _\.new\.png$
 ^LICENSE\.md$
 ^codemeta\.json$
 ^CLAUDE\.md$
+^\.positai$
+^\.claude$
