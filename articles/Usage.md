@@ -104,15 +104,3 @@ dendogram(s) will be displayed along with the adjacency matrix in the
 Adjacency Matrix box.
 
 ![](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Measures.PNG?raw=true)
-
-## Editor
-
-Finally, click Editor in the sidepanel in order to bring up the
-interactive code editor. Some example markdown is automatically
-displayed in the Editor box. Click the Run button to knit the code and
-the resulting report will be displayed in the body of the app.
-
-![](https://github.com/paulgovan/BayesianNetwork/blob/master/inst/images/Simulation.PNG?raw=true)
-
-Note that the Editor is only available in the package (not on
-shinyapps.io).
